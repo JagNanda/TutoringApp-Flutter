@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutoring_app_flutter/components/StudentPost.dart';
+import 'package:tutoring_app_flutter/components/StudentPostListing.dart';
 
 class TutorDashboardSearchPage extends StatefulWidget {
   @override
@@ -9,7 +9,7 @@ class TutorDashboardSearchPage extends StatefulWidget {
 //TODO: Replace mock data with database calls
 
 class _TutorDashboardSearchPageState extends State<TutorDashboardSearchPage> {
-  List<StudentPost> myList = List.generate(10, (index) => StudentPost());
+  List<StudentPostListing> myList = List.generate(10, (index) => StudentPostListing());
   int shownPostCount = 10;
   ScrollController _scrollController = ScrollController();
 
@@ -27,7 +27,7 @@ class _TutorDashboardSearchPageState extends State<TutorDashboardSearchPage> {
 
   void fetchMorePosts() {
     for (int i = shownPostCount; i < shownPostCount + 10; i++) {
-      myList.add(StudentPost());
+      myList.add(StudentPostListing());
     }
     shownPostCount += 10;
   }

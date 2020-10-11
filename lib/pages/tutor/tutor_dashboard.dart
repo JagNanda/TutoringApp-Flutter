@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tutoring_app_flutter/pages/tutor/TutorDashboardFavourites.dart';
-import 'package:tutoring_app_flutter/pages/tutor/TutorDashboardMyStudents.dart';
-import 'package:tutoring_app_flutter/pages/tutor/TutorDashboardSearchPage.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard_favourites.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard_my_students.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard_search_page.dart';
 
 class TutorDashboard extends StatefulWidget {
   @override

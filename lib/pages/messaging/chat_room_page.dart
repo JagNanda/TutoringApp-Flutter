@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../components/messaging/MessageList.dart';
-import '../../models/Message.dart';
+import '../../components/messaging/message_list.dart';
+import '../../models/message.dart';
 
 class ChatRoomPage extends StatefulWidget {
   final List<Message> messages;

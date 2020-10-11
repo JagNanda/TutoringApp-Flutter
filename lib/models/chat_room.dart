@@ -1,5 +1,5 @@
 
-import './Message.dart';
+import './message.dart';
 
 class ChatRoom {
   String id;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/pages/tutor/TutorDashboard.dart';
 import 'pages/login_page.dart';
-import 'pages/messaging/MessagingPage.dart';
+import 'pages/messaging/messaging_page.dart';
 
 void main() {
   runApp(TutoringApp());

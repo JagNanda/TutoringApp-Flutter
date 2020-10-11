@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../pages/messaging/ChatRoomPage.dart';
-import '../../models/ChatRoom.dart';
+import '../../pages/messaging/chat_room_page.dart';
+import '../../models/chat_room.dart';
 
 class ChatRoomList extends StatelessWidget {
   final List<ChatRoom> chatRooms;

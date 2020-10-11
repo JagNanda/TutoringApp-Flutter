@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/Message.dart';
+import '../../models/message.dart';
 
 class MessageList extends StatelessWidget {
   final List<Message> messages;

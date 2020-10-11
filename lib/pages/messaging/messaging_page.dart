@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../components/messaging/ChatRoomList.dart';
-import '../../models/ChatRoom.dart';
-import '../../models/Message.dart';
+import '../../components/messaging/chat_room_list.dart';
+import '../../models/chat_room.dart';
+import '../../models/message.dart';
 
 class MessagingPage extends StatefulWidget {
   @override

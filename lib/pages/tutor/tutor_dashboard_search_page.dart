@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tutoring_app_flutter/components/StudentPostListing.dart';
+import 'package:tutoring_app_flutter/components/student_post_listing.dart';
 
 class TutorDashboardSearchPage extends StatefulWidget {
   @override

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'TestPage.dart';
+import 'package:tutoring_app_flutter/main.dart';
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -49,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
           borderRadius: BorderRadius.circular(24),
         ),
         onPressed: () {
-
+          Navigator.push(context, new MaterialPageRoute(builder: (context) => new TestPage()));
         },
         padding: EdgeInsets.all(12),
         color: Colors.green,
@@ -88,3 +90,4 @@ class _LoginPageState extends State<LoginPage> {
 
   }
 }
+

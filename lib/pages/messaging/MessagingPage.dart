@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../components/messaging/ChatRoomList.dart';
 import '../../models/ChatRoom.dart';
+import '../../models/Message.dart';
 
 class MessagingPage extends StatefulWidget {
   @override
@@ -15,7 +16,37 @@ class _MessagingPageState extends State<MessagingPage> {
         id: 'cr1',
         imgUrl: 'https://via.placeholder.com/50',
         lastMessage: 'This is a last message, I\'ll make it longer.',
-        name: 'Ryan Haire'
+        name: 'Ryan Haire',
+        messages: [
+          Message(
+              id: 'msg1',
+              name: 'Ryan Haire',
+              imgUrl: 'https://via.placeholder.com/50',
+              body: 'This is a message.',
+              dateTime: DateTime.now()
+          ),
+          Message(
+              id: 'msg2',
+              name: 'John Smith',
+              imgUrl: 'https://via.placeholder.com/50',
+              body: 'Reply with a message',
+              dateTime: DateTime.now()
+          ),
+          Message(
+              id: 'msg3',
+              name: 'Ryan Haire',
+              imgUrl: 'https://via.placeholder.com/50',
+              body: 'How you doing?',
+              dateTime: DateTime.now()
+          ),
+          Message(
+              id: 'msg4',
+              name: 'John Smith',
+              imgUrl: 'https://via.placeholder.com/50',
+              body: 'Good, how you doing?',
+              dateTime: DateTime.now()
+          ),
+        ]
     ),
     ChatRoom(
         id: 'cr2',

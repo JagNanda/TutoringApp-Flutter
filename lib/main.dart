@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart';
+import 'pages/login_page.dart';
 
 void main() {
   runApp(TutorLink());
@@ -19,7 +19,6 @@ class TutorLink extends StatelessWidget {
         fontFamily: 'Nunito',
       ),
       home: LoginPage(),
-      //home: DrawerWidget(),
       routes: routes,
     );
 

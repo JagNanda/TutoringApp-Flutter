@@ -4,6 +4,7 @@ import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard.dart';
 import 'pages/login_page.dart';
 import 'pages/messaging/messaging_page.dart';
 
+
 void main() {
   runApp(TutoringApp());
 }
@@ -23,5 +24,8 @@ class TutoringApp extends StatelessWidget {
       home: RegistrationPage(),
       routes: routes,
     );
+
   }
 }
+
+

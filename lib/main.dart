@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'pages/login_page.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard.dart';
+import 'pages/login_page.dart';
+import 'pages/messaging/messaging_page.dart';
+
 
 void main() {
-  runApp(TutorLink());
+  runApp(TutoringApp());
 }
 
-class TutorLink extends StatelessWidget {
+class TutoringApp extends StatelessWidget {
   final routes = <String, WidgetBuilder>{
     LoginPage.tag: (context) => LoginPage(),
   };
@@ -15,10 +19,9 @@ class TutorLink extends StatelessWidget {
       title: 'TutorLink',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
         fontFamily: 'Nunito',
       ),
-      home: LoginPage(),
+      home: MessagingPage(),
       routes: routes,
     );
 

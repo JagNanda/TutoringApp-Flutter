@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//used in student_post_listing
 var kPostTitleText = TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.blue);
 var kPostBoldText = TextStyle(fontWeight: FontWeight.bold);
 var kPostDateText =

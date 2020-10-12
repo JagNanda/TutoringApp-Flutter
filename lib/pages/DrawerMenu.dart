@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/bsarm/StudioProjects/TutoringApp-Flutter/lib/pages/login_page.dart';
+import 'login_page.dart';
 import 'TestPage.dart';
 import 'Settings.dart';
 

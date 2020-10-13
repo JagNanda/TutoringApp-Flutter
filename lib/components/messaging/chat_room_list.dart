@@ -5,8 +5,9 @@ import '../../models/chat_room.dart';
 
 class ChatRoomList extends StatelessWidget {
   final List<ChatRoom> chatRooms;
+  final Function addMessage;
 
-  ChatRoomList(this.chatRooms);
+  ChatRoomList({this.chatRooms, this.addMessage});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class ChatRoomList extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ChatRoomPage(messages: chatRooms[index].messages)
+                          builder: (context) => ChatRoomPage(messages: chatRooms[index].messages, addMessage: addMessage)
                       )
                   );
                 },
@@ -30,14 +31,30 @@ class ChatRoomList extends StatelessWidget {
                             margin: EdgeInsets.all(10),
                             child: ClipRRect(
                                 borderRadius: BorderRadius.circular(50.0),
-                                child: Image.network(chatRooms[index].imgUrl)
+                                child: Image.network('https://via.placeholder.com/50')
                             )
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(chatRooms[index].name),
-                            Text(chatRooms[index].lastMessage)
+                            Container(
+                                margin: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
+                                child: Text(
+                                  chatRooms[index].tuteeId,
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
+                              child: Text(
+                                'hello world',
+                                style: TextStyle(),
+                              )
+                            )
+
                           ],
                         )
                       ],

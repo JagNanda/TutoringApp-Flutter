@@ -1,12 +1,27 @@
-
+import 'package:flutter/material.dart';
 import './message.dart';
 
 class ChatRoom {
-  String id;
-  String imgUrl;
-  String name;
-  String lastMessage;
+  String tuteeId;
+  String tutorId;
   List<Message> messages;
+  DateTime dateTime;
 
-  ChatRoom({this.id, this.imgUrl, this.name, this.lastMessage, this.messages});
+  ChatRoom({this.tuteeId, this.tutorId, this.messages, this.dateTime});
+
+  factory ChatRoom.fromJson(Map<String, dynamic> json) {
+    var messages = json['messages'] as List;
+    List<Message> messageList = [];
+    print(messages.runtimeType);
+    if(messages.length != 0) {
+      messageList = messages.map((i) => Message.fromJson(i)).toList();
+    }
+
+    return new ChatRoom(
+      tuteeId: json['tuteeId'],
+      tutorId: json['tutorId'],
+      messages: messageList,
+      dateTime: DateTime.parse(json['date'])
+    );
+  }
 }

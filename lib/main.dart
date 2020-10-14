@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard.dart';
 import 'pages/login_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard.dart';
 import 'pages/login_page.dart';
@@ -21,7 +22,7 @@ class TutoringApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Nunito',
       ),
-      home: MessagingPage(),
+      home: SessionDashboard(),
       routes: routes,
     );
 

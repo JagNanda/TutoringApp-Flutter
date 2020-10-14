@@ -12,6 +12,9 @@ class MessageList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if(messages.isEmpty) {
+      return Center(child: Text('No messages in the chat'));
+    }
     return Expanded(
         child: ListView.builder(
           itemBuilder: (ctx, index) {

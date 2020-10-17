@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:tutoring_app_flutter/utils/HttpService.dart';
 
 import '../../components/messaging/chat_room_list.dart';
 import '../../models/chat_room.dart';
@@ -10,59 +14,28 @@ class MessagingPage extends StatefulWidget {
 }
 
 class _MessagingPageState extends State<MessagingPage> {
+  Future<List<ChatRoom>> _chatRooms;
+  HttpService httpService = new HttpService();
 
-  final List<ChatRoom> _chatRooms = [
-    ChatRoom(
-        id: 'cr1',
-        imgUrl: 'https://via.placeholder.com/50',
-        lastMessage: 'This is a last message, I\'ll make it longer.',
-        name: 'Ryan Haire',
-        messages: [
-          Message(
-              id: 'msg1',
-              name: 'Ryan Haire',
-              imgUrl: 'https://via.placeholder.com/50',
-              body: 'This is a message.',
-              dateTime: DateTime.now()
-          ),
-          Message(
-              id: 'msg2',
-              name: 'John Smith',
-              imgUrl: 'https://via.placeholder.com/50',
-              body: 'Reply with a message',
-              dateTime: DateTime.now()
-          ),
-          Message(
-              id: 'msg3',
-              name: 'Ryan Haire',
-              imgUrl: 'https://via.placeholder.com/50',
-              body: 'How you doing?',
-              dateTime: DateTime.now()
-          ),
-          Message(
-              id: 'msg4',
-              name: 'John Smith',
-              imgUrl: 'https://via.placeholder.com/50',
-              body: 'Good, how you doing?',
-              dateTime: DateTime.now()
-          ),
-        ]
-    ),
-    ChatRoom(
-        id: 'cr2',
-        imgUrl: 'https://via.placeholder.com/50',
-        lastMessage: 'I would like to talk about a session.',
-        name: 'Tony Stark'
-    ),
-    ChatRoom(
-        id: 'cr3',
-        imgUrl: 'https://via.placeholder.com/50',
-        lastMessage: 'Another message.',
-        name: 'John Smith'
-    ),
-  ];
+  initState() {
+    super.initState();
+    _chatRooms = httpService.fetchChatRooms();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  void _addMessage(String userId, String chatRoomId, String message) {
+    // add message via http request to chatroom by userId(tutorId or tuteeId)
+    // add message to list of messages in app so message list updates
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: ChatRoomList(_chatRooms));
+    return Scaffold(
+        body: ChatRoomList(chatRooms: _chatRooms, addMessage: _addMessage)
+    );
   }
 }

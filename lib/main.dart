@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/pages/student/student_dashboard/student_dashboard.dart';
 import 'package:tutoring_app_flutter/route_generator.dart';
 
 import 'package:tutoring_app_flutter/pages/registration_page.dart';
-/*
-import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard.dart';
+
+import 'file:///C:/Users/Jag/AndroidStudioProjects/TutoringApp-Flutter/lib/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_1_level_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_3_experience_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_4_education_page.dart';
 import 'pages/login_page.dart';
 import 'pages/tutor/tutor_profile_page.dart';
 import 'pages/messaging/messaging_page.dart';
-*/
 
 void main() {
   runApp(TutoringApp());
@@ -27,7 +27,7 @@ class TutoringApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Nunito',
       ),
-      home: RegistrationPage(),
+      home: LoginPage(),
 
       //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
       //initialRoute: '/create_tutor_skill',

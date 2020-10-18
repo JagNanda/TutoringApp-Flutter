@@ -4,7 +4,7 @@ import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 
 
 
-class CreateTutor3ExperiencePage extends StatelessWidget {
+class CreateTutor3ExperiencePage extends StatefulWidget {
   final TutorProfile tutorProfile;
 
   const CreateTutor3ExperiencePage({
@@ -12,6 +12,11 @@ class CreateTutor3ExperiencePage extends StatelessWidget {
     @required this.tutorProfile,
   }) : super(key: key);
 
+  @override
+  _CreateTutor3ExperiencePageState createState() => _CreateTutor3ExperiencePageState();
+}
+
+class _CreateTutor3ExperiencePageState extends State<CreateTutor3ExperiencePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,8 +58,13 @@ class CreateTutor3ExperiencePage extends StatelessWidget {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         padding: EdgeInsets.all(20),
                         onPressed: (){
-                          print("Entry Level Pressed");
-                          Navigator.of(context).pushNamed('/create_tutor_education', arguments: tutorProfile);
+                          setState(() {
+                            widget.tutorProfile.tutorExpertise = "Entry Level";
+                          });
+                            print("Entry Level Pressed");
+                            Navigator.of(context).pushNamed(
+                                '/create_tutor_education',
+                                arguments: widget.tutorProfile);
                           }, // TODO: onPressed add tutorExpertise to delegate and segue to new page
                       ),
                       width: double.maxFinite,
@@ -78,7 +88,10 @@ class CreateTutor3ExperiencePage extends StatelessWidget {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         padding: EdgeInsets.all(20),
                         onPressed: (){
-                          Navigator.of(context).pushNamed('/create_tutor_education', arguments: tutorProfile);
+                          setState(() {
+                            widget.tutorProfile.tutorExpertise = "Intermediate";
+                          });
+                          Navigator.of(context).pushNamed('/create_tutor_education', arguments: widget.tutorProfile);
                           print("Intermediate Pressed");
                           }, // TODO: onPressed add tutorExpertise to delegate and segue to new page
                       ),
@@ -103,7 +116,10 @@ class CreateTutor3ExperiencePage extends StatelessWidget {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         padding: EdgeInsets.all(20),
                         onPressed: (){
-                          Navigator.of(context).pushNamed('/create_tutor_education', arguments: tutorProfile);
+                          setState(() {
+                            widget.tutorProfile.tutorExpertise = "Expert";
+                          });
+                          Navigator.of(context).pushNamed('/create_tutor_education', arguments: widget.tutorProfile);
                           print("Expert Pressed");
                           }, // TODO: onPressed add tutorExpertise to delegate and segue to new page
                       ),
@@ -126,7 +142,7 @@ class CreateTutor3ExperiencePage extends StatelessWidget {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                 padding: EdgeInsets.all(20),
                 onPressed: (){
-                  Navigator.of(context).pushNamed('/create_tutor_subjects', arguments: tutorProfile);
+                  Navigator.of(context).pushNamed('/create_tutor_subjects', arguments: widget.tutorProfile);
                   print("Back Pressed");
                   }, // TODO: onPressed segue to previous page
               ),

@@ -4,7 +4,11 @@ import 'package:tutoring_app_flutter/route_generator.dart';
 
 import 'package:tutoring_app_flutter/pages/registration_page.dart';
 
-import 'file:///C:/Users/Jag/AndroidStudioProjects/TutoringApp-Flutter/lib/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
+
+import 'models/tutor_profile.dart';
+/*
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard.dart';
+
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_1_level_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_3_experience_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_4_education_page.dart';
@@ -27,15 +31,16 @@ class TutoringApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Nunito',
       ),
+
       home: LoginPage(),
 
       //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
-      //initialRoute: '/create_tutor_skill',
-      //onGenerateRoute: RouteGenerator.generateRoute,
+      initialRoute: '/portal',
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
-
+TutorProfile tutorProfile;
 /*
 home: LoginPage(),
 home: RegistrationPage(),

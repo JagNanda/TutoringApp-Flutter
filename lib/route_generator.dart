@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/portal_page.dart';
 import 'pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 
 class RouteGenerator {
@@ -9,15 +10,26 @@ class RouteGenerator {
     final profileReceived = settings.arguments;
 
     switch(settings.name){
+      case '/portal':
+        return MaterialPageRoute(builder: (_)=> PortalPage());
+        //return MaterialPageRoute(builder: (_)=> CreateTutor1LevelPage());
+
       case '/create_tutor_skill':
-        return MaterialPageRoute(builder: (_)=> CreateTutor1LevelPage());
+        if(profileReceived is TutorProfile){
+          return MaterialPageRoute(
+              builder: (_)=> CreateTutor1LevelPage(
+                tutorProfile: profileReceived,
+              ),
+          );
+        }
+        return _errorRoute();
 
       case '/create_tutor_subjects':
         if(profileReceived is TutorProfile){
           return MaterialPageRoute(
-              builder: (_)=> CreateTutor2SubjectsPage(
-                tutorProfile: profileReceived,
-              ),
+            builder: (_)=> CreateTutor2SubjectsPage(
+              tutorProfile: profileReceived,
+            ),
           );
         }
         return _errorRoute();

@@ -8,8 +8,8 @@ import 'package:tutoring_app_flutter/route_generator.dart';
 
 import 'package:tutoring_app_flutter/pages/registration_page.dart';
 
-
 import 'models/tutor_profile.dart';
+
 /*
 
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard.dart';
@@ -31,32 +31,21 @@ class TutoringApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'TutorLink',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Nunito',
-      ),
+        title: 'TutorLink',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          fontFamily: 'Nunito',
+        ),
 
-      home: SessionDashboard(),
-      routes: routes,
-    );
+        // home: SessionDashboard(),
 
+        home: LoginPage()
 
-      home: LoginPage(),
-
-      //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
-      initialRoute: '/portal',
-      onGenerateRoute: RouteGenerator.generateRoute,
-    );
+        //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
+        // initialRoute: '/portal',
+        // onGenerateRoute: RouteGenerator.generateRoute,
+        );
   }
 }
-TutorProfile tutorProfile;
-/*
-home: LoginPage(),
-home: RegistrationPage(),
-home: CreateTutor1LevelPage()
-home: CreateTutor3ExperiencePage(),
-home: CreateTutor4EducationPage(),
-home: TutorProfilePage(),
 
- */
+TutorProfile tutorProfile;

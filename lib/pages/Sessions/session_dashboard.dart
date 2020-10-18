@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard_completed.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard_current.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard_pending.dart';
-import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard_favourites.dart';
-import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard_my_students.dart';
-import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard_search_page.dart';
+import '../tutor/tutor_dashboard/jobs_tab/tutor_dashboard_jobs_favourites.dart';
+import '../tutor/tutor_dashboard/jobs_tab/tutor_dashboard_jobs_my_students.dart';
+import '../tutor/tutor_dashboard/jobs_tab/tutor_dashboard_jobs_search_page.dart';
 import 'package:tutoring_app_flutter/pages/DrawerMenu.dart';
 
 class SessionDashboard extends StatefulWidget {
@@ -15,8 +15,8 @@ class SessionDashboard extends StatefulWidget {
 class _SessionDashboard extends State<SessionDashboard> {
   int selectedIndex = 1;
 
-  getAppBar(int index){
-    if (index == 0){
+  getAppBar(int index) {
+    if (index == 0) {
       return AppBar(
         title: Text("Dashboard"),
         bottom: TabBar(tabs: [
@@ -25,30 +25,28 @@ class _SessionDashboard extends State<SessionDashboard> {
           Tab(icon: Icon(Icons.star))
         ]),
       );
-    }
-    else if (index == 1){
+    } else if (index == 1) {
       return AppBar(
         title: Text("Dashboard"),
         bottom: TabBar(tabs: [
           Text('Current', style: TextStyle(fontSize: 20, height: .7)),
           Text('Pending', style: TextStyle(fontSize: 20, height: .7)),
           Text('Completed', style: TextStyle(fontSize: 20, height: .7))
-        ] ),
+        ]),
       );
     }
   }
 
-  getBarContent(int index){
-    if (index == 0){
+  getBarContent(int index) {
+    if (index == 0) {
       return TabBarView(
         children: [
-          TutorDashboardSearchPage(),
-          TutorDashboardMyStudents(),
-          TutorDashboardFavourites()
+          TutorDashboardJobsSearchPage(),
+          TutorDashboardJobsMyStudents(),
+          TutorDashboardJobFavourites()
         ],
       );
-    }
-    else if (index == 1){
+    } else if (index == 1) {
       return TabBarView(
         children: [
           SessionDashboardCurrent(),
@@ -59,14 +57,14 @@ class _SessionDashboard extends State<SessionDashboard> {
     }
   }
 
-
   changeTabs(int index) {
     setState(() {
       selectedIndex = index;
     });
   }
+
   int _currentIndex = 0;
-  final List<Widget> _children =[];
+  final List<Widget> _children = [];
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

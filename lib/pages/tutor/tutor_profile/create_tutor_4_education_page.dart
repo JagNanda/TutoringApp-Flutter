@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 
 
-class CreateTutor4EducationPage extends StatelessWidget {
+class CreateTutor4EducationPage extends StatefulWidget {
   final TutorProfile tutorProfile;
 
   const CreateTutor4EducationPage({
@@ -11,6 +11,11 @@ class CreateTutor4EducationPage extends StatelessWidget {
     @required this.tutorProfile,
   }) : super(key: key);
 
+  @override
+  _CreateTutor4EducationPageState createState() => _CreateTutor4EducationPageState();
+}
+
+class _CreateTutor4EducationPageState extends State<CreateTutor4EducationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +60,7 @@ class CreateTutor4EducationPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: (){
-                        Navigator.of(context).pushNamed('/create_tutor_languages', arguments: tutorProfile);
+                        Navigator.of(context).pushNamed('/create_tutor_languages', arguments: widget.tutorProfile);
                         print("step forward pressed");
                       }, // TODO: onPressed add tutorEducation to delegate and segue to new page
                     ),
@@ -76,7 +81,7 @@ class CreateTutor4EducationPage extends StatelessWidget {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                 padding: EdgeInsets.all(20),
                 onPressed: (){
-                  Navigator.of(context).pushNamed('/create_tutor_experience', arguments: tutorProfile);
+                  Navigator.of(context).pushNamed('/create_tutor_experience', arguments: widget.tutorProfile);
                   print("Back Pressed");
                   }, // TODO: onPressed segue to previous page
               ),

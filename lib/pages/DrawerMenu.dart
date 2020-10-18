@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard.dart';
 import 'login_page.dart';
 import 'TestPage.dart';
 import 'Settings.dart';
@@ -45,7 +47,7 @@ class DrawerCodeOnly extends StatelessWidget{
                 trailing: new Icon(Icons.arrow_right),
                 onTap: (){
                   Navigator.pop(context);
-                  Navigator.push(context, new MaterialPageRoute(builder: (context) => new TestPage()));
+                  Navigator.push(context, new MaterialPageRoute(builder: (context) => new TutorDashboard()));
                 },
               ),
               new ListTile(
@@ -62,6 +64,14 @@ class DrawerCodeOnly extends StatelessWidget{
                 onTap: (){
                   Navigator.pop(context);
                   Navigator.push(context, new MaterialPageRoute(builder: (context) => new Settings()));
+                },
+              ),
+              new ListTile(
+                title: new Text("TEMP session"),
+                trailing: new Icon(Icons.settings),
+                onTap: (){
+                  Navigator.pop(context);
+                  Navigator.push(context, new MaterialPageRoute(builder: (context) => new SessionDashboard()));
                 },
               ),
               Container(

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+
+import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard.dart';
+import 'pages/login_page.dart';
+
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/student_dashboard.dart';
 import 'package:tutoring_app_flutter/route_generator.dart';
 
@@ -7,6 +11,7 @@ import 'package:tutoring_app_flutter/pages/registration_page.dart';
 
 import 'models/tutor_profile.dart';
 /*
+
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard.dart';
 
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_1_level_page.dart';
@@ -31,6 +36,11 @@ class TutoringApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Nunito',
       ),
+
+      home: SessionDashboard(),
+      routes: routes,
+    );
+
 
       home: LoginPage(),
 

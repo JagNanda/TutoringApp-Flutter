@@ -8,8 +8,8 @@ import 'package:tutoring_app_flutter/route_generator.dart';
 
 import 'package:tutoring_app_flutter/pages/registration_page.dart';
 
-
 import 'models/tutor_profile.dart';
+
 /*
 
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard.dart';
@@ -37,12 +37,11 @@ class TutoringApp extends StatelessWidget {
         fontFamily: 'Nunito',
       ),
 
-      home: SessionDashboard(),
-      routes: routes,
-    );
+      // home: SessionDashboard(),
 
-
-      home: LoginPage(),
+      // home: LoginPage(),
+      // home: RegistrationPage(),
+      // home: TutorProfilePage(),
 
       //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
       initialRoute: '/portal',
@@ -50,13 +49,5 @@ class TutoringApp extends StatelessWidget {
     );
   }
 }
-TutorProfile tutorProfile;
-/*
-home: LoginPage(),
-home: RegistrationPage(),
-home: CreateTutor1LevelPage()
-home: CreateTutor3ExperiencePage(),
-home: CreateTutor4EducationPage(),
-home: TutorProfilePage(),
 
- */
+TutorProfile tutorProfile;

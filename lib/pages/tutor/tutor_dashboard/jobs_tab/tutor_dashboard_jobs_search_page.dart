@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/components/student_post_listing.dart';
 
-class TutorDashboardSearchPage extends StatefulWidget {
+class TutorDashboardJobsSearchPage extends StatefulWidget {
   @override
-  _TutorDashboardSearchPageState createState() => _TutorDashboardSearchPageState();
+  _TutorDashboardJobsSearchPageState createState() => _TutorDashboardJobsSearchPageState();
 }
 
 //TODO: Replace mock data with database calls
 
-class _TutorDashboardSearchPageState extends State<TutorDashboardSearchPage> {
+class _TutorDashboardJobsSearchPageState extends State<TutorDashboardJobsSearchPage> {
   List<StudentPostListing> myList = List.generate(10, (index) => StudentPostListing());
   int shownPostCount = 10;
   ScrollController _scrollController = ScrollController();

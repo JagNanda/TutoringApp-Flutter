@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tutoring_app_flutter/pages/portal_page.dart';
+import 'package:tutoring_app_flutter/pages/registration_page.dart';
 import '../services/user_service.dart';
 
 class LoginPage extends StatefulWidget {
@@ -56,19 +57,30 @@ class _LoginPageState extends State<LoginPage> {
                 padding: EdgeInsets.all(12),
                 color: Colors.green,
                 child: Text('Login', style: TextStyle(color: Colors.white, fontSize: 17.0)),
-                onPressed: () {
+                onPressed: () async {
                   UserService userService = new UserService();
-                  userService.loginUser(email: email, password: password);
+                  bool success = await userService.loginUser(email: email, password: password);
+                  if (success) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => PortalPage()));
+                  }
                 },
               ),
             ),
-            FlatButton(
-              child: Text(
-                'Don\'t have an account? Sign up here',
-                style: TextStyle(color: Colors.purple, fontSize: 15),
-              ),
-              onPressed: () {},
-            )
+            Builder(builder: (BuildContext context) {
+              return FlatButton(
+                child: Text(
+                  'Don\'t have an account? Sign up here',
+                  style: TextStyle(color: Colors.purple, fontSize: 15),
+                ),
+                onPressed: () async {
+                  bool registered = await Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => RegistrationPage()));
+                  if (registered == true) {
+                    Scaffold.of(context).showSnackBar(SnackBar(content: Text("registered")));
+                  }
+                },
+              );
+            })
           ],
         ),
       ),

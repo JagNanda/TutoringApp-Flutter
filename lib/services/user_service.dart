@@ -8,7 +8,8 @@ class UserService {
   final String baseUrl = "http://10.0.2.2:5000/api";
 
   //login user using email and password and store token in sharedPrefs
-  Future loginUser({String email, String password}) async {
+  Future<bool> loginUser({String email, String password}) async {
+    bool success = false; //bool to see if token successfully stored
     http.Response resp = await http.post(
       baseUrl + "/auth/login",
       headers: <String, String>{
@@ -20,20 +21,19 @@ class UserService {
       }),
     );
     if (resp.statusCode == 200) {
-      print("login successful");
       var json = jsonDecode(resp.body);
       String token = json['token'];
 
       final sharedPrefs = await SharedPreferences.getInstance();
-      await sharedPrefs
-          .setString("token", resp.body)
-          .then((value) => print("stored token: $value"));
+      await sharedPrefs.setString("token", token).then((value) => (success = value));
     } else {
       print(resp.statusCode);
     }
+    return success;
   }
 
-  Future registerUser(RegistrationInfo userInfo) async {
+  Future<bool> registerUser(RegistrationInfo userInfo) async {
+    bool success = false;
     http.Response resp = await http.post(
       baseUrl + "/users/register",
       headers: <String, String>{
@@ -48,10 +48,14 @@ class UserService {
       }),
     );
     if (resp.statusCode == 200) {
-      print("ok");
-      return jsonDecode(resp.body);
+      success = true;
+      //TODO: add tutor profile using userid. Currently backend only returns the token
+      // var json = jsonDecode(resp.body);
+      // String token = json["token"];
+      // http.Response resp2 = await http.post("http://localhost:5000/api/tutees/$token");
     } else {
       print(resp.statusCode);
     }
+    return success;
   }
 }

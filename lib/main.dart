@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/pages/student/student_dashboard/student_dashboard.dart';
 import 'package:tutoring_app_flutter/route_generator.dart';
 
 import 'package:tutoring_app_flutter/pages/registration_page.dart';
 
-import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard.dart';
+import 'file:///C:/Users/Jag/AndroidStudioProjects/TutoringApp-Flutter/lib/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_1_level_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_3_experience_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_4_education_page.dart';

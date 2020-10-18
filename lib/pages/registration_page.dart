@@ -68,6 +68,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       RegisterTextFormField(
                         hint: "First Name",
                         icon: Icons.text_format,
+                        isName: true,
                         onChange: (text) {
                           firstName = text;
                         },
@@ -75,6 +76,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       RegisterTextFormField(
                         hint: "Last Name",
                         icon: Icons.text_format,
+                        isName: true,
                         onChange: (text) {
                           lastName = text;
                         },
@@ -88,7 +90,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             style: TextStyle(color: Colors.white, fontSize: 18),
                           ),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                          onPressed: () {
+                          onPressed: () async {
                             if (_formKey.currentState.validate()) {
                               print("valid");
                               RegistrationInfo userDetails = RegistrationInfo(
@@ -98,8 +100,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 lastName: lastName,
                                 password: password,
                               );
-                              var registered = UserService().registerUser(userDetails);
-                              print(registered);
+                              var registered = await UserService().registerUser(userDetails);
+                              Navigator.pop(context, registered);
                             }
                           },
                           padding: EdgeInsets.all(20),
@@ -121,6 +123,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
 class RegisterTextFormField extends StatelessWidget {
   final String hint;
   final bool isPassword;
+  final bool isName;
   final bool isEmail;
   final IconData icon;
   final Function onChange;
@@ -130,7 +133,8 @@ class RegisterTextFormField extends StatelessWidget {
       @required this.icon,
       @required this.onChange,
       this.isPassword = false,
-      this.isEmail = false});
+      this.isEmail = false,
+      this.isName = false});
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +156,7 @@ class RegisterTextFormField extends StatelessWidget {
           }
           if (isEmail && !validator.isEmail(val)) {
             return "Please Enter a valid email";
-          } else if (!isEmail && !isPassword && !validator.isAlpha(val)) {
+          } else if (isName && !validator.isAlpha(val)) {
             return "Please enter a valid name";
           }
           return null;

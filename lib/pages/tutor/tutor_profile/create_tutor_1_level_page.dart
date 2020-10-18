@@ -1,13 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/portal_page.dart';
 
 
-class CreateTutor1LevelPage extends StatelessWidget {
+class CreateTutor1LevelPage extends StatefulWidget {
+  final TutorProfile tutorProfile;
 
-  static TutorProfile tutorProfile = new TutorProfile(tutorId: "1");
+  const CreateTutor1LevelPage({
+    Key key,
+    @required this.tutorProfile,
+  }) : super(key: key);
 
+  @override
+  _CreateTutor1LevelPageState createState() => _CreateTutor1LevelPageState();
+}
 
+class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,10 +26,10 @@ class CreateTutor1LevelPage extends StatelessWidget {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                "Select the highest level you are capable of tutoring:",
+                "Hello, " + widget.tutorProfile.tutorId + "! Please select the highest level you are capable of tutoring:",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              padding: EdgeInsets.all(30),
+              padding: EdgeInsets.all(20),
             ),
           ),
           Expanded(
@@ -42,8 +51,11 @@ class CreateTutor1LevelPage extends StatelessWidget {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                           padding: EdgeInsets.all(20),
                           onPressed: (){
-                            tutorProfile.skillLevel = "Elementary";
-                            Navigator.of(context).pushNamed('/create_tutor_subjects', arguments: tutorProfile);
+                            //widget.tutorProfile.skillLevel = "Elementary"; //TODO: remove
+                            setState(() {
+                              widget.tutorProfile.skillLevel = "Elementary";
+                            });
+                            Navigator.of(context).pushNamed('/create_tutor_subjects', arguments: widget.tutorProfile);
                             print("Elementary Pressed");
                             }, // TODO: onPressed add skillLevel to delegate and segue to new page
                         ),
@@ -60,8 +72,11 @@ class CreateTutor1LevelPage extends StatelessWidget {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                           padding: EdgeInsets.all(20),
                           onPressed: (){
-                            tutorProfile.skillLevel = "High School";
-                            Navigator.of(context).pushNamed('/create_tutor_subjects', arguments: tutorProfile);
+                            //widget.tutorProfile.skillLevel = "High School";//TODO: remove
+                            setState(() {
+                              widget.tutorProfile.skillLevel = "High School";
+                            });
+                            Navigator.of(context).pushNamed('/create_tutor_subjects', arguments: widget.tutorProfile);
                             print("High School Pressed");
                             }, // TODO: onPressed add skillLevel to delegate and segue to new page
                         ),
@@ -78,8 +93,11 @@ class CreateTutor1LevelPage extends StatelessWidget {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                           padding: EdgeInsets.all(20),
                           onPressed: (){
-                            tutorProfile.skillLevel = "College / University";
-                            Navigator.of(context).pushNamed('/create_tutor_subjects', arguments: tutorProfile);
+                            //widget.tutorProfile.skillLevel = "College / University";//TODO: remove
+                            setState(() {
+                              widget.tutorProfile.skillLevel = "College / University";
+                            });
+                            Navigator.of(context).pushNamed('/create_tutor_subjects', arguments: widget.tutorProfile);
                             print("College / University Pressed");
                             }, // TODO: onPressed add skillLevel to delegate and segue to new page
                         ),
@@ -87,22 +105,14 @@ class CreateTutor1LevelPage extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       SizedBox(
-                        child: RaisedButton(
-                          color: Colors.blue,
-                          child: Text(
-                            "Professional",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
+                        child: Text(
+                            "Hello," + widget.tutorProfile.tutorId + "!", //TODO: Remove debug text
+                            style: TextStyle(color: Colors.blueAccent, fontSize: 18),
                           ),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                          padding: EdgeInsets.all(20),
-                          onPressed: (){
-                            tutorProfile.skillLevel = "Professional";
-                            Navigator.of(context).pushNamed('/create_tutor_subjects', arguments: tutorProfile);
-                            print("Professional Pressed");
-                            }, // TODO: onPressed add skillLevel to delegate and segue to new page
-                        ),
                         width: double.maxFinite,
-                      )
+                      ),
+                  SizedBox(height: 10),
+                  SizedBox(),
                     ],
                   ),
                 ),
@@ -119,7 +129,10 @@ class CreateTutor1LevelPage extends StatelessWidget {
                 ),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                 padding: EdgeInsets.all(20),
-                onPressed: (){print("Back Pressed");}, // TODO: onPressed segue to previous page
+                onPressed: (){
+                  Navigator.of(context).pushNamed('/portal', arguments: widget.tutorProfile);
+                  print("Back Pressed");
+                  }, // TODO: onPressed segue to previous page
               ),
               padding: EdgeInsets.all(20),
             ),

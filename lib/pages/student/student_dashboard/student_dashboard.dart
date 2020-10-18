@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard_favourites.dart';
-import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard_my_students.dart';
-import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard_search_page.dart';
 
-class TutorDashboard extends StatefulWidget {
+import 'tutors_tab/student_dashboard_favorites.dart';
+import 'tutors_tab/student_dashboard_my_tutors.dart';
+import 'tutors_tab/student_dashboard_search.dart';
+
+class StudentDashboard extends StatefulWidget {
   @override
-  _TutorDashboardState createState() => _TutorDashboardState();
+  _StudentDashboardState createState() => _StudentDashboardState();
 }
 
-class _TutorDashboardState extends State<TutorDashboard> {
+class _StudentDashboardState extends State<StudentDashboard> {
   int selectedIndex = 0;
 
   changeTabs(int index) {
@@ -32,9 +33,9 @@ class _TutorDashboardState extends State<TutorDashboard> {
         ),
         body: TabBarView(
           children: [
-            TutorDashboardSearchPage(),
-            TutorDashboardMyStudents(),
-            TutorDashboardFavourites()
+            StudentDashBoardSearch(),
+            StudentDashboardMyTutors(),
+            StudentDashboardFavorites()
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -43,10 +44,10 @@ class _TutorDashboardState extends State<TutorDashboard> {
           selectedItemColor: Colors.blue,
           unselectedItemColor: Colors.grey,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.work), title: Text("Jobs")),
+            BottomNavigationBarItem(icon: Icon(Icons.school), title: Text("Tutors")),
             BottomNavigationBarItem(icon: Icon(Icons.calendar_today), title: Text("Sessions")),
             BottomNavigationBarItem(icon: Icon(Icons.chat), title: Text("Chat")),
-            BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Chat")),
+            BottomNavigationBarItem(icon: Icon(Icons.note), title: Text("Postings")),
           ],
         ),
       ),

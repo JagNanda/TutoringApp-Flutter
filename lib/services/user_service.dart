@@ -32,10 +32,11 @@ class UserService {
     return success;
   }
 
+  //register user, get their id and create a student profile for them
   Future<bool> registerUser(RegistrationInfo userInfo) async {
     bool success = false;
     http.Response resp = await http.post(
-      baseUrl + "/users/register",
+      "$baseUrl/users/register",
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -48,11 +49,29 @@ class UserService {
       }),
     );
     if (resp.statusCode == 200) {
-      success = true;
-      //TODO: add tutor profile using userid. Currently backend only returns the token
-      // var json = jsonDecode(resp.body);
-      // String token = json["token"];
-      // http.Response resp2 = await http.post("http://localhost:5000/api/tutees/$token");
+      //user user token to get their userid
+      var body = jsonDecode(resp.body);
+      String token = body["token"];
+      print(token);
+      http.Response userIdResponse = await http.get(
+        "$baseUrl/auth",
+        headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
+      ).catchError((err) => print("header err $err"));
+      if (userIdResponse.statusCode == 200) {
+        var user = jsonDecode(userIdResponse.body);
+        var userId = user["_id"];
+        print("auth success: $userId");
+        http.Response profileResponse = await http.post(
+          "$baseUrl/tutees/$userId",
+          headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
+        );
+        if (profileResponse.statusCode == 200) {
+          success = true;
+        } else {
+          print(profileResponse.statusCode);
+          print(profileResponse.body);
+        }
+      }
     } else {
       print(resp.statusCode);
     }

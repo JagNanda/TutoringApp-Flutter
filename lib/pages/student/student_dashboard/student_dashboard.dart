@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'tutors_tab/student_dashboard_favorites.dart';
-import 'tutors_tab/student_dashboard_my_tutors.dart';
-import 'tutors_tab/student_dashboard_search.dart';
+import 'tutors_tab/student_dashboard_tutors_favorites.dart';
+import 'tutors_tab/student_dashboard_tutors_my_tutors.dart';
+import 'tutors_tab/student_dashboard_tutors_search.dart';
 
 class StudentDashboard extends StatefulWidget {
   @override
@@ -44,10 +44,10 @@ class _StudentDashboardState extends State<StudentDashboard> {
           selectedItemColor: Colors.blue,
           unselectedItemColor: Colors.grey,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.school), title: Text("Tutors")),
-            BottomNavigationBarItem(icon: Icon(Icons.calendar_today), title: Text("Sessions")),
-            BottomNavigationBarItem(icon: Icon(Icons.chat), title: Text("Chat")),
-            BottomNavigationBarItem(icon: Icon(Icons.note), title: Text("Postings")),
+            BottomNavigationBarItem(icon: Icon(Icons.school), label: "Tutors"),
+            BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: "Sessions"),
+            BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chat"),
+            BottomNavigationBarItem(icon: Icon(Icons.note), label: "Postings"),
           ],
         ),
       ),

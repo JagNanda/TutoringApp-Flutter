@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 import 'pages/login_page.dart';
 
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/student_dashboard.dart';
@@ -39,7 +40,7 @@ class TutoringApp extends StatelessWidget {
 
         // home: SessionDashboard(),
 
-        home: LoginPage()
+        home: TutorDashboard()
 
         //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
         // initialRoute: '/portal',

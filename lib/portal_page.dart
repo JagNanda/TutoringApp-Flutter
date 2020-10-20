@@ -92,7 +92,7 @@ class _PortalPageState extends State<PortalPage> {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         padding: EdgeInsets.all(20),
                         onPressed: (){
-                          tutorProfile = tutorProfile ?? new TutorProfile(tutorId: "Brian");
+                          tutorProfile = tutorProfile ?? new TutorProfile(tutorId: "Brian", languages: [], languageProficiency: []);// TODO : Update default constructor
                           Navigator.of(context).pushNamed('/create_tutor_skill', arguments: tutorProfile);
                           print("'Here to Teach' Pressed");
                           //Navigator.of(context).pushNamed('/create_tutor_education', arguments: tutorProfile);

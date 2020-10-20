@@ -15,7 +15,7 @@ class TutorProfile{
   List<String> languageProficiency;
 
   // Wages
-  String hourlyRate;
+  double hourlyRate;
 
   // Introduction
   String profileHeadline;
@@ -25,7 +25,6 @@ class TutorProfile{
   String profilePicImgUrl;
 
   // Tutor Location Info
-
   String tutorCountry;
   String tutorStreetAdd;
   String tutorCity;

@@ -35,6 +35,19 @@ class CreateTutor6HourlyPage extends StatelessWidget {
                   children: [
                     SizedBox(height: 10),
                     RaisedButton(
+                      color: Colors.deepPurple,
+                      child: Text(
+                        "Print",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                      padding: EdgeInsets.all(20),
+                      onPressed: (){
+                           print(tutorProfile.languages[0]);
+                      },
+                    ),
+                    SizedBox(height: 10),
+                    RaisedButton(
                       color: Colors.blue,
                       child: Text(
                         "Next",

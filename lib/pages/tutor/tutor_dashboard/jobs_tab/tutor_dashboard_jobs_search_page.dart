@@ -9,8 +9,10 @@ class TutorDashboardJobsSearchPage extends StatefulWidget {
 //TODO: Replace mock data with database calls
 
 class _TutorDashboardJobsSearchPageState extends State<TutorDashboardJobsSearchPage> {
-  List<StudentPostListing> myList = List.generate(10, (index) => StudentPostListing());
-  int shownPostCount = 10;
+  //TODO: replace list.generate with database call
+  List<StudentPostListing> myList =
+      List.generate(10, (index) => StudentPostListing(showSavedIcon: true));
+  int amountOfPostsCurrentlyShowing = 10;
   ScrollController _scrollController = ScrollController();
 
   @override
@@ -19,17 +21,17 @@ class _TutorDashboardJobsSearchPageState extends State<TutorDashboardJobsSearchP
     _scrollController.addListener(() {
       if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
         fetchMorePosts();
-        print('more');
         setState(() {});
       }
     });
   }
 
   void fetchMorePosts() {
-    for (int i = shownPostCount; i < shownPostCount + 10; i++) {
+    //TODO: replace myList.add with
+    for (int i = amountOfPostsCurrentlyShowing; i < amountOfPostsCurrentlyShowing + 10; i++) {
       myList.add(StudentPostListing());
     }
-    shownPostCount += 10;
+    amountOfPostsCurrentlyShowing += 10;
   }
 
   @override

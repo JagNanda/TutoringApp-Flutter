@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class StudentDashboardMyTutors extends StatefulWidget {
+class StudentDashboardTutorsMyTutors extends StatefulWidget {
   @override
-  _StudentDashboardMyTutorsState createState() => _StudentDashboardMyTutorsState();
+  _StudentDashboardTutorsMyTutorsState createState() => _StudentDashboardTutorsMyTutorsState();
 }
 
-class _StudentDashboardMyTutorsState extends State<StudentDashboardMyTutors> {
+class _StudentDashboardTutorsMyTutorsState extends State<StudentDashboardTutorsMyTutors> {
   @override
   Widget build(BuildContext context) {
     return Container();

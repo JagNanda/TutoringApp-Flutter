@@ -41,7 +41,7 @@ class TutoringApp extends StatelessWidget {
 
         // home: SessionDashboard(),
 
-        home: StudentDashboardPostingsForm()
+        home: LoginPage()
 
         //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
         // initialRoute: '/portal',

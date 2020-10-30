@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UserService {
   final String baseUrl = "http://10.0.2.2:5000/api";
 
-  //login user using email and password and store token in sharedPrefs
+  //login user using email and password and store token, userId, and tuteeId in sharedPrefs
   Future<bool> loginUser({String email, String password}) async {
     bool success = false; //bool to see if token successfully stored
     http.Response resp = await http.post(
@@ -26,9 +26,22 @@ class UserService {
 
       final sharedPrefs = await SharedPreferences.getInstance();
       await sharedPrefs.setString("token", token).then((value) => (success = value));
+
+      //get user and save userId and tuteeId to prefences
+      http.Response userIdResponse = await http.get(
+        "$baseUrl/auth",
+        headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
+      ).catchError((err) => print("header err $err"));
+      if (userIdResponse.statusCode == 200) {
+        success = true;
+        var user = jsonDecode(userIdResponse.body);
+        sharedPrefs.setString("userId", user["_id"]);
+        sharedPrefs.setString("tuteeId", user["tuteeId"]);
+      }
     } else {
       print(resp.statusCode);
     }
+
     return success;
   }
 
@@ -49,7 +62,7 @@ class UserService {
       }),
     );
     if (resp.statusCode == 200) {
-      //user user token to get their userid
+      //user token to get their userid
       var body = jsonDecode(resp.body);
       String token = body["token"];
       print(token);

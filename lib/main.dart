@@ -10,9 +10,9 @@ import 'package:tutoring_app_flutter/pages/registration_page.dart';
 
 
 import 'models/tutor_profile.dart';
-/*
 
-import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard.dart';
+
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_1_level_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_3_experience_page.dart';
@@ -26,7 +26,10 @@ void main() {
 }
 
 class TutoringApp extends StatelessWidget {
-  //final routes = <String, WidgetBuilder>{ //LoginPage.tag: (context) => LoginPage(), RegistrationPage.tag: (context) => RegistrationPage(), TutorProfilePage.tag: (context) => TutorProfilePage(),};
+  final routes = <String, WidgetBuilder>{
+    LoginPage.tag: (context) =>
+        LoginPage(), /*RegistrationPage.tag: (context) => RegistrationPage(), TutorProfilePage.tag: (context) => TutorProfilePage(),*/
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +43,9 @@ class TutoringApp extends StatelessWidget {
       home: SessionDashboard(),
       routes: routes,
     );
-
-
+  }
+}
+/*
       home: LoginPage(),
 
       //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
@@ -51,6 +55,8 @@ class TutoringApp extends StatelessWidget {
   }
 }
 TutorProfile tutorProfile;
+
+ */
 /*
 home: LoginPage(),
 home: RegistrationPage(),

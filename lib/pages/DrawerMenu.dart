@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard.dart';
-import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 import 'login_page.dart';
 import 'TestPage.dart';
 import 'Settings.dart';

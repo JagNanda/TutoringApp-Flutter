@@ -4,6 +4,8 @@ import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 
 
+//moved to fix errors on my side,
+TutorProfile tutorProfile = new TutorProfile(tutorId: "1");
 class PortalPage extends StatefulWidget {
 
   //final TutorProfile tutorProfile = new TutorProfile(tutorId: "1");

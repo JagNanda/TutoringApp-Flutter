@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/components/sessions/session_request.dart';
 import 'package:tutoring_app_flutter/constants.dart';
 import 'package:tutoring_app_flutter/components/sessions/session_details.dart';
 class CurrentSession extends StatefulWidget {
@@ -91,6 +92,7 @@ class _CurrentSessionState extends State<CurrentSession> {
       ),
       onTap: (){
         Navigator.push(context, new MaterialPageRoute(builder: (context) => new SessionDetails()));
+        //Navigator.push(context, new MaterialPageRoute(builder: (context) => new SessionRequest()));
       },
     );
   }

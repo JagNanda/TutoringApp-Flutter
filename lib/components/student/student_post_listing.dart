@@ -4,21 +4,22 @@ import 'package:tutoring_app_flutter/constants.dart';
 class StudentPostListing extends StatefulWidget {
   //TODO: make constructor params required after db is connected
   final String title;
-  final String budget;
+  final String budgetRange;
   final String date;
-  final String education;
-  final String expertise;
+  final String levelOfEducation;
+  final String subject;
   final String description;
   final bool showSavedIcon; //dont want the student to be able to favorite their own posts
 
-  StudentPostListing(
-      {this.title,
-      this.budget,
-      this.date,
-      this.education,
-      this.expertise,
-      this.description,
-      this.showSavedIcon = false});
+  StudentPostListing({
+    @required this.title,
+    this.budgetRange,
+    this.date,
+    this.levelOfEducation,
+    this.subject,
+    this.description,
+    this.showSavedIcon = false,
+  });
 
   @override
   _StudentPostListingState createState() => _StudentPostListingState();
@@ -35,10 +36,9 @@ class _StudentPostListingState extends State<StudentPostListing> {
   void initState() {
     super.initState();
     // TODO: Remove longDescription after db implementation
-    longDescription =
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ";
+    longDescription = widget.description;
     // TODO: description must be over 40 characters so this will always work
-    shortDescription = longDescription.substring(0, 30);
+    shortDescription = longDescription.substring(0, 39);
   }
 
   @override
@@ -54,7 +54,7 @@ class _StudentPostListingState extends State<StudentPostListing> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Job Title Job Title Job Title",
+                widget.title,
                 textAlign: TextAlign.left,
                 style: kPostTitleText,
               ),
@@ -80,12 +80,12 @@ class _StudentPostListingState extends State<StudentPostListing> {
             crossAxisAlignment: CrossAxisAlignment.baseline,
             children: [
               Text(
-                "\$40 an hour",
+                "\$${widget.budgetRange} per hour",
                 style: kPostBoldText,
               ),
               SizedBox(width: 10),
               Text(
-                "September 20, 2020",
+                widget.date,
                 style: kPostDateText,
               ),
             ],
@@ -100,8 +100,8 @@ class _StudentPostListingState extends State<StudentPostListing> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text("Hours Needed", style: kPostSmallText),
-                    Text("6 to 8", style: kPostBoldText)
+                    Text("Subject", style: kPostSmallText),
+                    Text(widget.subject, style: kPostBoldText)
                   ],
                 ),
               ),
@@ -109,8 +109,8 @@ class _StudentPostListingState extends State<StudentPostListing> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text("Expertise Required", style: kPostSmallText),
-                    Text("Intermediate", style: kPostBoldText)
+                    Text("Expertise Needed", style: kPostSmallText),
+                    Text(widget.levelOfEducation, style: kPostBoldText)
                   ],
                 ),
               ),

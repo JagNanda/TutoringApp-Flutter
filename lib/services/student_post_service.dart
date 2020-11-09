@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 class StudentPostService {
   final String baseUrl = "http://10.0.2.2:5000/api/tutees/post";
 
+  //create a student post
   Future<bool> createPost(StudentPost post) async {
     bool success = false;
 
@@ -34,5 +35,20 @@ class StudentPostService {
     }
 
     return success;
+  }
+
+  Future<dynamic> getAllPostsByUserId() async {
+    final sharedPrefs = await SharedPreferences.getInstance();
+    String tuteeId = sharedPrefs.getString("tuteeId");
+    http.Response tuteeIdResp = await http.get(
+      "$baseUrl/$tuteeId",
+      headers: <String, String>{'Content-Type': 'application/json'},
+    );
+    if (tuteeIdResp.statusCode == 200) {
+      var tuteeInfo = jsonDecode(tuteeIdResp.body);
+      List<dynamic> allPosts = tuteeInfo["posts"];
+      return allPosts;
+    }
+    return tuteeIdResp.statusCode;
   }
 }

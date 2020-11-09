@@ -8,6 +8,6 @@ class StudentDashboardTutorsFavorites extends StatefulWidget {
 class _StudentDashboardTutorsFavoritesState extends State<StudentDashboardTutorsFavorites> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Text("favourites");
   }
 }

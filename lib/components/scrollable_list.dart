@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
+//DO NOT USE. Only for widgets that require paginated widget calls
+
 class ScrollableList extends StatefulWidget {
   //all list items that will eventually be displayed
   final List<Widget> widgetList;
   //the amount of items to show initially
   final int amountToShow;
-  ScrollableList({@required this.widgetList, @required this.amountToShow});
+  ScrollableList({
+    @required this.widgetList,
+  }) : amountToShow = widgetList.length >= 5 ? 5 : widgetList.length;
 
   @override
   _ScrollableListState createState() => _ScrollableListState();
@@ -42,6 +46,7 @@ class _ScrollableListState extends State<ScrollableList> {
 
   void initList() {
     //if list empty display the amountToShow
+    print(widget.widgetList.length);
     widgetDisplayList = widget.widgetList.getRange(0, widget.amountToShow).toList();
     postsShowingCount += widget.amountToShow;
   }
@@ -55,7 +60,6 @@ class _ScrollableListState extends State<ScrollableList> {
         }
         setState(() {});
         postsShowingCount += widget.amountToShow;
-        print(postsShowingCount);
       }
     });
   }
@@ -82,7 +86,6 @@ class _ScrollableListState extends State<ScrollableList> {
               if (index == widgetDisplayList.length && !reachedEnd) {
                 return Center(child: CircularProgressIndicator());
               }
-              print(reachedEnd);
               return widgetDisplayList[index];
             },
           ),

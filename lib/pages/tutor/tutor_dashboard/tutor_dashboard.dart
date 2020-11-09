@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'jobs_tab/tutor_dashboard_jobs_favourites.dart';
 import 'jobs_tab//tutor_dashboard_jobs_my_students.dart';
 import 'jobs_tab//tutor_dashboard_jobs_search_page.dart';
+import 'jobs_tab/tutor_dashboard_jobs_home.dart';
 
 class TutorDashboard extends StatefulWidget {
   @override
@@ -10,6 +11,13 @@ class TutorDashboard extends StatefulWidget {
 
 class _TutorDashboardState extends State<TutorDashboard> {
   int selectedIndex = 0;
+
+  static List<Widget> _widgetOptions = <Widget>[
+    TutorDashboardJobsHome(),
+    //TODO: Replace with sessions once done
+    //TODO: Replace with chat once done
+    //TODO: Replace with profile once done
+  ];
 
   changeTabs(int index) {
     setState(() {
@@ -22,31 +30,17 @@ class _TutorDashboardState extends State<TutorDashboard> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("Dashboard"),
-          bottom: TabBar(tabs: [
-            Tab(icon: Icon(Icons.search)),
-            Tab(icon: Icon(Icons.people)),
-            Tab(icon: Icon(Icons.star))
-          ]),
-        ),
-        body: TabBarView(
-          children: [
-            TutorDashboardJobsSearchPage(),
-            TutorDashboardJobsMyStudents(),
-            TutorDashboardJobFavourites()
-          ],
-        ),
+        body: _widgetOptions[selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: selectedIndex,
           onTap: changeTabs,
           selectedItemColor: Colors.blue,
           unselectedItemColor: Colors.grey,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.work), title: Text("Jobs")),
-            BottomNavigationBarItem(icon: Icon(Icons.calendar_today), title: Text("Sessions")),
-            BottomNavigationBarItem(icon: Icon(Icons.chat), title: Text("Chat")),
-            BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Profile")),
+            BottomNavigationBarItem(icon: Icon(Icons.school), label: "Tutors"),
+            BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: "Sessions"),
+            BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chat"),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
           ],
         ),
       ),

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class RegistrationInfo {
   String username;
   String password;
@@ -5,5 +7,10 @@ class RegistrationInfo {
   String firstName;
   String lastName;
 
-  RegistrationInfo({this.username, this.password, this.email, this.firstName, this.lastName});
+  RegistrationInfo(
+      {@required this.username,
+      @required this.password,
+      @required this.email,
+      @required this.firstName,
+      @required this.lastName});
 }

@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 import 'models/education_history.dart';
+import 'package:tutoring_app_flutter/pages/student/student_dashboard/postings_tab/student_dashboard_postings_form.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 import 'pages/login_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
-
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/student_dashboard.dart';
 import 'package:tutoring_app_flutter/route_generator.dart';
 
@@ -42,11 +43,13 @@ class TutoringApp extends StatelessWidget {
 
         // home: SessionDashboard(),
 
-        //home: TutorDashboard(),
+
+        home: StudentDashboard()
+
 
         //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
-         initialRoute: '/portal',
-         onGenerateRoute: RouteGenerator.generateRoute,
+         //initialRoute: '/portal',
+         //: RouteGenerator.generateRoute,
         );
   }
 }

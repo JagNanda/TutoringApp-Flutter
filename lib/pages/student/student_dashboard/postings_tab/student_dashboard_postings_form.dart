@@ -29,9 +29,9 @@ class _StudentDashboardPostingsFormState extends State<StudentDashboardPostingsF
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-          child: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
               child: Column(
                 children: [
                   CreatePostTextFormField(
@@ -103,6 +103,12 @@ class _StudentDashboardPostingsFormState extends State<StudentDashboardPostingsF
                     changed: (String val) {
                       description = val;
                     },
+                    useValidator: true,
+                    validatorFunc: (val) {
+                      if (description.length < 40) {
+                        return "Description is too short!";
+                      }
+                    },
                   ),
                   SizedBox(height: 20),
                   SizedBox(
@@ -114,15 +120,17 @@ class _StudentDashboardPostingsFormState extends State<StudentDashboardPostingsF
                       ),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       onPressed: () async {
-                        StudentPost newPost = StudentPost(
-                            title: postTitle,
-                            budgetRange: budget,
-                            description: description,
-                            levelOfEducation: levelOfEducation,
-                            subject: subjectArea);
-                        var postSuccessful = await StudentPostService().createPost(newPost);
-                        if (postSuccessful == true) {
-                          Navigator.pop(context, postSuccessful);
+                        if (_formKey.currentState.validate()) {
+                          StudentPost newPost = StudentPost(
+                              title: postTitle,
+                              budgetRange: budget,
+                              description: description,
+                              levelOfEducation: levelOfEducation,
+                              subject: subjectArea);
+                          var postSuccessful = await StudentPostService().createPost(newPost);
+                          if (postSuccessful == true) {
+                            Navigator.pop(context, postSuccessful);
+                          }
                         }
                       },
                       padding: EdgeInsets.all(20),
@@ -142,9 +150,17 @@ class CreatePostTextFormField extends StatelessWidget {
   final Function changed;
   final InputBorder inputBorder;
   final bool multiLine;
+  final bool useValidator;
+  final Function validatorFunc;
 
-  CreatePostTextFormField(
-      {@required this.label, @required this.changed, this.inputBorder, this.multiLine = false});
+  CreatePostTextFormField({
+    @required this.label,
+    @required this.changed,
+    this.inputBorder,
+    this.multiLine = false,
+    this.useValidator = false,
+    this.validatorFunc,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -158,6 +174,11 @@ class CreatePostTextFormField extends StatelessWidget {
       keyboardType: multiLine == true ? TextInputType.multiline : TextInputType.text,
       maxLines: multiLine == true ? 10 : 1,
       onChanged: changed,
+      validator: useValidator == true
+          ? validatorFunc
+          : (val) {
+              return null;
+            },
     );
   }
 }

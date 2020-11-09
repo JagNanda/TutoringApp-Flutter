@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 
 
@@ -43,18 +44,33 @@ class _CreateTutor4EducationPageState extends State<CreateTutor4EducationPage> {
                     TextFormField(
 
                     ),
+                    SizedBox(height: 10),
+                    RaisedButton(
+                      color: Colors.deepPurple,
+                      child: Text(
+                        "Test",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                      padding: EdgeInsets.all(20),
+                      onPressed: (){
+                        print(">>>> Languages:");
+                        for(int i=0; i < tutorProfile.languages.length; i++)
+                        {
+                          print(tutorProfile.languages[i]);
+                          print("    " + tutorProfile.languageProficiency[i]);
+                        }
+                      },
+                    ),
+                    SizedBox(height: 10),
                     RaisedButton(
                       color: Colors.blue,
                       child: Column(
                           children: [
                             Text(
-                              "Step forward",
+                              "next",
                               style: TextStyle(color: Colors.white, fontSize: 24),
                             ),
-                            Text(
-                              "(I have substantial experience tutoring at this level)",
-                              style: TextStyle(color: Colors.white, fontSize: 12),
-                            )
                           ]
                       ),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),

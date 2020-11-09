@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
+import 'models/education_history.dart';
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/postings_tab/student_dashboard_postings_form.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 import 'pages/login_page.dart';
-
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/student_dashboard.dart';
 import 'package:tutoring_app_flutter/route_generator.dart';
 
@@ -41,13 +43,48 @@ class TutoringApp extends StatelessWidget {
 
         // home: SessionDashboard(),
 
+
         home: StudentDashboard()
 
+
         //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
-        // initialRoute: '/portal',
-        // onGenerateRoute: RouteGenerator.generateRoute,
+         //initialRoute: '/portal',
+         //: RouteGenerator.generateRoute,
         );
   }
 }
 
-TutorProfile tutorProfile;
+EducationHistory educationHistory1 = new EducationHistory(
+    schoolName: 'Sheridan College',
+    schoolCity: 'Oakville',
+    schoolCountry: 'Canada',
+    schoolProgramName: 'Software Engineering',
+    schoolStartMonth: 'September',
+    schoolStartYear: '2017',
+    schoolThroughMonth: 'May',
+    schoolThroughYear: '2021',
+    schoolDescription: 'blah, blah, blah....diploma');
+
+TutorProfile tutorProfile = new TutorProfile(
+  tutorId: "Brian",
+  skillLevel: 'Elementary',
+  tutoredSubjects: ['Flutter', 'Dart', 'Statistics'],
+  tutorExpertise: 'Expert',
+  education: [educationHistory1],
+  languages: ['English', 'Spanish'],
+  languageProficiency: ['Native', 'Basic'],
+  hourlyRate: 25.0,
+  profileHeadline: 'I will help you understand Flutter!',
+  profileOverview: 'Hey there, I love math and I love '
+      'helping people explore math in simply ways that '
+      'are easy to understand and remember! Send me a '
+      'message and see how I can help YOU become a math '
+      'WHIZ!',
+  profilePicImgUrl: null,
+  tutorCountry: 'Canada',
+  tutorStreetAdd: '3220 Colebrook Court',
+  tutorCity: 'Mississauga',
+  tutorProvinceState: 'Ontario',
+  tutorPostal: 'L5N3E2',
+  isCompleted: true,
+);

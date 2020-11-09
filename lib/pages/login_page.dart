@@ -74,9 +74,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 onPressed: () async {
                   bool registered = await Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => RegistrationPage()));
+                    context,
+                    MaterialPageRoute(builder: (context) => RegistrationPage()),
+                  );
                   if (registered == true) {
-                    Scaffold.of(context).showSnackBar(SnackBar(content: Text("registered")));
+                    Scaffold.of(context)
+                        .showSnackBar(SnackBar(content: Text("You are now registered!")));
                   }
                 },
               );

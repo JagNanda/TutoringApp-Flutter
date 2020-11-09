@@ -130,7 +130,8 @@ class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                 padding: EdgeInsets.all(20),
                 onPressed: (){
-                  Navigator.of(context).pushNamed('/portal', arguments: widget.tutorProfile);
+                  //Navigator.of(context).pushNamed('/portal', arguments: widget.tutorProfile);
+                  Navigator.of(context).pop();
                   print("Back Pressed");
                   }, // TODO: onPressed segue to previous page
               ),

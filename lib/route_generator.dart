@@ -1,33 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/main.dart';
+
 //import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 import 'package:tutoring_app_flutter/portal_page.dart';
 import 'pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 
 class RouteGenerator {
-  static Route<dynamic> generateRoute(RouteSettings settings){
+  static Route<dynamic> generateRoute(RouteSettings settings) {
     // getting arguments passed in while calling Navigator.pushNamed
     final profileReceived = settings.arguments;
 
-    switch(settings.name){
+    switch (settings.name) {
       case '/portal':
-        return MaterialPageRoute(builder: (_)=> PortalPage());
-        //return MaterialPageRoute(builder: (_)=> CreateTutor1LevelPage());
+        return MaterialPageRoute(builder: (_) => PortalPage());
+      //return MaterialPageRoute(builder: (_)=> CreateTutor1LevelPage());
+
+      case '/main_tutorProfile':
+        if (profileReceived is TutorProfile) {
+          return MaterialPageRoute(
+            builder: (_) => MainTutorProfile(
+              profileReceived,
+            ),
+          );
+        }
+        return _errorRoute();
 
       case '/create_tutor_skill':
-        if(profileReceived is TutorProfile){
+        if (profileReceived is TutorProfile) {
           return MaterialPageRoute(
-              builder: (_)=> CreateTutor1LevelPage(
-                tutorProfile: profileReceived,
-              ),
+            builder: (_) => CreateTutor1LevelPage(
+              tutorProfile: profileReceived,
+            ),
           );
         }
         return _errorRoute();
 
       case '/create_tutor_subjects':
-        if(profileReceived is TutorProfile){
+        if (profileReceived is TutorProfile) {
           return MaterialPageRoute(
-            builder: (_)=> CreateTutor2SubjectsPage(
+            builder: (_) => CreateTutor2SubjectsPage(
               tutorProfile: profileReceived,
             ),
           );
@@ -36,81 +49,81 @@ class RouteGenerator {
 
       case '/create_tutor_experience':
         //return MaterialPageRoute(builder: (_)=> CreateTutor3ExperiencePage());
-        if(profileReceived is TutorProfile){
+        if (profileReceived is TutorProfile) {
           return MaterialPageRoute(
-            builder: (_)=> CreateTutor3ExperiencePage(
+            builder: (_) => CreateTutor3ExperiencePage(
               tutorProfile: profileReceived,
             ),
           );
         }
         return _errorRoute();
       case '/create_tutor_education':
-        if(profileReceived is TutorProfile){
+        if (profileReceived is TutorProfile) {
           return MaterialPageRoute(
-            builder: (_)=> CreateTutor4EducationPage(
+            builder: (_) => CreateTutor4EducationPage(
               tutorProfile: profileReceived,
             ),
           );
         }
         return _errorRoute();
       case '/create_tutor_languages':
-        if(profileReceived is TutorProfile){
+        if (profileReceived is TutorProfile) {
           return MaterialPageRoute(
-            builder: (_)=> CreateTutor5LanguagesPage(
+            builder: (_) => CreateTutor5LanguagesPage(
               tutorProfile: profileReceived,
             ),
           );
         }
         return _errorRoute();
       case '/create_tutor_hourly':
-        if(profileReceived is TutorProfile){
+        if (profileReceived is TutorProfile) {
           return MaterialPageRoute(
-            builder: (_)=> CreateTutor6HourlyPage(
+            builder: (_) => CreateTutor6HourlyPage(
               tutorProfile: profileReceived,
             ),
           );
         }
         return _errorRoute();
       case '/create_tutor_overview':
-        if(profileReceived is TutorProfile){
+        if (profileReceived is TutorProfile) {
           return MaterialPageRoute(
-            builder: (_)=> CreateTutor7OverviewPage(
+            builder: (_) => CreateTutor7OverviewPage(
               tutorProfile: profileReceived,
             ),
           );
         }
         return _errorRoute();
       case '/create_tutor_photo':
-        if(profileReceived is TutorProfile){
+        if (profileReceived is TutorProfile) {
           return MaterialPageRoute(
-            builder: (_)=> CreateTutor8PhotoPage(
+            builder: (_) => CreateTutor8PhotoPage(
               tutorProfile: profileReceived,
             ),
           );
         }
         return _errorRoute();
       case '/create_tutor_location':
-        if(profileReceived is TutorProfile){
+        if (profileReceived is TutorProfile) {
           return MaterialPageRoute(
-            builder: (_)=> CreateTutor9LocationPage(
+            builder: (_) => CreateTutor9LocationPage(
               tutorProfile: profileReceived,
             ),
           );
         }
         return _errorRoute();
       case '/create_tutor_phone':
-        if(profileReceived is TutorProfile){
+        if (profileReceived is TutorProfile) {
           return MaterialPageRoute(
-            builder: (_)=> CreateTutor10PhonePage(
+            builder: (_) => CreateTutor10PhonePage(
               tutorProfile: profileReceived,
             ),
           );
         }
         return _errorRoute();
       case '/create_tutor_summary':
-        if(profileReceived is TutorProfile){
+        if (profileReceived is TutorProfile) {
           return MaterialPageRoute(
-            builder: (_)=> CreateTutor11SummaryPage(
+            builder: (_) => CreateTutor11SummaryPage(
               tutorProfile: profileReceived,
             ),
           );
@@ -118,21 +131,15 @@ class RouteGenerator {
         return _errorRoute();
       default:
         return _errorRoute();
-
     }
   }
 
-  static Route<dynamic> _errorRoute(){
-    return MaterialPageRoute(builder: (_){
+  static Route<dynamic> _errorRoute() {
+    return MaterialPageRoute(builder: (_) {
       return Scaffold(
-        appBar: AppBar(
+          appBar: AppBar(
         title: Text('Error'),
-        )
-      );
+      ));
     });
   }
-
-
-
-
 }

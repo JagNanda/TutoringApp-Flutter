@@ -15,8 +15,8 @@ class SessionDashboard extends StatefulWidget {
 class _SessionDashboard extends State<SessionDashboard> {
   int selectedIndex = 1;
 
-  getAppBar(int index){
-    if (index == 0){
+  getAppBar(int index) {
+    if (index == 0) {
       return AppBar(
         title: Text("Dashboard"),
         bottom: TabBar(tabs: [
@@ -25,21 +25,20 @@ class _SessionDashboard extends State<SessionDashboard> {
           Tab(icon: Icon(Icons.star))
         ]),
       );
-    }
-    else if (index == 1){
+    } else if (index == 1) {
       return AppBar(
         title: Text("Dashboard"),
         bottom: TabBar(tabs: [
           Text('Current', style: TextStyle(fontSize: 20, height: .7)),
           Text('Pending', style: TextStyle(fontSize: 20, height: .7)),
           Text('Completed', style: TextStyle(fontSize: 20, height: .7))
-        ] ),
+        ]),
       );
     }
   }
 
-  getBarContent(int index){
-    if (index == 0){
+  getBarContent(int index) {
+    if (index == 0) {
       return TabBarView(
         children: [
           TutorDashboardJobsSearchPage(),
@@ -47,8 +46,7 @@ class _SessionDashboard extends State<SessionDashboard> {
           TutorDashboardJobFavourites()
         ],
       );
-    }
-    else if (index == 1){
+    } else if (index == 1) {
       return TabBarView(
         children: [
           SessionDashboardCurrent(),
@@ -64,8 +62,9 @@ class _SessionDashboard extends State<SessionDashboard> {
       selectedIndex = index;
     });
   }
+
   int _currentIndex = 0;
-  final List<Widget> _children =[];
+  final List<Widget> _children = [];
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

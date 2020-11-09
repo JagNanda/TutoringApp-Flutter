@@ -15,7 +15,7 @@ class TutorProfile{
   List<String> languageProficiency;
 
   // Wages
-  String hourlyRate;
+  double hourlyRate;
 
   // Introduction
   String profileHeadline;
@@ -25,14 +25,14 @@ class TutorProfile{
   String profilePicImgUrl;
 
   // Tutor Location Info
-
   String tutorCountry;
   String tutorStreetAdd;
   String tutorCity;
   String tutorProvinceState;
   String tutorPostal;
 
-
+  //validation of completed profile
+  bool isCompleted;
 
 
   TutorProfile({
@@ -51,6 +51,7 @@ class TutorProfile{
     this.tutorStreetAdd,
     this.tutorCity,
     this.tutorProvinceState,
-    this.tutorPostal
+    this.tutorPostal,
+    this.isCompleted,
   });
 }

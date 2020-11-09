@@ -51,17 +51,24 @@ class _CurrentSessionState extends State<CurrentSession> {
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  child: new CircleAvatar(
-                      radius: 35,
-                      backgroundImage: new NetworkImage(
-                          "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png")),
+                  child: Container(
+                    child: Center(
+                      child: CircleAvatar(
+                        radius: 35,
+                        child: Text(
+                          'BH',
+                          style: TextStyle(color: Colors.white, fontSize: 35.0),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   width: 30,
                 ),
                 Flexible(
                   child: new Text(
-                    "Upcoming Session with " + "Brandon",
+                    "Upcoming Session with " + "Brian Holmes",
                     textAlign: TextAlign.center,
                     style: kPostTitleText,
                   ),

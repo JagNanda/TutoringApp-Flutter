@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tutoring_app_flutter/pages/messaging/messaging_page.dart';
+import 'package:tutoring_app_flutter/utils/subjects.dart';
 //import 'package:tutoring_app_flutter/pages/DrawerMenu.dart';
 
 class SessionRequest extends StatefulWidget {
@@ -8,7 +9,7 @@ class SessionRequest extends StatefulWidget {
   _SessionRequestState createState() => _SessionRequestState();
 }
 
-final String name = "Brandon";
+final String name = "Brian Holmes";
 
 class _SessionRequestState extends State<SessionRequest> {
   TextEditingController _controller = TextEditingController();
@@ -17,6 +18,8 @@ class _SessionRequestState extends State<SessionRequest> {
   DateTime _dateTime;
   int cost;
   int calculatedCost;
+  String pickedSubject;
+  String dropdownValue;
 
   @override
   void initState() {
@@ -24,6 +27,8 @@ class _SessionRequestState extends State<SessionRequest> {
     _controller.text = "1";
     formattedDate = "";
     cost = 20;
+    dropdownValue = "Math";
+    pickedSubject = "Math";
   }
 
   @override
@@ -41,11 +46,17 @@ class _SessionRequestState extends State<SessionRequest> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               GestureDetector(
-                child: new CircleAvatar(
-                    radius: 35,
-                    //TODO: get requested profile pic
-                    backgroundImage: new NetworkImage(
-                        "https://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/article_images/2020/09/among_us_google_play_icon.jpg")),
+                  child: Container(
+                    child: Center(
+                      child: CircleAvatar(
+                        radius: 35,
+                        child: Text(
+                          'BH',
+                          style: TextStyle(color: Colors.white, fontSize: 40.0),
+                        ),
+                      ),
+                    ),
+                  ),
               ),
             ],
           ),
@@ -212,7 +223,7 @@ class _SessionRequestState extends State<SessionRequest> {
                     height: 50.0,
                     child: Center(
                       child: Text(
-                        "Subject: Math",
+                        "Subject: " + pickedSubject,
                         style: TextStyle(
                           fontSize: 18.0,
                           color: Colors.black,
@@ -225,6 +236,25 @@ class _SessionRequestState extends State<SessionRequest> {
           SizedBox(
             height: 4,
           ),
+
+        DropdownButton<String>(
+            value: dropdownValue,
+            icon: Icon(Icons.arrow_downward),
+            iconSize: 24,
+            elevation: 16,
+            style: TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 2,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String newValue) {
+              setState(() {
+                dropdownValue = newValue;
+                pickedSubject = newValue;
+              });
+            },
+          items: subjects.map((s) => DropdownMenuItem(value: s, child: Text(s))).toList(),
+        ),
           Row(
             children: <Widget>[
               Expanded(

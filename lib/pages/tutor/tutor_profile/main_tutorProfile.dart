@@ -86,6 +86,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                       child: Text("Request Session",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
+                      color: Colors.green,
                       onPressed: (){
                         Navigator.push(
                             context, new MaterialPageRoute(builder: (context) => new SessionRequest()));

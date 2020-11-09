@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/components/tutor/tutor_profile_listing.dart';
+import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'package:tutoring_app_flutter/services/tutor_service.dart';
 
 class StudentDashBoardTutorsSearch extends StatefulWidget {
+
+
   @override
   _StudentDashBoardTutorsSearchState createState() => _StudentDashBoardTutorsSearchState();
 }
@@ -92,3 +95,10 @@ class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSea
     );
   }
 }
+
+// TODO: FOR gesture nav
+/*
+* onPressed: ()  {//TODO remove
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MainTutorProfile(tutorProfile)));
+                  },
+* */

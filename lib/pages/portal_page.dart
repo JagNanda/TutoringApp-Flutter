@@ -25,7 +25,7 @@ class PortalPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => StudentDashboard()),
+                  MaterialPageRoute(builder: (context) => StudentDashboard(tutorProfile)),
                 );
               },
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/sessions_home.dart';
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/postings_tab/student_dashboard_postings.dart';
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/tutors_tab/student_dashboard_tutors_home.dart';
@@ -8,6 +9,8 @@ import 'tutors_tab/student_dashboard_tutors_my_tutors.dart';
 import 'tutors_tab/student_dashboard_tutors_search.dart';
 
 class StudentDashboard extends StatefulWidget {
+  final TutorProfile tutorProfile;
+  StudentDashboard(this.tutorProfile);
   @override
   _StudentDashboardState createState() => _StudentDashboardState();
 }

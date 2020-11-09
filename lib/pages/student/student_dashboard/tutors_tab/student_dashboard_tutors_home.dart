@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/tutors_tab/student_dashboard_tutors_favorites.dart';
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/tutors_tab/student_dashboard_tutors_my_tutors.dart';
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/tutors_tab/student_dashboard_tutors_search.dart';
 
 class StudentDashboardTutorsHome extends StatefulWidget {
-  @override
+   @override
   _StudentDashboardTutorsHomeState createState() => _StudentDashboardTutorsHomeState();
 }
 

@@ -79,9 +79,7 @@ class _SessionRequestState extends State<SessionRequest> {
                   height: 50.0,
                   child: Center(
                     child: Text(
-                      _dateTime == null
-                          ? "Date: "
-                          : "Date: " + formattedDate.toString(),
+                      _dateTime == null ? "Date: " : "Date: " + formattedDate.toString(),
                       style: TextStyle(
                         fontSize: 18.0,
                         color: Colors.black,
@@ -171,9 +169,7 @@ class _SessionRequestState extends State<SessionRequest> {
                 child: TextFormField(
                   enabled: false,
                   controller: _controller,
-                  inputFormatters: <TextInputFormatter>[
-                    WhitelistingTextInputFormatter.digitsOnly
-                  ],
+                  inputFormatters: <TextInputFormatter>[WhitelistingTextInputFormatter.digitsOnly],
                 ),
               ),
               Column(
@@ -187,8 +183,7 @@ class _SessionRequestState extends State<SessionRequest> {
                       int currentValue = int.parse(_controller.text);
                       setState(() {
                         if (currentValue < 4) currentValue++;
-                        _controller.text =
-                            (currentValue).toString(); // incrementing value
+                        _controller.text = (currentValue).toString(); // incrementing value
                         calculatedCost = cost * currentValue;
                       });
                     },
@@ -200,8 +195,7 @@ class _SessionRequestState extends State<SessionRequest> {
                       int currentValue = int.parse(_controller.text);
                       setState(() {
                         if (currentValue > 1) currentValue--;
-                        _controller.text =
-                            (currentValue).toString(); // decrementing value
+                        _controller.text = (currentValue).toString(); // decrementing value
                         calculatedCost = cost * currentValue;
                       });
                     },
@@ -256,19 +250,21 @@ class _SessionRequestState extends State<SessionRequest> {
             maxLines: 3,
           ),
           const SizedBox(height: 30),
-          RaisedButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MessagingPage()));
-            },
-            textColor: Colors.black,
-            padding: const EdgeInsets.all(0.0),
-            color: Colors.blue,
-            child: Container(
-              padding: const EdgeInsets.all(10.0),
-              child: const Text('Create Session Request',
-                  style: TextStyle(fontSize: 20)),
-            ),
-          )
+          Builder(builder: (BuildContext context) {
+            return RaisedButton(
+              onPressed: () {
+                /*Navigator.push(context, MaterialPageRoute(builder: (context) => MessagingPage()));*/
+                Scaffold.of(context).showSnackBar(SnackBar(content: Text("Session Request Sent!")));
+              },
+              textColor: Colors.black,
+              padding: const EdgeInsets.all(0.0),
+              color: Colors.blue,
+              child: Container(
+                padding: const EdgeInsets.all(10.0),
+                child: const Text('Create Session Request', style: TextStyle(fontSize: 20)),
+              ),
+            );
+          })
         ]),
       ),
     );

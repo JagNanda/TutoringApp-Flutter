@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/components/tutor/tutor_profile_listing.dart';
+import 'package:tutoring_app_flutter/models/education_history.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 import 'package:tutoring_app_flutter/services/tutor_service.dart';
 
 class StudentDashBoardTutorsSearch extends StatefulWidget {
-
-
   @override
   _StudentDashBoardTutorsSearchState createState() => _StudentDashBoardTutorsSearchState();
 }
@@ -84,8 +84,19 @@ class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSea
                       shrinkWrap: true,
                       itemCount: snapshot.data.length,
                       itemBuilder: (BuildContext context, int index) {
+                        tutorProfile.education.add(educationHistory1);
                         //TODO:Return gesture detector that passes tutorInfo to tutor profile page once tutor profile is done
-                        return snapshot.data[index];
+
+                        return GestureDetector(
+                          child: snapshot.data[index],
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MainTutorProfile(tutorProfile)),
+                            );
+                          },
+                        );
                       },
                     ),
             ],
@@ -94,11 +105,39 @@ class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSea
       },
     );
   }
-}
 
-// TODO: FOR gesture nav
-/*
-* onPressed: ()  {//TODO remove
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => MainTutorProfile(tutorProfile)));
-                  },
-* */
+  EducationHistory educationHistory1 = new EducationHistory(
+      schoolName: 'Sheridan College',
+      schoolCity: 'Oakville',
+      schoolCountry: 'Canada',
+      schoolProgramName: 'Software Engineering',
+      schoolStartMonth: 'September',
+      schoolStartYear: '2017',
+      schoolThroughMonth: 'May',
+      schoolThroughYear: '2021',
+      schoolDescription: 'blah, blah, blah....diploma');
+
+  TutorProfile tutorProfile = new TutorProfile(
+    tutorId: "Brian Holmes",
+    skillLevel: 'Elementary',
+    tutoredSubjects: ['Flutter', 'Dart', 'Statistics'],
+    tutorExpertise: 'Expert',
+    education: List<EducationHistory>(),
+    languages: ['English', 'Spanish'],
+    languageProficiency: ['Native', 'Basic'],
+    hourlyRate: 25.0,
+    profileHeadline: 'I will help you understand Flutter!',
+    profileOverview: 'Hey there, I love math and I love '
+        'helping people explore math in simply ways that '
+        'are easy to understand and remember! Send me a '
+        'message and see how I can help YOU become a math '
+        'WHIZ!',
+    profilePicImgUrl: null,
+    tutorCountry: 'Canada',
+    tutorStreetAdd: '3220 Colebrook Court',
+    tutorCity: 'Mississauga',
+    tutorProvinceState: 'Ontario',
+    tutorPostal: 'L5N3E2',
+    isCompleted: true,
+  );
+}

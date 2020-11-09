@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 
 
@@ -13,6 +14,7 @@ class CreateTutor6HourlyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Column(
         children: [
@@ -33,6 +35,36 @@ class CreateTutor6HourlyPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Column(
                   children: [
+                    SizedBox(height: 10),
+                    RaisedButton(
+                      color: Colors.deepPurple,
+                      child: Text(
+                        "Print",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                      padding: EdgeInsets.all(20),
+                      onPressed: (){
+                        if(tutorProfile.languages.isNotEmpty)
+                          {
+                            print(tutorProfile.languages.first);
+                          }
+                      },
+                    ),
+                    SizedBox(height: 10),
+
+                  Column(
+                    children: [
+                      new TextField(
+                      decoration: new InputDecoration(labelText: "Enter your hourly rate:"),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly],),
+                    ],
+                  ),
+
+
+
                     SizedBox(height: 10),
                     RaisedButton(
                       color: Colors.blue,
@@ -78,3 +110,14 @@ class CreateTutor6HourlyPage extends StatelessWidget {
     );
   }
 }
+
+/*
+*
+* NumberPicker.integer(
+                initialValue: _currentValue,
+                minValue: 0,
+                maxValue: 100,
+                onChanged: (newValue) =>
+                    setState(() => _currentValue = newValue)),
+*
+* */

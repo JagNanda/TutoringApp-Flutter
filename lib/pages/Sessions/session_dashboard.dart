@@ -59,7 +59,6 @@ class _SessionDashboard extends State<SessionDashboard> {
     }
   }
 
-
   changeTabs(int index) {
     setState(() {
       selectedIndex = index;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/components/scrollable_list.dart';
-import 'file:///C:/Users/Jag/AndroidStudioProjects/TutoringApp-Flutter/lib/components/student/student_post_listing.dart';
+import 'package:tutoring_app_flutter/components/student/student_post_listing.dart';
 
 class TutorDashboardJobsSearchPage extends StatefulWidget {
   @override

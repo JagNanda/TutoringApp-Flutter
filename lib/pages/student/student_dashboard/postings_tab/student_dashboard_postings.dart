@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/Jag/AndroidStudioProjects/TutoringApp-Flutter/lib/components/student/student_post_listing.dart';
+import 'package:tutoring_app_flutter/components/student/student_post_listing.dart';
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/postings_tab/student_dashboard_postings_form.dart';
 import 'package:tutoring_app_flutter/services/student_post_service.dart';
 

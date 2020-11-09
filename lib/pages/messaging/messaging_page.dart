@@ -19,7 +19,8 @@ class _MessagingPageState extends State<MessagingPage> {
 
   initState() {
     super.initState();
-    _chatRooms = httpService.fetchChatRooms();
+    _chatRooms =
+        httpService.fetchChatRooms();
   }
 
   @override

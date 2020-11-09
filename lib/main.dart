@@ -16,7 +16,6 @@ import 'models/tutor_profile.dart';
 
 /*
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
-
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_1_level_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_3_experience_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_4_education_page.dart';
@@ -49,13 +48,8 @@ class TutoringApp extends StatelessWidget {
 }
 /*
       home: LoginPage(),
-=======
         // home: SessionDashboard(),
-
-
         home: StudentDashboard()
->>>>>>> c7b09c03f93e46afaa1c20b6e86189247be85367
-
 
         //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
          //initialRoute: '/portal',
@@ -65,7 +59,6 @@ class TutoringApp extends StatelessWidget {
 }
 <<<<<<< HEAD
 TutorProfile tutorProfile;
-
  */
 /*
 home: LoginPage(),
@@ -74,7 +67,6 @@ home: CreateTutor1LevelPage()
 home: CreateTutor3ExperiencePage(),
 home: CreateTutor4EducationPage(),
 home: TutorProfilePage(),
-
  */
 
 EducationHistory educationHistory1 = new EducationHistory(

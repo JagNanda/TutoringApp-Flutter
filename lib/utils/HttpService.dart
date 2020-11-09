@@ -4,7 +4,7 @@ import 'dart:convert';
 
 class HttpService {
 
-  final authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjZjZjZjMjFmZmEyMjJjMzA4YWM4YmYiLCJtc2ciOiJTdWNjZXNzZnVsbHkgbG9nZ2VkIGluISIsImlhdCI6MTYwMjUzNDczOCwiZXhwIjoxNjAyODk0NzM4fQ.uN2lzR--YSmxOydZXsx41N12mp-hjG2FEKdTn_lCJB0";
+  final authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZjZjZjZjMjFmZmEyMjJjMzA4YWM4YmYiLCJtc2ciOiJTdWNjZXNzZnVsbHkgbG9nZ2VkIGluISIsImlhdCI6MTYwNDc5MjgzNiwiZXhwIjoxNjA1MTUyODM2fQ.Nt9RFLOuWwlP1OcbuASJzHkDWlbF1F5wGrtYnzOJZlc";
 
   Map<String, String> get headers => {
     "x-auth-token": authToken

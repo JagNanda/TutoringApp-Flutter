@@ -15,8 +15,7 @@ import 'package:tutoring_app_flutter/pages/registration_page.dart';
 import 'models/tutor_profile.dart';
 
 /*
-
-import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_1_level_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_3_experience_page.dart';
@@ -30,7 +29,10 @@ void main() {
 }
 
 class TutoringApp extends StatelessWidget {
-  //final routes = <String, WidgetBuilder>{ //LoginPage.tag: (context) => LoginPage(), RegistrationPage.tag: (context) => RegistrationPage(), TutorProfilePage.tag: (context) => TutorProfilePage(),};
+  final routes = <String, WidgetBuilder>{
+    LoginPage.tag: (context) =>
+        LoginPage(), /*RegistrationPage.tag: (context) => RegistrationPage(), TutorProfilePage.tag: (context) => TutorProfilePage(),*/
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +42,19 @@ class TutoringApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'Nunito',
         ),
-
+      home: SessionDashboard(),
+      routes: routes,
+    );
+  }
+}
+/*
+      home: LoginPage(),
+=======
         // home: SessionDashboard(),
 
 
         home: StudentDashboard()
+>>>>>>> c7b09c03f93e46afaa1c20b6e86189247be85367
 
 
         //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
@@ -53,6 +63,19 @@ class TutoringApp extends StatelessWidget {
         );
   }
 }
+<<<<<<< HEAD
+TutorProfile tutorProfile;
+
+ */
+/*
+home: LoginPage(),
+home: RegistrationPage(),
+home: CreateTutor1LevelPage()
+home: CreateTutor3ExperiencePage(),
+home: CreateTutor4EducationPage(),
+home: TutorProfilePage(),
+
+ */
 
 EducationHistory educationHistory1 = new EducationHistory(
     schoolName: 'Sheridan College',

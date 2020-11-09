@@ -92,7 +92,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                           onPressed: () async {
                             if (_formKey.currentState.validate()) {
-                              print("valid");
                               RegistrationInfo userDetails = RegistrationInfo(
                                 email: email,
                                 username: username,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/components/scrollable_list.dart';
 import 'package:tutoring_app_flutter/components/student/student_post_listing.dart';
 
-
 class TutorDashboardJobsSearchPage extends StatefulWidget {
   @override
   _TutorDashboardJobsSearchPageState createState() => _TutorDashboardJobsSearchPageState();

@@ -36,12 +36,12 @@ class TutoringApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'TutorLink',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: 'Nunito',
-        ),
-      home: SessionDashboard(),
+      title: 'TutorLink',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: 'Nunito',
+      ),
+      home: LoginPage(),
       routes: routes,
     );
   }

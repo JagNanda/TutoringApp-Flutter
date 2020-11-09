@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard_completed.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard_current.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard_pending.dart';
-import '../tutor/tutor_dashboard/jobs_tab/tutor_dashboard_jobs_favourites.dart';
-import '../tutor/tutor_dashboard/jobs_tab/tutor_dashboard_jobs_my_students.dart';
-import '../tutor/tutor_dashboard/jobs_tab/tutor_dashboard_jobs_search_page.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/jobs_tab/tutor_dashboard_jobs_favourites.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/jobs_tab/tutor_dashboard_jobs_my_students.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/jobs_tab/tutor_dashboard_jobs_search_page.dart';
 import 'package:tutoring_app_flutter/pages/DrawerMenu.dart';
 
 class SessionDashboard extends StatefulWidget {

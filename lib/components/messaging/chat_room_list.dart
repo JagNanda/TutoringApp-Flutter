@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import '../../pages/messaging/chat_room_page.dart';
 import '../../models/chat_room.dart';
 
+/*
+snapshot.data[index].messages.isEmpty
+                                      ? "No messages in chat room yet."
+                                          : snapshot.data[index].messages[snapshot.data[index].messages.length].body.length > 20
+                                      ? snapshot.data[index].messages[snapshot.data[index].messages.length].body.substring(0, 20)
+                                          : snapshot.data[index].messages[snapshot.data[index].messages.length].body
+ */
 class ChatRoomList extends StatelessWidget {
   final Future<List<ChatRoom>> chatRooms;
   final Function addMessage;
@@ -30,6 +37,7 @@ class ChatRoomList extends StatelessWidget {
             return ListView.builder(
               itemCount: snapshot.data.length,
               itemBuilder: (ctx, index) {
+                print("index = " + index.toString());
                 return GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -70,11 +78,7 @@ class ChatRoomList extends StatelessWidget {
                                     margin: EdgeInsets.symmetric(
                                         vertical: 5, horizontal: 0),
                                     child: Text(
-                                      snapshot.data[index].messages.isEmpty
-                                      ? "No messages in chat room yet."
-                                          : snapshot.data[index].messages[snapshot.data[index].messages.length].body.length > 20
-                                      ? snapshot.data[index].messages[snapshot.data[index].messages.length].body.substring(0, 20)
-                                          : snapshot.data[index].messages[snapshot.data[index].messages.length].body,
+                                      "hello world", // change default message to default
                                       style: TextStyle(),
                                     )
                                 )

@@ -15,9 +15,7 @@ import 'package:tutoring_app_flutter/pages/registration_page.dart';
 import 'models/tutor_profile.dart';
 
 /*
-
-import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard.dart';
-
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_1_level_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_3_experience_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_4_education_page.dart';
@@ -30,29 +28,28 @@ void main() {
 }
 
 class TutoringApp extends StatelessWidget {
-  //final routes = <String, WidgetBuilder>{ //LoginPage.tag: (context) => LoginPage(), RegistrationPage.tag: (context) => RegistrationPage(), TutorProfilePage.tag: (context) => TutorProfilePage(),};
+  // final routes = <String, WidgetBuilder>{
+  //   LoginPage.tag: (context) =>
+  //       LoginPage(tutorProfile), /*RegistrationPage.tag: (context) => RegistrationPage(), TutorProfilePage.tag: (context) => TutorProfilePage(),*/
+  //};
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'TutorLink',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: 'Nunito',
-        ),
-
-        // home: SessionDashboard(),
-
-
-        home: LoginPage(tutorProfile)
-
-
-        //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
-         //initialRoute: '/portal',
-         //: RouteGenerator.generateRoute,
-        );
+      title: 'TutorLink',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: 'Nunito',
+      ),
+      home: LoginPage(tutorProfile),
+      //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
+      //initialRoute: '/portal',
+      //: RouteGenerator.generateRoute,
+    );
   }
 }
+
+
 
 EducationHistory educationHistory1 = new EducationHistory(
     schoolName: 'Sheridan College',

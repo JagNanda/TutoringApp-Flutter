@@ -23,21 +23,21 @@ class MessageList extends StatelessWidget {
               return MessageRightSide(
                 imgUrl: 'https://via.placeholder.com/50',
                 body: messages[index].body,
-                name: messages[index].tutorId,
+                name: "Ryan Haire",
                 dateTime: messages[index].dateTime,
               );
             } else if(messages[index].tuteeId == loggedInUserId) {
               return MessageRightSide(
                 imgUrl: 'https://via.placeholder.com/50',
                 body: messages[index].body,
-                name: messages[index].tuteeId,
+                name: "Mary Jones",
                 dateTime: messages[index].dateTime,
               );
             } else {
               return MessageLeftSide(
                 imgUrl: 'https://via.placeholder.com/50',
                 body: messages[index].body,
-                name: messages[index].tuteeId,
+                name: "Mary Jones",
                 dateTime: messages[index].dateTime,
               );
             }

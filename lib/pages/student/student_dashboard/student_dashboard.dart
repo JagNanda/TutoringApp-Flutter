@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/pages/Sessions/sessions_home.dart';
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/postings_tab/student_dashboard_postings.dart';
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/tutors_tab/student_dashboard_tutors_home.dart';
 
@@ -17,7 +18,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
   static List<Widget> _widgetOptions = <Widget>[
     StudentDashboardTutorsHome(),
     //TODO(jag): Replace with messaging once done
-    //TODO(jag): Replace with sessions once done
+    SessionsHome(),
     StudentDashboardPostings()
   ];
 

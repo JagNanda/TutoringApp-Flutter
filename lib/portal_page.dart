@@ -7,6 +7,8 @@ import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'pages/tutor/tutor_profile/learnPortalButton.dart';
 //import 'pages/tutor/tutor_profile/teachPortalButton.dart';
 
+//moved to fix errors on my side,
+TutorProfile tutorProfile = new TutorProfile(tutorId: "1");
 class PortalPage extends StatefulWidget {
   //final TutorProfile tutorProfile;
   @override

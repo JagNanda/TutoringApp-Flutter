@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/components/sessions/session_request.dart';
 import 'package:tutoring_app_flutter/main.dart';
 
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
@@ -85,7 +86,10 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                       child: Text("Request Session",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
-                      onPressed: null
+                      onPressed: (){
+                        Navigator.push(
+                            context, new MaterialPageRoute(builder: (context) => new SessionRequest()));
+                      }
                   ),
                 ],                
               ),

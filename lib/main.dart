@@ -44,7 +44,7 @@ class TutoringApp extends StatelessWidget {
         // home: SessionDashboard(),
 
 
-        home: StudentDashboard()
+        home: LoginPage(tutorProfile)
 
 
         //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
@@ -66,7 +66,7 @@ EducationHistory educationHistory1 = new EducationHistory(
     schoolDescription: 'blah, blah, blah....diploma');
 
 TutorProfile tutorProfile = new TutorProfile(
-  tutorId: "Brian",
+  tutorId: "Brian Holmes",
   skillLevel: 'Elementary',
   tutoredSubjects: ['Flutter', 'Dart', 'Statistics'],
   tutorExpertise: 'Expert',

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/main.dart';
+import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'package:tutoring_app_flutter/pages/portal_page.dart';
 import 'package:tutoring_app_flutter/pages/registration_page.dart';
 import '../services/user_service.dart';
 
 class LoginPage extends StatefulWidget {
+  final TutorProfile tutorProfile;
+  LoginPage(this.tutorProfile);
   static String tag = 'login-page';
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -57,13 +61,15 @@ class _LoginPageState extends State<LoginPage> {
                 padding: EdgeInsets.all(12),
                 color: Colors.green,
                 child: Text('Login', style: TextStyle(color: Colors.white, fontSize: 17.0)),
-                onPressed: () async {
-                  UserService userService = new UserService();
-                  bool success = await userService.loginUser(email: email, password: password);
-                  if (success) {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => PortalPage()));
-                  }
-                },
+                // onPressed: () async { //TODO: Uncomment after presentation
+                //   UserService userService = new UserService();
+                //   bool success = await userService.loginUser(email: email, password: password);
+                //   if (success) {
+                //     Navigator.push(context, MaterialPageRoute(builder: (context) => PortalPage()));
+                //   }
+                onPressed: ()  {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => PortalPage(tutorProfile)));
+                  },
               ),
             ),
             Builder(builder: (BuildContext context) {

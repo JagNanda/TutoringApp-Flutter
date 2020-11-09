@@ -9,15 +9,16 @@ class StudentPostListing extends StatefulWidget {
   final String education;
   final String expertise;
   final String description;
+  final bool showSavedIcon; //dont want the student to be able to favorite their own posts
 
-  StudentPostListing({
-    this.title,
-    this.budget,
-    this.date,
-    this.education,
-    this.expertise,
-    this.description,
-  });
+  StudentPostListing(
+      {this.title,
+      this.budget,
+      this.date,
+      this.education,
+      this.expertise,
+      this.description,
+      this.showSavedIcon = false});
 
   @override
   _StudentPostListingState createState() => _StudentPostListingState();
@@ -57,16 +58,18 @@ class _StudentPostListingState extends State<StudentPostListing> {
                 textAlign: TextAlign.left,
                 style: kPostTitleText,
               ),
-              GestureDetector(
-                child: favorite == true
-                    ? Icon(Icons.favorite, color: Colors.pink)
-                    : Icon(Icons.favorite_border),
-                onTap: () {
-                  setState(() {
-                    favorite = !favorite;
-                  });
-                },
-              )
+              if (widget.showSavedIcon == true)
+                GestureDetector(
+                  child: favorite == true
+                      ? Icon(Icons.favorite, color: Colors.pink)
+                      : Icon(Icons.favorite_border),
+                  onTap: () {
+                    setState(() {
+                      //TODO: database call to save as favorite
+                      favorite = !favorite;
+                    });
+                  },
+                )
             ],
           ),
           SizedBox(

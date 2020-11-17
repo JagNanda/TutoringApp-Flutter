@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/components/tutor/tutor_profile_listing.dart';
-import 'package:tutoring_app_flutter/models/education_history.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
-import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 import 'package:tutoring_app_flutter/services/tutor_service.dart';
 
 class StudentDashBoardTutorsSearch extends StatefulWidget {
@@ -11,15 +9,30 @@ class StudentDashBoardTutorsSearch extends StatefulWidget {
 }
 
 class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSearch> {
-  List<dynamic> allTutorProfiles;
-
-  String searchString = "";
+  final textController = TextEditingController();
   bool search = false;
+  bool isEmpty = false;
   Future<List<TutorProfileListing>> loadTutorProfiles() async {
     List<dynamic> allProfiles = await TutorService().getTutorProfiles();
 
-    allTutorProfiles = allProfiles;
     return allProfiles.map((post) {
+      //TODO:Return gesture detector wrapper that passes a tutorId to tutor profile page one profile page is done
+      return TutorProfileListing(
+        id: post["_id"],
+        bio: post["bio"],
+        name: "${post["userInfo"]["firstName"]} ${post["userInfo"]["lastName"]}",
+        hourlyRate: post["hourlyRate"].toString(),
+        subjects: post["subjects"],
+      );
+    }).toList();
+  }
+
+  Future<List<TutorProfileListing>> loadSearchTutorProfiles() async {
+    List<dynamic> allMatchingProfiles =
+        await TutorService().getTutorProfilesBySubject(textController.text);
+
+    return allMatchingProfiles.map((post) {
+      //TODO:Return gesture detector wrapper that passes a tutorId to tutor profile page one profile page is done
       return TutorProfileListing(
         bio: post["bio"],
         name: "${post["userInfo"]["firstName"]} ${post["userInfo"]["lastName"]}",
@@ -33,12 +46,28 @@ class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSea
   void initState() {
     super.initState();
     loadTutorProfiles();
+    textController.addListener(isTextFieldEmpty);
+  }
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
+
+  void isTextFieldEmpty() {
+    if (textController.text.isEmpty) {
+      print("empty");
+      setState(() {
+        search = false;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: loadTutorProfiles(),
+      future: search == true ? loadSearchTutorProfiles() : loadTutorProfiles(),
       builder: (BuildContext context, AsyncSnapshot<List<TutorProfileListing>> snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
           return SizedBox(child: CircularProgressIndicator(), width: 70, height: 70);
@@ -51,25 +80,18 @@ class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSea
                     child: Container(
                       padding: EdgeInsets.all(20),
                       child: TextField(
+                        controller: textController,
                         decoration: InputDecoration(
                           hintText: "Enter main subject area",
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                         ),
-                        onChanged: (value) {
-                          searchString = value;
-                          if (searchString.isEmpty) {
-                            setState(() {
-                              search = false;
-                            });
-                          }
-                        },
                       ),
                     ),
                   ),
                   IconButton(
                       icon: Icon(Icons.search),
                       onPressed: () {
-                        if (searchString.isNotEmpty) {
+                        if (textController.text.isNotEmpty) {
                           setState(() {
                             search = true;
                           });
@@ -77,27 +99,17 @@ class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSea
                       })
                 ],
               ),
-              search
-                  ? Text("search")
-                  : ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        tutorProfile.education.add(educationHistory1);
-                        //TODO:Return gesture detector that passes tutorInfo to tutor profile page once tutor profile is done
-
-                        return GestureDetector(
-                          child: snapshot.data[index],
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MainTutorProfile(tutorProfile)),
-                            );
-                          },
-                        );
-                      },
+              snapshot.data.length == 0
+                  ? Text("No Results")
+                  : Expanded(
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return snapshot.data[index];
+                        },
+                      ),
                     ),
             ],
           );
@@ -105,39 +117,4 @@ class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSea
       },
     );
   }
-
-  EducationHistory educationHistory1 = new EducationHistory(
-      schoolName: 'Sheridan College',
-      schoolCity: 'Oakville',
-      schoolCountry: 'Canada',
-      schoolProgramName: 'Software Engineering',
-      schoolStartMonth: 'September',
-      schoolStartYear: '2017',
-      schoolThroughMonth: 'May',
-      schoolThroughYear: '2021',
-      schoolDescription: 'blah, blah, blah....diploma');
-
-  TutorProfile tutorProfile = new TutorProfile(
-    tutorId: "Brian Holmes",
-    skillLevel: 'Elementary',
-    tutoredSubjects: ['Flutter', 'Dart', 'Statistics'],
-    tutorExpertise: 'Expert',
-    education: List<EducationHistory>(),
-    languages: ['English', 'Spanish'],
-    languageProficiency: ['Native', 'Basic'],
-    hourlyRate: 25.0,
-    profileHeadline: 'I will help you understand Flutter!',
-    profileOverview: 'Hey there, I love math and I love '
-        'helping people explore math in simply ways that '
-        'are easy to understand and remember! Send me a '
-        'message and see how I can help YOU become a math '
-        'WHIZ!',
-    profilePicImgUrl: null,
-    tutorCountry: 'Canada',
-    tutorStreetAdd: '3220 Colebrook Court',
-    tutorCity: 'Mississauga',
-    tutorProvinceState: 'Ontario',
-    tutorPostal: 'L5N3E2',
-    isCompleted: true,
-  );
 }

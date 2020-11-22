@@ -34,45 +34,25 @@ class CreateTutor7OverviewPage extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 10),
-                    RaisedButton(
-                      color: Colors.blue,
-                      child: Text(
-                        "Next",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                      padding: EdgeInsets.all(20),
-                      onPressed: (){
-                        //_tutorProfile.skillLevel = "Elementary";
-                        Navigator.of(context).pushNamed('/create_tutor_photo', arguments: tutorProfile);
-                        print("Next Pressed");
-                      }, // TODO: onPressed add skillLevel to delegate and segue to new page
-                    ),
+                    // RaisedButton(
+                    //   color: Colors.blue,
+                    //   child: Text(
+                    //     "Next",
+                    //     style: TextStyle(color: Colors.white, fontSize: 18),
+                    //   ),
+                    //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                    //   padding: EdgeInsets.all(20),
+                    //   onPressed: (){
+                    //     //_tutorProfile.skillLevel = "Elementary";
+                    //     Navigator.of(context).pushNamed('/create_tutor_photo', arguments: tutorProfile);
+                    //     print("Next Pressed");
+                    //   }, // TODO: onPressed add skillLevel to delegate and segue to new page
+                    // ),
                   ],
                 ),
               ),
             ),
           ),
-          //MARK: Back Button
-          Expanded(
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: RaisedButton(
-                color: Colors.grey,
-                child: Text(
-                  "Back",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                padding: EdgeInsets.all(20),
-                onPressed: (){
-                  Navigator.of(context).pushNamed('/create_tutor_hourly', arguments: tutorProfile);
-                  print("Back Pressed");
-                  }, // TODO: onPressed segue to previous page
-              ),
-              padding: EdgeInsets.all(20),
-            ),
-          )
         ],
       ),
     );

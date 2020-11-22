@@ -167,13 +167,13 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
                     RaisedButton(
                       color: Colors.blue,
                       child: Text(
-                        "Next",
+                        "Done",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: (){
-                          Navigator.of(context).pushNamed('/create_tutor_hourly', arguments: widget.tutorProfile);
+                          Navigator.pop(context);
                       },
                     ),
                   ],
@@ -181,25 +181,6 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
               ),
             ),
           ),
-          //MARK: Back Button
-          Expanded(
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: RaisedButton(
-                color: Colors.grey,
-                child: Text(
-                  "Back",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                padding: EdgeInsets.all(20),
-                onPressed: (){
-                  Navigator.of(context).pushNamed('/create_tutor_education', arguments: widget.tutorProfile);
-                  },
-              ),
-              padding: EdgeInsets.all(20),
-            ),
-          ) // Back Button
         ],
       ),
     );

@@ -62,9 +62,7 @@ class _CreateTutor3ExperiencePageState extends State<CreateTutor3ExperiencePage>
                             widget.tutorProfile.tutorExpertise = "Entry Level";
                           });
                             print("Entry Level Pressed");
-                            Navigator.of(context).pushNamed(
-                                '/create_tutor_education',
-                                arguments: widget.tutorProfile);
+                            Navigator.pop(context);
                           }, // TODO: onPressed add tutorExpertise to delegate and segue to new page
                       ),
                       width: double.maxFinite,
@@ -91,7 +89,7 @@ class _CreateTutor3ExperiencePageState extends State<CreateTutor3ExperiencePage>
                           setState(() {
                             widget.tutorProfile.tutorExpertise = "Intermediate";
                           });
-                          Navigator.of(context).pushNamed('/create_tutor_education', arguments: widget.tutorProfile);
+                          Navigator.pop(context);
                           print("Intermediate Pressed");
                           }, // TODO: onPressed add tutorExpertise to delegate and segue to new page
                       ),
@@ -119,7 +117,7 @@ class _CreateTutor3ExperiencePageState extends State<CreateTutor3ExperiencePage>
                           setState(() {
                             widget.tutorProfile.tutorExpertise = "Expert";
                           });
-                          Navigator.of(context).pushNamed('/create_tutor_education', arguments: widget.tutorProfile);
+                          Navigator.pop(context);
                           print("Expert Pressed");
                           }, // TODO: onPressed add tutorExpertise to delegate and segue to new page
                       ),
@@ -130,25 +128,6 @@ class _CreateTutor3ExperiencePageState extends State<CreateTutor3ExperiencePage>
               ),
             ),
           ),
-          Expanded(
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: RaisedButton(
-                color: Colors.grey,
-                child: Text(
-                  "Back",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                padding: EdgeInsets.all(20),
-                onPressed: (){
-                  Navigator.of(context).pushNamed('/create_tutor_subjects', arguments: widget.tutorProfile);
-                  print("Back Pressed");
-                  }, // TODO: onPressed segue to previous page
-              ),
-              padding: EdgeInsets.all(20),
-            ),
-          )
         ],
       ),
     );

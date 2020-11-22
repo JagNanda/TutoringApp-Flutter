@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 import 'models/education_history.dart';
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/postings_tab/student_dashboard_postings_form.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
@@ -41,7 +43,8 @@ class TutoringApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Nunito',
       ),
-      home: LoginPage(tutorProfile),
+      //home: LoginPage(tutorProfile),
+      home: MainTutorProfile(tutorProfile),
       //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
       //initialRoute: '/portal',
       //: RouteGenerator.generateRoute,

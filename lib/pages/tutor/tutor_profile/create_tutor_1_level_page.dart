@@ -55,7 +55,7 @@ class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
                             setState(() {
                               widget.tutorProfile.skillLevel = "Elementary";
                             });
-                            Navigator.of(context).pushNamed('/create_tutor_subjects', arguments: widget.tutorProfile);
+                            Navigator.pop(context);
                             print("Elementary Pressed");
                             }, // TODO: onPressed add skillLevel to delegate and segue to new page
                         ),
@@ -76,7 +76,7 @@ class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
                             setState(() {
                               widget.tutorProfile.skillLevel = "High School";
                             });
-                            Navigator.of(context).pushNamed('/create_tutor_subjects', arguments: widget.tutorProfile);
+                            Navigator.pop(context);
                             print("High School Pressed");
                             }, // TODO: onPressed add skillLevel to delegate and segue to new page
                         ),
@@ -97,47 +97,39 @@ class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
                             setState(() {
                               widget.tutorProfile.skillLevel = "College / University";
                             });
-                            Navigator.of(context).pushNamed('/create_tutor_subjects', arguments: widget.tutorProfile);
+                            Navigator.pop(context);
                             print("College / University Pressed");
                             }, // TODO: onPressed add skillLevel to delegate and segue to new page
                         ),
                         width: double.maxFinite,
                       ),
                       SizedBox(height: 10),
-                      SizedBox(
-                        child: Text(
-                            "Hello," + widget.tutorProfile.tutorId + "!", //TODO: Remove debug text
-                            style: TextStyle(color: Colors.blueAccent, fontSize: 18),
-                          ),
-                        width: double.maxFinite,
-                      ),
-                  SizedBox(height: 10),
-                  SizedBox(),
+
                     ],
                   ),
                 ),
               ),
             ),
-          Expanded(
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: RaisedButton(
-                color: Colors.grey,
-                child: Text(
-                  "Back",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                padding: EdgeInsets.all(20),
-                onPressed: (){
-                  //Navigator.of(context).pushNamed('/portal', arguments: widget.tutorProfile);
-                  Navigator.of(context).pop();
-                  print("Back Pressed");
-                  }, // TODO: onPressed segue to previous page
-              ),
-              padding: EdgeInsets.all(20),
-            ),
-          )
+          // Expanded(
+          //   child: Container(
+          //     alignment: Alignment.bottomCenter,
+          //     child: RaisedButton(
+          //       color: Colors.grey,
+          //       child: Text(
+          //         "Back",
+          //         style: TextStyle(color: Colors.white, fontSize: 18),
+          //       ),
+          //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          //       padding: EdgeInsets.all(20),
+          //       onPressed: (){
+          //         //Navigator.of(context).pushNamed('/portal', arguments: widget.tutorProfile);
+          //         Navigator.of(context).pop();
+          //         print("Back Pressed");
+          //         }, // TODO: onPressed segue to previous page
+          //     ),
+          //     padding: EdgeInsets.all(20),
+          //   ),
+          // )
         ],
       ),
     );

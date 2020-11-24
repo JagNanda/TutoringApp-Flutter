@@ -43,8 +43,8 @@ class TutoringApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Nunito',
       ),
-      //home: LoginPage(tutorProfile),
-      home: MainTutorProfile(tutorProfile),
+      home: LoginPage(tutorProfile),
+      //home: MainTutorProfile(tutorProfile),
       //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
       //initialRoute: '/portal',
       //: RouteGenerator.generateRoute,

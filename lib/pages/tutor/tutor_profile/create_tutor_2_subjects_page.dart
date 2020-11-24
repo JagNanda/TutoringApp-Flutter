@@ -63,6 +63,7 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
     ];
     // endregion creates subject list
 
+    Color color = Colors.blueGrey;
     return Scaffold(
       body: Column(
         children: [
@@ -71,12 +72,21 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
               alignment: Alignment.bottomCenter,
               child: Text(
                 widget.tutorProfile.tutorId +
-                    ", please add some subjects you would like to tutor in:",
+                    ", please add some subjects you would like to tutor:",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               padding: EdgeInsets.all(20),
             ),
           ),
+          SizedBox(height: 10),
+          Container(
+            child: Column(
+              children: [
+                for (var sub in tutorProfile.tutoredSubjects) Text(sub),
+              ],
+            ),
+          ),
+          SizedBox(height: 15),
           Expanded(
             flex: 4,
             child: SingleChildScrollView(
@@ -84,34 +94,8 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Column(
                   children: [
+
                     SizedBox(height: 10),
-                    RaisedButton(
-                      color: Colors.blue,
-                      child: Text(
-                        "Done",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                      padding: EdgeInsets.all(20),
-                      onPressed: () {
-                        setState(() {
-                          widget.tutorProfile.tutoredSubjects =
-                              widget.tutorProfile.tutoredSubjects;
-                        });
-                        Navigator.pop(context);
-                        print("Done Pressed"); //TODO: remove debug print
-                      },
-                    ),
-                    SizedBox(height: 10),
-                    SizedBox(
-                      child: Text(
-                        "Tap below to add or remove subjects:",
-                        style:
-                            TextStyle(color: Colors.blueAccent, fontSize: 18),
-                      ),
-                      width: double.maxFinite,
-                    ),
                     SizedBox(
                       child: ListView.builder(
                         scrollDirection: Axis.vertical,
@@ -121,14 +105,20 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
                         itemBuilder: (context, index) {
                           return Card(
                               child: ListTile(
-                            trailing: Icon(Icons.group_add_outlined),
-                            subtitle: Text('Tap to add/remove a subject'),
-                            // <-- subtitle //TODO: mark for future use
-                            title: Text(
-                              subjects[index],
-                              style: TextStyle(fontSize: 22.0),
-                            ),
+                                //tileColor: color,
+                                title: Text(
+                                  subjects[index],
+                                  style: TextStyle(fontSize: 22.0),
+                                ),
+                                subtitle: Text('Tap to add/remove a subject'),
+                                // <-- subtitle //TODO: mark for future use
+                                //trailing: Icon(Icons.group_add_outlined, color: color,),
                             onTap: () {
+                              setState(() {
+                                tutorProfile.tutoredSubjects = tutorProfile.tutoredSubjects;
+                                color = Colors.red;
+                              });
+
                               // Create Subject List if Null
                               if (widget.tutorProfile.tutoredSubjects == null) {
                                 // The list of subjects is null
@@ -176,6 +166,26 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
                 ),
               ),
             ),
+          ),
+          SizedBox(height: 10),
+          RaisedButton(
+            color: Colors.blue,
+            child: Text(
+              "Update Tutored subjects with selections",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            padding: EdgeInsets.all(20),
+            onPressed: () {
+              setState(() {
+                widget.tutorProfile.tutoredSubjects =
+                    widget.tutorProfile.tutoredSubjects;
+              });
+              Navigator.pop(context);
+              print(
+                  "Update Tutored subjects with selections"); //TODO: remove debug print
+            },
           ),
         ],
       ),

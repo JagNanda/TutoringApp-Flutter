@@ -116,11 +116,11 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
               });
             },
-          ),
+          ), //Location Input
           GestureDetector(
             child: Card(
               child: ListTile(
-                title: Text(tutorProfile.profileHeadline),
+                title: Center(child: Text(tutorProfile.profileHeadline)),
               ),
             ),
             onTap: () {
@@ -133,11 +133,11 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
               });
             },
-          ),
+          ),// Profile Headline Input
           GestureDetector(
             child: Card(
               child: ListTile(
-                title: Text(tutorProfile.profileOverview),
+                title: Center(child: Text(tutorProfile.profileOverview)),
                 contentPadding: const EdgeInsets.all(10),
               ),
             ),
@@ -151,11 +151,11 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
               });
             },
-          ),
+          ), // Profile Message Input
           GestureDetector(
             child: Card(
               child: ListTile(
-                title: Text(tutorProfile.skillLevel + ' level tutor'),
+                title: Center(child: Text(tutorProfile.skillLevel + ' level tutor')),
               ),
             ),
             onTap: () {
@@ -168,7 +168,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
               });
             },
-          ),
+          ),// Tutoring Skill Level Input
           GestureDetector(
             child: Card(
               child: ListTile(
@@ -188,13 +188,15 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
               });
             },
-          ),
+          ), //Tutored Subjects Input
           GestureDetector(
             child: Card(
               child: ListTile(
-                title: Text('Subject expertise: ' +
-                    tutorProfile.tutorExpertise +
-                    ' level'),
+                title: Center(
+                  child: Text('Subject expertise: ' +
+                      tutorProfile.tutorExpertise +
+                      ' level'),
+                ),
               ),
             ),
             onTap: () {
@@ -207,7 +209,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
               });
             },
-          ),
+          ), //Tutoring Experience
           GestureDetector(
             child: Card(
               child: ListTile(
@@ -240,13 +242,15 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
               });
             },
-          ),
+          ), // Languages
           GestureDetector(
             child: Card(
               child: ListTile(
-                title: Text('Hourly rate: \$' +
-                    tutorProfile.hourlyRate.toString() +
-                    '/hr'),
+                title: Center(
+                  child: Text('Hourly rate: \$' +
+                      tutorProfile.hourlyRate.toString() +
+                      '/hr'),
+                ),
               ),
             ),
             onTap: () {
@@ -274,6 +278,16 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 Text(tutorProfile.tutorCountry),
               ],
             ),
+          ),
+          SizedBox(
+            width: 250,
+            height: 50,
+            child: RaisedButton(
+                child: Text(
+                  "Edit Profile",
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+                onPressed: null), //TODO: Change color of button and text to -> "tap field to edit", and enable GestureDetectors
           ),
         ]),
       ),

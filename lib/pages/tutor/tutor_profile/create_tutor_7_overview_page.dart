@@ -20,7 +20,7 @@ class CreateTutor7OverviewPage extends StatelessWidget {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                "Add Headline and Overview:",
+                "Update your profile headline: ",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               padding: EdgeInsets.all(30),
@@ -33,21 +33,30 @@ class CreateTutor7OverviewPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Column(
                   children: [
+                    TextFormField(
+                      minLines: 8,
+                      maxLines: 16,
+                      maxLength: 240,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Profile Message',  //TODO: Populate with existing profile message
+                      ),
+                    ),
                     SizedBox(height: 10),
-                    // RaisedButton(
-                    //   color: Colors.blue,
-                    //   child: Text(
-                    //     "Next",
-                    //     style: TextStyle(color: Colors.white, fontSize: 18),
-                    //   ),
-                    //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                    //   padding: EdgeInsets.all(20),
-                    //   onPressed: (){
-                    //     //_tutorProfile.skillLevel = "Elementary";
-                    //     Navigator.of(context).pushNamed('/create_tutor_photo', arguments: tutorProfile);
-                    //     print("Next Pressed");
-                    //   }, // TODO: onPressed add skillLevel to delegate and segue to new page
-                    // ),
+                    RaisedButton(
+                      color: Colors.blue,
+                      child: Text(
+                        "Update Headline",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                      padding: EdgeInsets.all(20),
+                      onPressed: (){
+                        //tutorProfile.skillLevel = "Elementary";// TODO: onPressed update headline of tutorProfile
+                        Navigator.pop(context);
+                        print("Update Headline pressed");
+                      },
+                    ),
                   ],
                 ),
               ),

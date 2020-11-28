@@ -12,7 +12,7 @@ class Message {
       tutorId: json['tutorId'],
       tuteeId: json['tuteeId'],
       body: json['message'],
-      dateTime: json['date']
+      dateTime: DateTime.parse(json['date']),
     );
   }
 

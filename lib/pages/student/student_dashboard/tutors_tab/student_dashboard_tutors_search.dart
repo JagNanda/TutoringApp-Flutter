@@ -8,20 +8,35 @@ class StudentDashBoardTutorsSearch extends StatefulWidget {
 }
 
 class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSearch> {
-  List<dynamic> allTutorProfiles;
-
-  String searchString = "";
+  final textController = TextEditingController();
   bool search = false;
+  bool isEmpty = false;
   Future<List<TutorProfileListing>> loadTutorProfiles() async {
     List<dynamic> allProfiles = await TutorService().getTutorProfiles();
 
-    allTutorProfiles = allProfiles;
-    return allProfiles.map((post) {
+    return allProfiles.map((profile) {
+      //TODO:Return gesture detector wrapper that passes a tutorId to tutor profile page one profile page is done
       return TutorProfileListing(
-        bio: post["bio"],
-        name: "${post["userInfo"]["firstName"]} ${post["userInfo"]["lastName"]}",
-        hourlyRate: post["hourlyRate"].toString(),
-        subjects: post["subjects"],
+        id: profile["_id"],
+        bio: profile["bio"],
+        name: "${profile["userInfo"]["firstName"]} ${profile["userInfo"]["lastName"]}",
+        hourlyRate: profile["hourlyRate"].toString(),
+        subjects: profile["subjects"],
+      );
+    }).toList();
+  }
+
+  Future<List<TutorProfileListing>> loadSearchTutorProfiles() async {
+    List<dynamic> allMatchingProfiles =
+        await TutorService().getTutorProfilesBySubject(textController.text);
+
+    return allMatchingProfiles.map((profile) {
+      return TutorProfileListing(
+        id: profile["_id"],
+        bio: profile["bio"],
+        name: "${profile["userInfo"]["firstName"]} ${profile["userInfo"]["lastName"]}",
+        hourlyRate: profile["hourlyRate"].toString(),
+        subjects: profile["subjects"],
       );
     }).toList();
   }
@@ -29,13 +44,28 @@ class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSea
   @override
   void initState() {
     super.initState();
-    loadTutorProfiles();
+    textController.addListener(isTextFieldEmpty);
+  }
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
+
+  void isTextFieldEmpty() {
+    if (textController.text.isEmpty) {
+      print("empty");
+      setState(() {
+        search = false;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: loadTutorProfiles(),
+      future: search == true ? loadSearchTutorProfiles() : loadTutorProfiles(),
       builder: (BuildContext context, AsyncSnapshot<List<TutorProfileListing>> snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
           return SizedBox(child: CircularProgressIndicator(), width: 70, height: 70);
@@ -48,25 +78,18 @@ class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSea
                     child: Container(
                       padding: EdgeInsets.all(20),
                       child: TextField(
+                        controller: textController,
                         decoration: InputDecoration(
                           hintText: "Enter main subject area",
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                         ),
-                        onChanged: (value) {
-                          searchString = value;
-                          if (searchString.isEmpty) {
-                            setState(() {
-                              search = false;
-                            });
-                          }
-                        },
                       ),
                     ),
                   ),
                   IconButton(
                       icon: Icon(Icons.search),
                       onPressed: () {
-                        if (searchString.isNotEmpty) {
+                        if (textController.text.isNotEmpty) {
                           setState(() {
                             search = true;
                           });
@@ -74,16 +97,17 @@ class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSea
                       })
                 ],
               ),
-              search
-                  ? Text("search")
-                  : ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        //TODO:Return gesture detector that passes tutorInfo to tutor profile page once tutor profile is done
-                        return snapshot.data[index];
-                      },
+              snapshot.data.length == 0
+                  ? Text("No Results")
+                  : Expanded(
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return snapshot.data[index];
+                        },
+                      ),
                     ),
             ],
           );

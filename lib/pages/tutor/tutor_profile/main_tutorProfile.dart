@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/components/sessions/session_request.dart';
 import 'package:tutoring_app_flutter/main.dart';
 
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
@@ -53,11 +54,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      colors: <Color>[
-                        Colors.black.withAlpha(0),
-                        Colors.black12,
-                        Colors.black45
-                      ],
+                      colors: <Color>[Colors.black.withAlpha(0), Colors.black12, Colors.black45],
                     ),
                   ),
                   child: Text(
@@ -69,32 +66,35 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
             ),
           ),
           SizedBox(
-              width: 250,
-              height: 50,
-              child:Row(
-                children: [
-                  SizedBox(width: 10),
-                  RaisedButton(
-                      child: Text("Send Message",
-                                 style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                      onPressed: null
-                  ),
-                  SizedBox(width: 70),
-                  RaisedButton(
-                      child: Text("Request Session",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                      onPressed: null
-                  ),
-                ],                
-              ),
+            width: 250,
+            height: 50,
+            child: Row(
+              children: [
+                SizedBox(width: 10),
+                RaisedButton(
+                    child: Text(
+                      "Send Message",
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                    onPressed: null),
+                SizedBox(width: 70),
+                RaisedButton(
+                    child: Text(
+                      "Request Session",
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                    color: Colors.green,
+                    onPressed: () {
+                      Navigator.push(context,
+                          new MaterialPageRoute(builder: (context) => new SessionRequest()));
+                    }),
+              ],
+            ),
           ),
           Card(
             child: ListTile(
               title: Text(tutorProfile.tutorId), //TODO: Get name from userID
-              subtitle: Text(
-                  tutorProfile.tutorCity + ', ' + tutorProfile.tutorCountry),
+              subtitle: Text(tutorProfile.tutorCity + ', ' + tutorProfile.tutorCountry),
             ),
           ),
           Card(
@@ -123,14 +123,12 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
           ),
           Card(
             child: ListTile(
-              title: Text('Subject expertise: ' +
-                  tutorProfile.tutorExpertise +
-                  ' level'),
+              title: Text('Subject expertise: ' + tutorProfile.tutorExpertise + ' level'),
             ),
           ),
           Card(
             child: ListTile(
-              title: Text('Tutored Subjects: '),
+              title: Text('Languages: '),
               subtitle: Row(
                 children: [
                   SizedBox(width: 100),
@@ -151,13 +149,11 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
           ),
           Card(
             child: ListTile(
-              title: Text('Hourly rate: \$' +
-                  tutorProfile.hourlyRate.toString() +
-                  '/hr'),
+              title: Text('Hourly rate: \$' + tutorProfile.hourlyRate.toString() + '/hr'),
             ),
           ),
           SizedBox(height: 20),
-          Column(
+          /*Column(
             children: [
               Text('For Internal use Only: '),
               SizedBox(width: 10),
@@ -167,7 +163,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
               Text(tutorProfile.tutorPostal),
               Text(tutorProfile.tutorCountry),
             ],
-          ),
+          ),*/
         ]),
       ),
     );

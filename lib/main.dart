@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/components/sessions/current_sessions.dart';
+import 'package:tutoring_app_flutter/components/sessions/session_request.dart';
 
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard.dart';
+import 'package:tutoring_app_flutter/pages/Sessions/sessions_home.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/jobs_tab/tutor_dashboard_jobs_home.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 import 'models/education_history.dart';
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/postings_tab/student_dashboard_postings_form.dart';
@@ -16,7 +20,6 @@ import 'models/tutor_profile.dart';
 
 /*
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
-
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_1_level_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_3_experience_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/create_tutor_4_education_page.dart';
@@ -29,53 +32,28 @@ void main() {
 }
 
 class TutoringApp extends StatelessWidget {
-  final routes = <String, WidgetBuilder>{
-    LoginPage.tag: (context) =>
-        LoginPage(), /*RegistrationPage.tag: (context) => RegistrationPage(), TutorProfilePage.tag: (context) => TutorProfilePage(),*/
-  };
+  // final routes = <String, WidgetBuilder>{
+  //   LoginPage.tag: (context) =>
+  //       LoginPage(tutorProfile), /*RegistrationPage.tag: (context) => RegistrationPage(), TutorProfilePage.tag: (context) => TutorProfilePage(),*/
+  //};
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'TutorLink',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: 'Nunito',
-        ),
-      home: SessionDashboard(),
-      routes: routes,
+      title: 'TutorLink',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        fontFamily: 'Nunito',
+      ),
+      home: LoginPage(tutorProfile),
+      //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
+      //initialRoute: '/portal',
+      //: RouteGenerator.generateRoute,
     );
   }
 }
-/*
-      home: LoginPage(),
-=======
-        // home: SessionDashboard(),
 
 
-        home: StudentDashboard()
->>>>>>> c7b09c03f93e46afaa1c20b6e86189247be85367
-
-
-        //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
-         //initialRoute: '/portal',
-         //: RouteGenerator.generateRoute,
-        );
-  }
-}
-<<<<<<< HEAD
-TutorProfile tutorProfile;
-
- */
-/*
-home: LoginPage(),
-home: RegistrationPage(),
-home: CreateTutor1LevelPage()
-home: CreateTutor3ExperiencePage(),
-home: CreateTutor4EducationPage(),
-home: TutorProfilePage(),
-
- */
 
 EducationHistory educationHistory1 = new EducationHistory(
     schoolName: 'Sheridan College',
@@ -89,7 +67,7 @@ EducationHistory educationHistory1 = new EducationHistory(
     schoolDescription: 'blah, blah, blah....diploma');
 
 TutorProfile tutorProfile = new TutorProfile(
-  tutorId: "Brian",
+  tutorId: "Brian Holmes",
   skillLevel: 'Elementary',
   tutoredSubjects: ['Flutter', 'Dart', 'Statistics'],
   tutorExpertise: 'Expert',

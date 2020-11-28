@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/models/education_history.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 import 'login_page.dart';
@@ -77,7 +78,7 @@ class DrawerCodeOnly extends StatelessWidget {
                     onTap: () {
                       Navigator.pop(context);
                       Navigator.push(
-                          context, new MaterialPageRoute(builder: (context) => new LoginPage()));
+                          context, new MaterialPageRoute(builder: (context) => new LoginPage(tutorProfile)));
                     },
                   ),
                 ],

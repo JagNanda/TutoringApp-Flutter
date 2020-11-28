@@ -21,16 +21,13 @@ class _StudentDashboardPostingsState extends State<StudentDashboardPostings> {
     //get user object for first name and last name
     return allPostsRequest
         .map((post) {
-          DateTime dateCreated = DateTime.parse(post["date"]);
-          String formattedDateCreated =
-              "${dateCreated.year}-${dateCreated.month.toString().padLeft(2, '0')}-${dateCreated.day.toString().padLeft(2, '0')}";
           return StudentPostListing(
             title: post["title"],
             subject: post["subject"],
             levelOfEducation: post["levelOfEducation"],
             budgetRange: post["budgetRange"],
             description: post["description"],
-            date: formattedDateCreated,
+            date: post["date"],
           );
         })
         .toList()

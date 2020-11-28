@@ -19,9 +19,9 @@ class _SessionsHomeState extends State<SessionsHome> {
           centerTitle: true,
           title: Text("Student Dashboard"),
           bottom: TabBar(tabs: [
-            Tab(icon: Icon(Icons.search)),
-            Tab(icon: Icon(Icons.people)),
-            Tab(icon: Icon(Icons.star))
+            Text('Current', style: TextStyle(fontSize: 20, height: .7)),
+            Text('Pending', style: TextStyle(fontSize: 20, height: .7)),
+            Text('Completed', style: TextStyle(fontSize: 20, height: .7))
           ]),
         ),
         body: TabBarView(

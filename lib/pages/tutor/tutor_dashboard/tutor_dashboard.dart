@@ -11,6 +11,24 @@ class TutorDashboard extends StatefulWidget {
 
 class _TutorDashboardState extends State<TutorDashboard> {
   int selectedIndex = 0;
+  BottomNavigationBar _bottomNavigationBar;
+
+  @override
+  void initState() {
+    super.initState();
+    _bottomNavigationBar = BottomNavigationBar(
+      currentIndex: selectedIndex,
+      onTap: changeTabs,
+      selectedItemColor: Colors.blue,
+      unselectedItemColor: Colors.grey,
+      items: [
+        BottomNavigationBarItem(icon: Icon(Icons.school), label: "Tutors"),
+        BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: "Sessions"),
+        BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chat"),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+      ],
+    );
+  }
 
   static List<Widget> _widgetOptions = <Widget>[
     TutorDashboardJobsHome(),
@@ -31,18 +49,7 @@ class _TutorDashboardState extends State<TutorDashboard> {
       length: 3,
       child: Scaffold(
         body: _widgetOptions[selectedIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: selectedIndex,
-          onTap: changeTabs,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.grey,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.school), label: "Tutors"),
-            BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: "Sessions"),
-            BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chat"),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-          ],
-        ),
+        bottomNavigationBar: _bottomNavigationBar,
       ),
     );
   }

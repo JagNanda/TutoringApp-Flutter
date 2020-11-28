@@ -31,6 +31,7 @@ class _StudentPostListingState extends State<StudentPostListing> {
   bool isExpanded = false;
   String longDescription;
   String shortDescription;
+  String formattedDateCreated;
 
   @override
   void initState() {
@@ -39,6 +40,9 @@ class _StudentPostListingState extends State<StudentPostListing> {
     longDescription = widget.description;
     // TODO: description must be over 40 characters so this will always work
     shortDescription = longDescription.substring(0, 39);
+    DateTime dateCreated = DateTime.parse(widget.date);
+    formattedDateCreated =
+        "${dateCreated.year}-${dateCreated.month.toString().padLeft(2, '0')}-${dateCreated.day.toString().padLeft(2, '0')}";
   }
 
   @override
@@ -85,7 +89,7 @@ class _StudentPostListingState extends State<StudentPostListing> {
               ),
               SizedBox(width: 10),
               Text(
-                widget.date,
+                formattedDateCreated,
                 style: kPostDateText,
               ),
             ],

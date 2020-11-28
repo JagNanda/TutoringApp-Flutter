@@ -25,7 +25,7 @@ class TutorProfileListing extends StatefulWidget {
 }
 
 class _TutorProfileListingState extends State<TutorProfileListing> {
-  bool favorite = false;
+  bool favorite;
 
   String getAllSubjectsString() {
     String subjectsText = "";
@@ -33,6 +33,12 @@ class _TutorProfileListingState extends State<TutorProfileListing> {
       subjectsText += "$subject ";
     });
     return subjectsText;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    favorite = widget.favorite;
   }
 
   @override
@@ -81,13 +87,13 @@ class _TutorProfileListingState extends State<TutorProfileListing> {
                 child: favorite == true
                     ? Icon(Icons.favorite, color: Colors.pink)
                     : Icon(Icons.favorite_border),
-                onTap: () {
-                  print("tapped");
+                onTap: () async {
+                  if (favorite == false) {
+                    await StudentService().addTutorToFavourites(widget.id);
+                  } else if (favorite == true) {
+                    await StudentService().removeTutorToFavourites(widget.id);
+                  }
                   setState(() {
-                    //TODO: database call to save as favorite
-                    if (favorite == false) {
-                      StudentService().addTutorToFavourites(widget.id);
-                    }
                     favorite = !favorite;
                   });
                 },

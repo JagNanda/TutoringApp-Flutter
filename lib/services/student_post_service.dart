@@ -51,4 +51,22 @@ class StudentPostService {
     }
     return tuteeIdResp.statusCode;
   }
+
+  Future<dynamic> getAllPosts() async {
+    http.Response allPostsResp = await http.get("$baseUrl/all");
+    if (allPostsResp.statusCode == 200) {
+      var allPosts = jsonDecode(allPostsResp.body);
+      return allPosts;
+    }
+    return allPostsResp.statusCode;
+  }
+
+  Future<dynamic> getAllPostsBySubject(String subject) async {
+    http.Response allPostsResp = await http.get("$baseUrl/all/$subject");
+    if (allPostsResp.statusCode == 200) {
+      var allPosts = jsonDecode(allPostsResp.body);
+      return allPosts;
+    }
+    return allPostsResp.statusCode;
+  }
 }

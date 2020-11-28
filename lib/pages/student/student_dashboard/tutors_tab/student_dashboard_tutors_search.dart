@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/components/tutor/tutor_profile_listing.dart';
-import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'package:tutoring_app_flutter/services/tutor_service.dart';
 
 class StudentDashBoardTutorsSearch extends StatefulWidget {
@@ -15,14 +14,14 @@ class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSea
   Future<List<TutorProfileListing>> loadTutorProfiles() async {
     List<dynamic> allProfiles = await TutorService().getTutorProfiles();
 
-    return allProfiles.map((post) {
+    return allProfiles.map((profile) {
       //TODO:Return gesture detector wrapper that passes a tutorId to tutor profile page one profile page is done
       return TutorProfileListing(
-        id: post["_id"],
-        bio: post["bio"],
-        name: "${post["userInfo"]["firstName"]} ${post["userInfo"]["lastName"]}",
-        hourlyRate: post["hourlyRate"].toString(),
-        subjects: post["subjects"],
+        id: profile["_id"],
+        bio: profile["bio"],
+        name: "${profile["userInfo"]["firstName"]} ${profile["userInfo"]["lastName"]}",
+        hourlyRate: profile["hourlyRate"].toString(),
+        subjects: profile["subjects"],
       );
     }).toList();
   }
@@ -31,13 +30,13 @@ class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSea
     List<dynamic> allMatchingProfiles =
         await TutorService().getTutorProfilesBySubject(textController.text);
 
-    return allMatchingProfiles.map((post) {
-      //TODO:Return gesture detector wrapper that passes a tutorId to tutor profile page one profile page is done
+    return allMatchingProfiles.map((profile) {
       return TutorProfileListing(
-        bio: post["bio"],
-        name: "${post["userInfo"]["firstName"]} ${post["userInfo"]["lastName"]}",
-        hourlyRate: post["hourlyRate"].toString(),
-        subjects: post["subjects"],
+        id: profile["_id"],
+        bio: profile["bio"],
+        name: "${profile["userInfo"]["firstName"]} ${profile["userInfo"]["lastName"]}",
+        hourlyRate: profile["hourlyRate"].toString(),
+        subjects: profile["subjects"],
       );
     }).toList();
   }
@@ -45,7 +44,6 @@ class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSea
   @override
   void initState() {
     super.initState();
-    loadTutorProfiles();
     textController.addListener(isTextFieldEmpty);
   }
 

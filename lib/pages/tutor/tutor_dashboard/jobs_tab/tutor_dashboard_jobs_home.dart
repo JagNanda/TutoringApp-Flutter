@@ -17,7 +17,7 @@ class _TutorDashboardJobsHomeState extends State<TutorDashboardJobsHome> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           centerTitle: true,
-          title: Text("Student Dashboard"),
+          title: Text("Tutor Dashboard"),
           bottom: TabBar(tabs: [
             Tab(icon: Icon(Icons.search)),
             Tab(icon: Icon(Icons.people)),

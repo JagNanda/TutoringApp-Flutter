@@ -19,7 +19,6 @@ class TutorService {
     http.Response tutorProfilesResp = await http.get("$baseUrl/all/$subject");
     if (tutorProfilesResp.statusCode == 200) {
       var allPosts = jsonDecode(tutorProfilesResp.body);
-      print(allPosts.runtimeType);
       return allPosts;
     }
     return tutorProfilesResp.statusCode;

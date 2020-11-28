@@ -18,7 +18,7 @@ class MainTutorProfile extends StatefulWidget {
 
 class _MainTutorProfileState extends State<MainTutorProfile> {
   // TODO: dataBase call to create tutorProfile object if exists, otherwise create new
-
+  bool usersTutorProfile = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -116,7 +116,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
               });
             },
-          ), //Location Input
+          ), // Location Input
           GestureDetector(
             child: Card(
               child: ListTile(
@@ -133,7 +133,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
               });
             },
-          ),// Profile Headline Input
+          ), // Profile Headline Input
           GestureDetector(
             child: Card(
               child: ListTile(
@@ -168,7 +168,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
               });
             },
-          ),// Tutoring Skill Level Input
+          ), // Tutoring Skill Level Input
           GestureDetector(
             child: Card(
               child: ListTile(
@@ -188,7 +188,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
               });
             },
-          ), //Tutored Subjects Input
+          ), // Tutored Subjects Input
           GestureDetector(
             child: Card(
               child: ListTile(
@@ -209,7 +209,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
               });
             },
-          ), //Tutoring Experience
+          ), // Tutoring Experience
           GestureDetector(
             child: Card(
               child: ListTile(
@@ -263,7 +263,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
               });
             },
-          ),
+          ), // Hourly Rate Input
           SizedBox(height: 20),
           GestureDetector(
             // TODO: Only visible to tutorProfile owner
@@ -276,8 +276,19 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 Text(tutorProfile.tutorProvinceState),
                 Text(tutorProfile.tutorPostal),
                 Text(tutorProfile.tutorCountry),
+                Text(tutorProfile.phone)
               ],
             ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          CreateTutor10PhonePage(tutorProfile: tutorProfile)));
+              setState(() {
+                /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+              });
+            },
           ),
           SizedBox(
             width: 250,

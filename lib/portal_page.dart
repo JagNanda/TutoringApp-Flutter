@@ -1,15 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/education_history.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
-
+import 'package:http/http.dart' as http;
+import 'package:tutoring_app_flutter/services/tutor_service.dart';
 import 'pages/tutor/tutor_profile/learnPortalButton.dart';
 //import 'pages/tutor/tutor_profile/teachPortalButton.dart';
 
 //moved to fix errors on my side,
 TutorProfile tutorProfile = new TutorProfile(tutorId: "1");
 class PortalPage extends StatefulWidget {
+
   //final TutorProfile tutorProfile;
   @override
   _PortalPageState createState() => _PortalPageState();
@@ -95,7 +98,17 @@ class _PortalPageState extends State<PortalPage> {
         ]),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         padding: EdgeInsets.all(20),
-        onPressed: () {
+        onPressed: () async {
+          final sharedPrefs = await SharedPreferences.getInstance();
+          String userId = sharedPrefs.getString('userId') ?? "";
+
+          var user = TutorService().tutorProfileCheck(userId);
+          // TODO : check if user already has a tutoProfile (if not, create one)
+
+          print(">>>>>> test \n");
+          print(user);
+          // if(user['tutorId'])
+          //   {}
 
           tutorProfile = tutorProfile; // TODO : Update default constructor
           Navigator.of(context)

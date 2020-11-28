@@ -35,17 +35,24 @@ class CreateTutor6HourlyPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Column(
                   children: [
-                    SizedBox(height: 10),
+                  SizedBox(height: 10),
                   Column(
                     children: [
                       new TextField(
-                      decoration: new InputDecoration(labelText: "Enter your hourly rate:"),
+                      decoration: new InputDecoration(labelText: "Update your hourly rate in \$:"),
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly],
                       ),
                     ],
                   ),
+                    SizedBox(height: 10),
+                    Column(
+                     children: [
+                       if(tutorProfile.hourlyRate!=null) Text(tutorProfile.hourlyRate.toString()),
+                       if(tutorProfile.hourlyRate==null) Text("0.00"),
+                     ],
+                    ),
                     SizedBox(height: 10),
                     RaisedButton(
                       color: Colors.blue,

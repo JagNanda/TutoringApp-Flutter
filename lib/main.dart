@@ -86,5 +86,6 @@ TutorProfile tutorProfile = new TutorProfile(
   tutorCity: 'Mississauga',
   tutorProvinceState: 'Ontario',
   tutorPostal: 'L5N3E2',
+  phone: "(416) 987-1234",
   isCompleted: true,
 );

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:tutoring_app_flutter/models/registration_info.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -61,23 +60,33 @@ class UserService {
         'password': userInfo.password,
       }),
     );
+
+
     if (resp.statusCode == 200) {
+
       //user token to get their userid
       var body = jsonDecode(resp.body);
       String token = body["token"];
       print(token);
+
       http.Response userIdResponse = await http.get(
         "$baseUrl/auth",
         headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
       ).catchError((err) => print("header err $err"));
+
+
       if (userIdResponse.statusCode == 200) {
+
         var user = jsonDecode(userIdResponse.body);
         var userId = user["_id"];
         print("auth success: $userId");
+
         http.Response profileResponse = await http.post(
           "$baseUrl/tutees/$userId",
           headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
         );
+
+
         if (profileResponse.statusCode == 200) {
           success = true;
         } else {

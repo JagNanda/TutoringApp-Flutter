@@ -10,7 +10,7 @@ import 'all_create_tutor_pages.dart';
 class MainTutorProfile extends StatefulWidget {
   final TutorProfile tutorProfile;
 
-  MainTutorProfile({this.tutorProfile});
+  MainTutorProfile(this.tutorProfile);
 
   @override
   _MainTutorProfileState createState() => _MainTutorProfileState();
@@ -92,30 +92,79 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
               ],
             ),
           ),
-          Card(
+          GestureDetector(
+            child: Card(
               child: ListTile(
                 title: Text(tutorProfile.tutorId), //TODO: Get name from userID
                 subtitle: Text(
                     tutorProfile.tutorCity + ', ' + tutorProfile.tutorCountry),
               ),
             ),
-           Card(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CreateTutor9LocationPage()));
+
+              setState(() {
+                /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+              });
+            },
+          ), // Location Input
+          GestureDetector(
+            child: Card(
               child: ListTile(
                 title: Center(child: Text(tutorProfile.profileHeadline)),
               ),
-            ), // Profile Headline Input
-          Card(
+            ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CreateTutor11SummaryPage(
+                          tutorProfile: tutorProfile)));
+              setState(() {
+                /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+              });
+            },
+          ), // Profile Headline Input
+          GestureDetector(
+            child: Card(
               child: ListTile(
                 title: Center(child: Text(tutorProfile.profileOverview)),
                 contentPadding: const EdgeInsets.all(10),
               ),
-            ),// Profile Message Input
-          Card(
+            ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CreateTutor7OverviewPage(
+                          tutorProfile: tutorProfile)));
+              setState(() {
+                /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+              });
+            },
+          ), // Profile Message Input
+          GestureDetector(
+            child: Card(
               child: ListTile(
                 title: Center(child: Text(tutorProfile.skillLevel + ' level tutor')),
               ),
-            ), // Tutoring Skill Level Input
-          Card(
+            ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          CreateTutor1LevelPage(tutorProfile: tutorProfile)));
+              setState(() {
+                /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+              });
+            },
+          ), // Tutoring Skill Level Input
+          GestureDetector(
+            child: Card(
               child: ListTile(
                 title: Text('Tutored Subjects: '),
                 subtitle: Column(children: [
@@ -123,7 +172,19 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 ]),
               ),
             ),
-          Card(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CreateTutor2SubjectsPage(
+                          tutorProfile: tutorProfile)));
+              setState(() {
+                /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+              });
+            },
+          ), // Tutored Subjects Input
+          GestureDetector(
+            child: Card(
               child: ListTile(
                 title: Center(
                   child: Text('Subject expertise: ' +
@@ -132,7 +193,19 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 ),
               ),
             ),
-          Card(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CreateTutor3ExperiencePage(
+                          tutorProfile: tutorProfile)));
+              setState(() {
+                /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+              });
+            },
+          ), // Tutoring Experience
+          GestureDetector(
+            child: Card(
               child: ListTile(
                 title: Text('Languages: '),
                 subtitle: Row(
@@ -152,8 +225,20 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                   ],
                 ),
               ),
-            ),// Languages
-          Card(
+            ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CreateTutor5LanguagesPage(
+                          tutorProfile: tutorProfile)));
+              setState(() {
+                /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+              });
+            },
+          ), // Languages
+          GestureDetector(
+            child: Card(
               child: ListTile(
                 title: Center(
                   child: Text('Hourly rate: \$' +
@@ -161,9 +246,22 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                       '/hr'),
                 ),
               ),
-            ),// Hourly Rate Input
+            ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          CreateTutor6HourlyPage(tutorProfile: tutorProfile)));
+              setState(() {
+                /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+              });
+            },
+          ), // Hourly Rate Input
           SizedBox(height: 20),
-          Column(
+          GestureDetector(
+            // TODO: Only visible to tutorProfile owner
+            child: Column(
               children: [
                 Text('For Internal use Only: '),
                 SizedBox(width: 10),
@@ -175,6 +273,17 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 Text(tutorProfile.phone)
               ],
             ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          CreateTutor10PhonePage(tutorProfile: tutorProfile)));
+              setState(() {
+                /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+              });
+            },
+          ),
           SizedBox(
             width: 250,
             height: 50,

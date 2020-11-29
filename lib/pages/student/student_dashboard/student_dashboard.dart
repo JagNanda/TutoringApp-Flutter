@@ -6,7 +6,7 @@ import 'package:tutoring_app_flutter/pages/student/student_dashboard/tutors_tab/
 
 class StudentDashboard extends StatefulWidget {
   final TutorProfile tutorProfile;
-  StudentDashboard(this.tutorProfile);
+  StudentDashboard({this.tutorProfile});
   @override
   _StudentDashboardState createState() => _StudentDashboardState();
 }

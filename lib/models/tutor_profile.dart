@@ -7,7 +7,7 @@ class TutorProfile{
   String tutorExpertise;
 
   //Education
-  List<EducationHistory> education;
+  //List<EducationHistory> education;
 
   // Languages
 
@@ -43,7 +43,7 @@ class TutorProfile{
     this.skillLevel,
     this.tutoredSubjects,
     this.tutorExpertise,
-    this.education,
+    //this.education,
     this.languages,
     this.languageProficiency,
     this.hourlyRate,

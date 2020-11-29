@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/createNew_tutorProfile.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 
 import 'student/student_dashboard/student_dashboard.dart';
@@ -38,7 +39,8 @@ class PortalPage extends StatelessWidget {
               padding: EdgeInsets.all(20),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
               onPressed: () {
-                 Navigator.push(context, MaterialPageRoute(builder: (context) => TutorDashboard()));
+                //Navigator.push(context, MaterialPageRoute(builder: (context) => TutorDashboard()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CreateNewTutorProfile()));
               },
             ),
           ],

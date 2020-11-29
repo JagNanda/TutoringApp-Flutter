@@ -47,7 +47,7 @@ class TutoringApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Nunito',
       ),
-      home: LoginPage(tutorProfile),
+      home: LoginPage(),
       //home: MainTutorProfile(tutorProfile),
       //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
       //initialRoute: '/portal',
@@ -58,23 +58,24 @@ class TutoringApp extends StatelessWidget {
 
 
 
-EducationHistory educationHistory1 = new EducationHistory(
-    schoolName: 'Sheridan College',
-    schoolCity: 'Oakville',
-    schoolCountry: 'Canada',
-    schoolProgramName: 'Software Engineering',
-    schoolStartMonth: 'September',
-    schoolStartYear: '2017',
-    schoolThroughMonth: 'May',
-    schoolThroughYear: '2021',
-    schoolDescription: 'blah, blah, blah....diploma');
+// EducationHistory educationHistory1 = new EducationHistory(
+//     schoolName: 'Sheridan College',
+//     schoolCity: 'Oakville',
+//     schoolCountry: 'Canada',
+//     schoolProgramName: 'Software Engineering',
+//     schoolStartMonth: 'September',
+//     schoolStartYear: '2017',
+//     schoolThroughMonth: 'May',
+//     schoolThroughYear: '2021',
+//     schoolDescription: 'blah, blah, blah....diploma'
+// );
 
 TutorProfile tutorProfile = new TutorProfile(
   tutorId: "Brian Holmes",
   skillLevel: 'Elementary',
   tutoredSubjects: ['Flutter', 'Dart', 'Statistics'],
   tutorExpertise: 'Expert',
-  education: [educationHistory1],
+  //education: [educationHistory1],
   languages: ['English', 'Spanish'],
   languageProficiency: ['Native', 'Basic'],
   hourlyRate: 25.0,

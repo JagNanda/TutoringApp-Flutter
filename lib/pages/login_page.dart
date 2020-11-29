@@ -6,8 +6,9 @@ import 'package:tutoring_app_flutter/pages/registration_page.dart';
 import '../services/user_service.dart';
 
 class LoginPage extends StatefulWidget {
-  final TutorProfile tutorProfile;
-  LoginPage(this.tutorProfile);
+  //final TutorProfile tutorProfile;
+  //LoginPage(this.tutorProfile);
+  LoginPage();
   static String tag = 'login-page';
   @override
   _LoginPageState createState() => _LoginPageState();

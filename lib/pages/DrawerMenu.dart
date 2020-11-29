@@ -86,7 +86,7 @@ class DrawerCodeOnly extends StatelessWidget {
                     onTap: () {
                       Navigator.pop(context);
                       Navigator.push(
-                          context, new MaterialPageRoute(builder: (context) => new LoginPage(tutorProfile)));
+                          context, new MaterialPageRoute(builder: (context) => new LoginPage()));
                     },
                   ),
                 ],

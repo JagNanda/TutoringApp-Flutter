@@ -7,6 +7,29 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UserService {
   final String baseUrl = "http://10.0.2.2:5000/api";
 
+  //check if user has a tutor profile
+  Future<bool> hasTutorProfile() async {
+    bool hasTutorProfile = false;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String userId = preferences.getString("userId");
+    String token = preferences.getString("token");
+    http.Response resp = await http.get(
+      baseUrl + "/users/$userId",
+      headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
+    );
+    if (resp.statusCode == 200) {
+      var json = jsonDecode(resp.body);
+      if (json["tutorId"] != null) {
+        print("field exists");
+        hasTutorProfile = true;
+      } else {
+        print("does not exist");
+        hasTutorProfile = false;
+      }
+    }
+    return hasTutorProfile;
+  }
+
   //login user using email and password and store token, userId, and tuteeId in sharedPrefs
   Future<bool> loginUser({String email, String password}) async {
     bool success = false; //bool to see if token successfully stored

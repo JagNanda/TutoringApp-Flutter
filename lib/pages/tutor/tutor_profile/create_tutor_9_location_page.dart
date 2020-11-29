@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:validators/validators.dart';
 
+class CreateTutor9LocationPage extends StatefulWidget {
+  @override
+  _CreateTutor9LocationPageState createState() => _CreateTutor9LocationPageState();
+}
 
-class CreateTutor9LocationPage extends StatelessWidget {
-  final TutorProfile tutorProfile;
-
-  const CreateTutor9LocationPage({
-    Key key,
-    @required this.tutorProfile,
-  }) : super(key: key);
-
+class _CreateTutor9LocationPageState extends State<CreateTutor9LocationPage> {
+  String city = "";
+  String province = "";
 
   @override
   Widget build(BuildContext context) {
@@ -35,45 +35,47 @@ class CreateTutor9LocationPage extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 10),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'City',
+                      ),
+                      onChanged: (String val) {
+                        city = val;
+                      },
+                    ),
+                    SizedBox(height: 10),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'State / Province',
+                      ),
+                      onChanged: (String val) {
+                        province = val;
+                      },
+                    ),
+                    SizedBox(height: 10),
                     RaisedButton(
                       color: Colors.blue,
                       child: Text(
-                        "Next",
+                        "Update Location",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
-                      onPressed: (){
-                        //tutorProfile.skillLevel = "Elementary";
-                        Navigator.of(context).pushNamed('/create_tutor_phone', arguments: tutorProfile);
-                        print("Next Pressed");
-                      }, // TODO: onPressed add skillLevel to delegate and segue to new page
+                      onPressed: () {
+                        //tutorProfile.skillLevel = "Elementary";// TODO: onPressed add skillLevel to tutorProfile
+                        Map<String, String> location = {"city": city, "province": province};
+
+                        Navigator.pop(context, location);
+                        print("Update Location pressed");
+                      },
                     ),
                   ],
                 ),
               ),
             ),
           ),
-          //MARK: Back Button
-          Expanded(
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: RaisedButton(
-                color: Colors.grey,
-                child: Text(
-                  "Back",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                padding: EdgeInsets.all(20),
-                onPressed: (){
-                  Navigator.of(context).pushNamed('/create_tutor_photo', arguments: tutorProfile);
-                  print("Back Pressed");
-                  }, // TODO: onPressed segue to previous page
-              ),
-              padding: EdgeInsets.all(20),
-            ),
-          )
         ],
       ),
     );

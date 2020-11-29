@@ -15,10 +15,10 @@ class HttpService {
 
     if(res.statusCode == 200) {
       Map<String, dynamic> list = json.decode(res.body);
-      // print("list tutor = " + list['tutor'].runtimeType.toString());
-      // print("list[tuteesinfo] = " + list['tuteesInfo'].runtimeType.toString());
-      // print(list);
-      // print(list['chatRooms']);
+                                                                    // print("list tutor = " + list['tutor'].runtimeType.toString());
+                                                                    // print("list[tuteesinfo] = " + list['tuteesInfo'].runtimeType.toString());
+                                                                    // print(list);
+                                                                    // print(list['chatRooms']);
       var chatRooms = list['chatRooms'].map<ChatRoom>((model) {
         return ChatRoom.fromJson(model, list['tutor'], list['tuteesInfo'][list['chatRooms'].indexOf(model)]);
       }).toList();

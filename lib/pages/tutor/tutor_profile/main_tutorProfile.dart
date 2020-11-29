@@ -4,20 +4,21 @@ import 'package:tutoring_app_flutter/components/sessions/session_request.dart';
 import 'package:tutoring_app_flutter/main.dart';
 
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
-import 'MyBackButton.dart';
+
+import 'all_create_tutor_pages.dart';
 
 class MainTutorProfile extends StatefulWidget {
-  final TutorProfile tutorProfile;
-
-  MainTutorProfile(this.tutorProfile);
+  final int id;
+  MainTutorProfile({this.id});
 
   @override
   _MainTutorProfileState createState() => _MainTutorProfileState();
 }
 
 class _MainTutorProfileState extends State<MainTutorProfile> {
+  TutorProfile tutorProfile;
   // TODO: dataBase call to create tutorProfile object if exists, otherwise create new
-
+  bool usersTutorProfile = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -99,20 +100,20 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
           ),
           Card(
             child: ListTile(
-              title: Text(tutorProfile.profileHeadline),
+              title: Center(child: Text(tutorProfile.profileHeadline)),
             ),
-          ),
+          ), // Profile Headline Input
           Card(
             child: ListTile(
-              title: Text(tutorProfile.profileOverview),
+              title: Center(child: Text(tutorProfile.profileOverview)),
               contentPadding: const EdgeInsets.all(10),
             ),
-          ),
+          ), // Profile Message Input
           Card(
             child: ListTile(
-              title: Text(tutorProfile.skillLevel + ' level tutor'),
+              title: Center(child: Text(tutorProfile.skillLevel + ' level tutor')),
             ),
-          ),
+          ), // Tutoring Skill Level Input
           Card(
             child: ListTile(
               title: Text('Tutored Subjects: '),
@@ -123,7 +124,9 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
           ),
           Card(
             child: ListTile(
-              title: Text('Subject expertise: ' + tutorProfile.tutorExpertise + ' level'),
+              title: Center(
+                child: Text('Subject expertise: ' + tutorProfile.tutorExpertise + ' level'),
+              ),
             ),
           ),
           Card(
@@ -146,54 +149,28 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                 ],
               ),
             ),
-          ),
+          ), // Languages
           Card(
             child: ListTile(
-              title: Text('Hourly rate: \$' + tutorProfile.hourlyRate.toString() + '/hr'),
+              title: Center(
+                child: Text('Hourly rate: \$' + tutorProfile.hourlyRate.toString() + '/hr'),
+              ),
             ),
-          ),
+          ), // Hourly Rate Input
           SizedBox(height: 20),
-          /*Column(
-            children: [
-              Text('For Internal use Only: '),
-              SizedBox(width: 10),
-              Text(tutorProfile.tutorStreetAdd),
-              Text(tutorProfile.tutorCity),
-              Text(tutorProfile.tutorProvinceState),
-              Text(tutorProfile.tutorPostal),
-              Text(tutorProfile.tutorCountry),
-            ],
-          ),*/
+          SizedBox(
+            width: 250,
+            height: 50,
+            child: RaisedButton(
+                child: Text(
+                  "Edit Profile",
+                  style: TextStyle(color: Colors.white, fontSize: 18),
+                ),
+                onPressed:
+                    null), //TODO: Change color of button and text to -> "tap field to edit", and enable GestureDetectors
+          ),
         ]),
       ),
     );
   }
 }
-
-/*
-* //NOTE: Back button may not be needed (use system)
-            // SizedBox(height: 20),
-            //
-            // Expanded(
-            //   child: Container(
-            //     alignment: Alignment.bottomCenter,
-            //     child: RaisedButton(
-            //       color: Colors.grey,
-            //       child: Text("Back",
-            //         style: TextStyle(color: Colors.white, fontSize: 18),
-            //       ),
-            //       shape:
-            //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-            //       padding: EdgeInsets.all(20),
-            //       onPressed: () {
-            //         Navigator.pop(context);
-            //         print("Back Pressed");
-            //       }, // TODO: onPressed segue to previous page
-            //     ),
-            //     padding: EdgeInsets.all(20),
-            //   ),
-            // ),
-*
-*
-*
-* */

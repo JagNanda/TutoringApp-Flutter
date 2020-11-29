@@ -20,7 +20,7 @@ class CreateTutor11SummaryPage extends StatelessWidget {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                "View Summary and confirm:",
+                "Update your profile headline: ",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               padding: EdgeInsets.all(30),
@@ -33,45 +33,32 @@ class CreateTutor11SummaryPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Column(
                   children: [
+                    TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Profile Headline',  //TODO: Populate with existing headline
+                      ),
+                    ),
                     SizedBox(height: 10),
                     RaisedButton(
                       color: Colors.blue,
                       child: Text(
-                        "Finish",
+                        "Update Headline",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: (){
-                        //tutorProfile.skillLevel = "Elementary";
-                        print("Finish Pressed");
-                      }, // TODO: onPressed add skillLevel to delegate and segue to new page
+                        //tutorProfile.skillLevel = "Elementary";// TODO: onPressed update headline of tutorProfile
+                        Navigator.pop(context);
+                        print("Update Headline pressed");
+                      },
                     ),
                   ],
                 ),
               ),
             ),
           ),
-          //MARK: Back Button
-          Expanded(
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: RaisedButton(
-                color: Colors.grey,
-                child: Text(
-                  "Back",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                padding: EdgeInsets.all(20),
-                onPressed: (){
-                  Navigator.of(context).pushNamed('/create_tutor_phone', arguments: tutorProfile);
-                  print("Back Pressed");
-                  }, // TODO: onPressed segue to previous page
-              ),
-              padding: EdgeInsets.all(20),
-            ),
-          )
         ],
       ),
     );

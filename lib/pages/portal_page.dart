@@ -25,7 +25,7 @@ class PortalPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => StudentDashboard(tutorProfile)),
+                  MaterialPageRoute(builder: (context) => StudentDashboard()),
                 );
               },
             ),
@@ -45,9 +45,9 @@ class PortalPage extends StatelessWidget {
                       context, MaterialPageRoute(builder: (context) => TutorDashboard()));
                 } else {
                   print("Sorry you're not a tutor");
-                  TutorProfile profile = new TutorProfile();
+                  //TODO: will crash atm because we arent fetching the profile yet in maintutorprofile
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => MainTutorProfile(profile)));
+                      context, MaterialPageRoute(builder: (context) => MainTutorProfile()));
                 }
               },
             ),

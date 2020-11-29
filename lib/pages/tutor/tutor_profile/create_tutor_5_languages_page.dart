@@ -8,13 +8,12 @@ import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 
 import 'ListItem.dart';
 
-
 class CreateTutor5LanguagesPage extends StatefulWidget {
-  final TutorProfile tutorProfile;
+  final TutorProfile profile;
 
   const CreateTutor5LanguagesPage({
     Key key,
-    @required this.tutorProfile,
+    @required this.profile,
   }) : super(key: key);
 
   @override
@@ -103,18 +102,16 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
     _selectedLanguageItem = _languageDropdownMenuItems[0].value;
     _proficiencyDropdownMenuItems = buildDropDownMenuItems(_proficiencyDropdownItems);
     _selectedProficiencyItem = _proficiencyDropdownMenuItems[0].value;
-    if(tutorProfile.languages == null)
-      tutorProfile.languages = new List<String>();
+    if (widget.profile.languages == null) widget.profile.languages = new List<String>();
   }
 
   @override
   Widget build(BuildContext context) {
-
-  if(tutorProfile.languages.length<1){
-    noLanguage = true;
-  }else{
-    noLanguage = false;
-  } // If no language has been selected, show prompt
+    if (widget.profile.languages.length < 1) {
+      noLanguage = true;
+    } else {
+      noLanguage = false;
+    } // If no language has been selected, show prompt
 
     //Page Build
     return Scaffold(
@@ -139,41 +136,43 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
                   children: [
                     SizedBox(height: 10),
                     DropdownButton<ListItem>(
-                        value: _selectedLanguageItem,
-                        items: _languageDropdownMenuItems,
-                        onChanged: (value) {
-                          _selectedLanguageItem = value;
-                          _selectedProficiencyItem = _proficiencyDropdownMenuItems[0].value; // resets the fluency level when the language is changed
-                          setState(() {
-                            controlAddLanguageButtonVisibility();
-                          });
-                          checkIfProficiencyListShouldBeShown();
-                        },
-                        hint: Text("Select"),
-                        ),
+                      value: _selectedLanguageItem,
+                      items: _languageDropdownMenuItems,
+                      onChanged: (value) {
+                        _selectedLanguageItem = value;
+                        _selectedProficiencyItem = _proficiencyDropdownMenuItems[0]
+                            .value; // resets the fluency level when the language is changed
+                        setState(() {
+                          controlAddLanguageButtonVisibility();
+                        });
+                        checkIfProficiencyListShouldBeShown();
+                      },
+                      hint: Text("Select"),
+                    ),
                     SizedBox(height: 10),
-                    if(showProficiencyDropdown)
-                      buildProficiencyDropdown(),
+                    if (showProficiencyDropdown) buildProficiencyDropdown(),
                     SizedBox(height: 10),
                     Text(proficiencyComment),
                     SizedBox(height: 10),
-                    if(showAddButton)
-                      buildAddButton(),
+                    if (showAddButton) buildAddButton(),
                     SizedBox(height: 10),
-                    if(noLanguage)Text("Please press add Language to add languages or press on a language to remove it."),
+                    if (noLanguage)
+                      Text(
+                          "Please press add Language to add languages or press on a language to remove it."),
                     SizedBox(height: 10),
                     buildKnownLanguagesListView(),
                     SizedBox(height: 10),
                     RaisedButton(
                       color: Colors.blue,
                       child: Text(
-                        "Next",
+                        "Done",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
-                      onPressed: (){
-                          Navigator.of(context).pushNamed('/create_tutor_hourly', arguments: widget.tutorProfile);
+                      onPressed: () {
+                        setState(() {});
+                        Navigator.pop(context);
                       },
                     ),
                   ],
@@ -181,25 +180,6 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
               ),
             ),
           ),
-          //MARK: Back Button
-          Expanded(
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: RaisedButton(
-                color: Colors.grey,
-                child: Text(
-                  "Back",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                padding: EdgeInsets.all(20),
-                onPressed: (){
-                  Navigator.of(context).pushNamed('/create_tutor_education', arguments: widget.tutorProfile);
-                  },
-              ),
-              padding: EdgeInsets.all(20),
-            ),
-          ) // Back Button
         ],
       ),
     );
@@ -207,23 +187,22 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
 
   SizedBox buildKnownLanguagesListView() {
     return SizedBox(
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      physics: ScrollPhysics(),
-                      itemCount: tutorProfile.languages.length,
-                      itemBuilder: (context, index) {
-                        return buildLanguageCard(index);
-                      },
-                    ),
-                  );
+      child: ListView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        physics: ScrollPhysics(),
+        itemCount: widget.profile.languages.length,
+        itemBuilder: (context, index) {
+          return buildLanguageCard(index);
+        },
+      ),
+    );
   }
 
   void checkIfProficiencyListShouldBeShown() {
-     if(_selectedLanguageItem.value != 1)
-      {
-        showProficiencyDropdown = true;
-      }else{
+    if (_selectedLanguageItem.value != 1) {
+      showProficiencyDropdown = true;
+    } else {
       showProficiencyDropdown = false;
       proficiencyComment = _proficiencyCommentItems[0].text;
     }
@@ -231,23 +210,21 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
 
   Card buildLanguageCard(int index) {
     return Card(
-                            child: ListTile(
-                              // child: Padding(
-                              //   padding: const EdgeInsets.all(16.0),
-                              trailing: Icon(Icons.highlight_remove),
-                              subtitle: Text(
-                                  tutorProfile.languageProficiency[index]), // <-- subtitle //TODO: mark for future use
-                              title: Text(
-                                tutorProfile.languages[index],
-                                style: TextStyle(fontSize: 22.0),
-                              ),
-                              onLongPress: () {
-                                  tutorProfile.languages.removeAt(index);
-                                  tutorProfile.languageProficiency.removeAt(index);
-                                  setState(() {
-                                  });
-                                }
-                            ));
+        child: ListTile(
+            // child: Padding(
+            //   padding: const EdgeInsets.all(16.0),
+            trailing: Icon(Icons.highlight_remove),
+            subtitle: Text(widget
+                .profile.languageProficiency[index]), // <-- subtitle //TODO: mark for future use
+            title: Text(
+              widget.profile.languages[index],
+              style: TextStyle(fontSize: 22.0),
+            ),
+            onLongPress: () {
+              widget.profile.languages.removeAt(index);
+              widget.profile.languageProficiency.removeAt(index);
+              setState(() {});
+            }));
   }
 
   // MARK: Methods / Prefabs
@@ -266,76 +243,66 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
 
   RaisedButton buildAddButton() {
     return RaisedButton(
-                    color: Colors.blue,
-                    child: Text(
-                      "Add Language",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
-                    ),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                    padding: EdgeInsets.all(20),
-                    onPressed: (){
-                      // if the language is not in the list, add it and it's fluency
-                      if(!tutorProfile.languages.contains(_selectedLanguageItem.text))
-                      {
-                          tutorProfile.languages.add(_selectedLanguageItem.text);
-                          tutorProfile.languageProficiency.add(_selectedProficiencyItem.text);
-                      }
-                      else // Language is in list already
-                        { // look through the list of languages
-                          for(int i = 0; i<tutorProfile.languages.length; i++)
-                          {   // find the language in question
-                              if(tutorProfile.languages[i] == _selectedLanguageItem.text)
-                              {// Check the list of languages to see if language has correct fluency
-                                if(tutorProfile.languageProficiency[i] != _selectedProficiencyItem.text)
-                                  {// if the selected fluency is not the current fluency for that language, update it
-                                    tutorProfile.languageProficiency[i] = _selectedProficiencyItem.text;
-                                  }
-                              }
-                          }
-                          // TODO: Remove the below block (print of languages for testing
-                          print(">>>> Languages:");
-                          for(int i=0; i < tutorProfile.languages.length; i++)
-                            {
-                              print(tutorProfile.languages[i]);
-                              print("    " + tutorProfile.languageProficiency[i]);
-                            }
-                        }
-                    setState(() {}); // Updates list of language cards
-
-                    },
-                  );
+      color: Colors.blue,
+      child: Text(
+        "Add Language",
+        style: TextStyle(color: Colors.white, fontSize: 18),
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+      padding: EdgeInsets.all(20),
+      onPressed: () {
+        // if the language is not in the list, add it and it's fluency
+        if (!widget.profile.languages.contains(_selectedLanguageItem.text)) {
+          widget.profile.languages.add(_selectedLanguageItem.text);
+          widget.profile.languageProficiency.add(_selectedProficiencyItem.text);
+        } else // Language is in list already
+        {
+          // look through the list of languages
+          for (int i = 0; i < widget.profile.languages.length; i++) {
+            // find the language in question
+            if (widget.profile.languages[i] == _selectedLanguageItem.text) {
+              // Check the list of languages to see if language has correct fluency
+              if (widget.profile.languageProficiency[i] != _selectedProficiencyItem.text) {
+                // if the selected fluency is not the current fluency for that language, update it
+                widget.profile.languageProficiency[i] = _selectedProficiencyItem.text;
+              }
+            }
+          }
+          // TODO: Remove the below block (print of languages for testing
+          print(">>>> Languages:");
+          for (int i = 0; i < widget.profile.languages.length; i++) {
+            print(widget.profile.languages[i]);
+            print("    " + widget.profile.languageProficiency[i]);
+          }
+        }
+        setState(() {}); // Updates list of language cards
+      },
+    );
   }
 
   DropdownButton<ListItem> buildProficiencyDropdown() {
     return DropdownButton<ListItem>(
-                      value: _selectedProficiencyItem,
-                      items: _proficiencyDropdownMenuItems,
-                      disabledHint: Text("sss"),
-                      onChanged: (value) {
-                        _selectedProficiencyItem = value;
-                        setState(() {
-                          controlAddLanguageButtonVisibility();
-                        });
-                        for(ListItem comment in _proficiencyCommentItems)
-                        {
-                          if (comment.value == _selectedProficiencyItem.value)
-                          {
-                            proficiencyComment = comment.text;
-                          }
-                        }
-                      });
-
-
+        value: _selectedProficiencyItem,
+        items: _proficiencyDropdownMenuItems,
+        disabledHint: Text("How well do you speak this language?"),
+        onChanged: (value) {
+          _selectedProficiencyItem = value;
+          setState(() {
+            controlAddLanguageButtonVisibility();
+          });
+          for (ListItem comment in _proficiencyCommentItems) {
+            if (comment.value == _selectedProficiencyItem.value) {
+              proficiencyComment = comment.text;
+            }
+          }
+        });
   }
 
   void controlAddLanguageButtonVisibility() {
-    if(_selectedLanguageItem.value==1 || _selectedProficiencyItem.value ==1)
-    {
+    if (_selectedLanguageItem.value == 1 || _selectedProficiencyItem.value == 1) {
       showAddButton = false;
-    }
-    else{
+    } else {
       showAddButton = true;
     }
   }
 }
-

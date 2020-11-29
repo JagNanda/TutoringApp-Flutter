@@ -6,6 +6,8 @@ import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/sessions_home.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/jobs_tab/tutor_dashboard_jobs_home.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 import 'models/education_history.dart';
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/postings_tab/student_dashboard_postings_form.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
@@ -45,7 +47,8 @@ class TutoringApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Nunito',
       ),
-      home: LoginPage(tutorProfile),
+      home: LoginPage(),
+
       //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
       //initialRoute: '/portal',
       //: RouteGenerator.generateRoute,
@@ -53,9 +56,7 @@ class TutoringApp extends StatelessWidget {
   }
 }
 
-
-
-EducationHistory educationHistory1 = new EducationHistory(
+/*EducationHistory educationHistory1 = new EducationHistory(
     schoolName: 'Sheridan College',
     schoolCity: 'Oakville',
     schoolCountry: 'Canada',
@@ -64,9 +65,9 @@ EducationHistory educationHistory1 = new EducationHistory(
     schoolStartYear: '2017',
     schoolThroughMonth: 'May',
     schoolThroughYear: '2021',
-    schoolDescription: 'blah, blah, blah....diploma');
+    schoolDescription: 'blah, blah, blah....diploma');*/
 
-TutorProfile tutorProfile = new TutorProfile(
+/*TutorProfile tutorProfile = new TutorProfile(
   tutorId: "Brian Holmes",
   skillLevel: 'Elementary',
   tutoredSubjects: ['Flutter', 'Dart', 'Statistics'],
@@ -87,5 +88,6 @@ TutorProfile tutorProfile = new TutorProfile(
   tutorCity: 'Mississauga',
   tutorProvinceState: 'Ontario',
   tutorPostal: 'L5N3E2',
+  phone: "(416) 987-1234",
   isCompleted: true,
-);
+);*/

@@ -35,49 +35,37 @@ class CreateTutor6HourlyPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Column(
                   children: [
-                    SizedBox(height: 10),
-                    RaisedButton(
-                      color: Colors.deepPurple,
-                      child: Text(
-                        "Print",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                      padding: EdgeInsets.all(20),
-                      onPressed: (){
-                        if(tutorProfile.languages.isNotEmpty)
-                          {
-                            print(tutorProfile.languages.first);
-                          }
-                      },
-                    ),
-                    SizedBox(height: 10),
-
+                  SizedBox(height: 10),
                   Column(
                     children: [
                       new TextField(
-                      decoration: new InputDecoration(labelText: "Enter your hourly rate:"),
+                      decoration: new InputDecoration(labelText: "Update your hourly rate in \$:"),
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly],),
+                        FilteringTextInputFormatter.digitsOnly],
+                      ),
                     ],
                   ),
-
-
-
+                    SizedBox(height: 10),
+                    Column(
+                     children: [
+                       if(tutorProfile.hourlyRate!=null) Text(tutorProfile.hourlyRate.toString()),
+                       if(tutorProfile.hourlyRate==null) Text("0.00"),
+                     ],
+                    ),
                     SizedBox(height: 10),
                     RaisedButton(
                       color: Colors.blue,
                       child: Text(
-                        "Next",
+                        "Done",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: (){
                         //_tutorProfile.skillLevel = "Elementary";
-                        Navigator.of(context).pushNamed('/create_tutor_overview', arguments: tutorProfile);
-                        print("Next Pressed");
+                        Navigator.pop(context);
+                        print("Done Pressed");
                       }, // TODO: onPressed add skillLevel to delegate and segue to new page
                     ),
                   ],
@@ -85,26 +73,6 @@ class CreateTutor6HourlyPage extends StatelessWidget {
               ),
             ),
           ),
-          //MARK: Back Button
-          Expanded(
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: RaisedButton(
-                color: Colors.grey,
-                child: Text(
-                  "Back",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                padding: EdgeInsets.all(20),
-                onPressed: (){
-                  Navigator.of(context).pushNamed('/create_tutor_languages', arguments: tutorProfile);
-                  print("Back Pressed");
-                  }, // TODO: onPressed segue to previous page
-              ),
-              padding: EdgeInsets.all(20),
-            ),
-          )
         ],
       ),
     );

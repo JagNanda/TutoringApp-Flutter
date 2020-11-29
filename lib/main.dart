@@ -69,28 +69,28 @@ class TutoringApp extends StatelessWidget {
 //     schoolThroughYear: '2021',
 //     schoolDescription: 'blah, blah, blah....diploma'
 // );
-
-TutorProfile tutorProfile = new TutorProfile(
-  tutorId: "Brian Holmes",
-  skillLevel: 'Elementary',
-  tutoredSubjects: ['Flutter', 'Dart', 'Statistics'],
-  tutorExpertise: 'Expert',
-  //education: [educationHistory1],
-  languages: ['English', 'Spanish'],
-  languageProficiency: ['Native', 'Basic'],
-  hourlyRate: 25.0,
-  profileHeadline: 'I will help you understand Flutter!',
-  profileOverview: 'Hey there, I love math and I love '
-      'helping people explore math in simply ways that '
-      'are easy to understand and remember! Send me a '
-      'message and see how I can help YOU become a math '
-      'WHIZ!',
-  profilePicImgUrl: null,
-  tutorCountry: 'Canada',
-  tutorStreetAdd: '3220 Colebrook Court',
-  tutorCity: 'Mississauga',
-  tutorProvinceState: 'Ontario',
-  tutorPostal: 'L5N3E2',
-  phone: "(416) 987-1234",
-  isCompleted: true,
-);
+//
+// TutorProfile tutorProfile = new TutorProfile(
+//   tutorId: "Brian Holmes",
+//   skillLevel: 'Elementary',
+//   tutoredSubjects: ['Flutter', 'Dart', 'Statistics'],
+//   tutorExpertise: 'Expert',
+//   //education: [educationHistory1],
+//   languages: ['English', 'Spanish'],
+//   languageProficiency: ['Native', 'Basic'],
+//   hourlyRate: 25.0,
+//   profileHeadline: 'I will help you understand Flutter!',
+//   profileOverview: 'Hey there, I love math and I love '
+//       'helping people explore math in simply ways that '
+//       'are easy to understand and remember! Send me a '
+//       'message and see how I can help YOU become a math '
+//       'WHIZ!',
+//   profilePicImgUrl: null,
+//   tutorCountry: 'Canada',
+//   tutorStreetAdd: '3220 Colebrook Court',
+//   tutorCity: 'Mississauga',
+//   tutorProvinceState: 'Ontario',
+//   tutorPostal: 'L5N3E2',
+//   phone: "(416) 987-1234",
+//   isCompleted: true,
+// );

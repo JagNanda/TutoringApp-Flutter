@@ -8,15 +8,16 @@ import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'all_create_tutor_pages.dart';
 
 class MainTutorProfile extends StatefulWidget {
-  final TutorProfile tutorProfile;
 
-  MainTutorProfile({this.tutorProfile});
+  final int id;
+  MainTutorProfile({this.id});
 
   @override
   _MainTutorProfileState createState() => _MainTutorProfileState();
 }
 
 class _MainTutorProfileState extends State<MainTutorProfile> {
+  TutorProfile tutorProfile;
   // TODO: dataBase call to create tutorProfile object if exists, otherwise create new
   bool usersTutorProfile = false;
   @override
@@ -93,88 +94,71 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
             ),
           ),
           Card(
-              child: ListTile(
-                title: Text(tutorProfile.tutorId), //TODO: Get name from userID
-                subtitle: Text(
-                    tutorProfile.tutorCity + ', ' + tutorProfile.tutorCountry),
+            child: ListTile(
+              title: Text(tutorProfile.tutorId), //TODO: Get name from userID
+              subtitle: Text(tutorProfile.tutorCity + ', ' + tutorProfile.tutorCountry),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Center(child: Text(tutorProfile.profileHeadline)),
+            ),
+          ), // Profile Headline Input
+          Card(
+            child: ListTile(
+              title: Center(child: Text(tutorProfile.profileOverview)),
+              contentPadding: const EdgeInsets.all(10),
+            ),
+          ), // Profile Message Input
+          Card(
+            child: ListTile(
+              title: Center(child: Text(tutorProfile.skillLevel + ' level tutor')),
+            ),
+          ), // Tutoring Skill Level Input
+          Card(
+            child: ListTile(
+              title: Text('Tutored Subjects: '),
+              subtitle: Column(children: [
+                for (var i in tutorProfile.tutoredSubjects) Text(i),
+              ]),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: Center(
+                child: Text('Subject expertise: ' + tutorProfile.tutorExpertise + ' level'),
               ),
             ),
-           Card(
-              child: ListTile(
-                title: Center(child: Text(tutorProfile.profileHeadline)),
-              ),
-            ), // Profile Headline Input
+          ),
           Card(
-              child: ListTile(
-                title: Center(child: Text(tutorProfile.profileOverview)),
-                contentPadding: const EdgeInsets.all(10),
-              ),
-            ),// Profile Message Input
-          Card(
-              child: ListTile(
-                title: Center(child: Text(tutorProfile.skillLevel + ' level tutor')),
-              ),
-            ), // Tutoring Skill Level Input
-          Card(
-              child: ListTile(
-                title: Text('Tutored Subjects: '),
-                subtitle: Column(children: [
-                  for (var i in tutorProfile.tutoredSubjects) Text(i),
-                ]),
+            child: ListTile(
+              title: Text('Languages: '),
+              subtitle: Row(
+                children: [
+                  SizedBox(width: 100),
+                  Column(children: [
+                    for (var i in tutorProfile.languages) Text(i),
+                  ]),
+                  SizedBox(width: 20),
+                  Column(children: [
+                    for (var i in tutorProfile.languages) Text(' - '),
+                  ]),
+                  SizedBox(width: 20),
+                  Column(children: [
+                    for (var i in tutorProfile.languageProficiency) Text(i),
+                  ]),
+                ],
               ),
             ),
+          ), // Languages
           Card(
-              child: ListTile(
-                title: Center(
-                  child: Text('Subject expertise: ' +
-                      tutorProfile.tutorExpertise +
-                      ' level'),
-                ),
+            child: ListTile(
+              title: Center(
+                child: Text('Hourly rate: \$' + tutorProfile.hourlyRate.toString() + '/hr'),
               ),
             ),
-          Card(
-              child: ListTile(
-                title: Text('Languages: '),
-                subtitle: Row(
-                  children: [
-                    SizedBox(width: 100),
-                    Column(children: [
-                      for (var i in tutorProfile.languages) Text(i),
-                    ]),
-                    SizedBox(width: 20),
-                    Column(children: [
-                      for (var i in tutorProfile.languages) Text(' - '),
-                    ]),
-                    SizedBox(width: 20),
-                    Column(children: [
-                      for (var i in tutorProfile.languageProficiency) Text(i),
-                    ]),
-                  ],
-                ),
-              ),
-            ),// Languages
-          Card(
-              child: ListTile(
-                title: Center(
-                  child: Text('Hourly rate: \$' +
-                      tutorProfile.hourlyRate.toString() +
-                      '/hr'),
-                ),
-              ),
-            ),// Hourly Rate Input
+          ), // Hourly Rate Input
           SizedBox(height: 20),
-          Column(
-              children: [
-                Text('For Internal use Only: '),
-                SizedBox(width: 10),
-                Text(tutorProfile.tutorStreetAdd),
-                Text(tutorProfile.tutorCity),
-                Text(tutorProfile.tutorProvinceState),
-                Text(tutorProfile.tutorPostal),
-                Text(tutorProfile.tutorCountry),
-                Text(tutorProfile.phone)
-              ],
-            ),
           SizedBox(
             width: 250,
             height: 50,
@@ -183,7 +167,8 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                   "Edit Profile",
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
-                onPressed: null), //TODO: Change color of button and text to -> "tap field to edit", and enable GestureDetectors
+                onPressed:
+                    null), //TODO: Change color of button and text to -> "tap field to edit", and enable GestureDetectors
           ),
         ]),
       ),

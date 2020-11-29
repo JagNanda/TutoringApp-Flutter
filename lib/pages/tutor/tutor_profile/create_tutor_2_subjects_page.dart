@@ -4,18 +4,17 @@ import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 
 class CreateTutor2SubjectsPage extends StatefulWidget {
-  final TutorProfile tutorProfile;
+  final TutorProfile profile;
 
   //final List<String> subjects; // = (_)=>{subjects.add("")};
 
   const CreateTutor2SubjectsPage({
     Key key,
-    @required this.tutorProfile, //this.subjects
+    @required this.profile, //this.subjects
   }) : super(key: key);
 
   @override
-  _CreateTutor2SubjectsPageState createState() =>
-      _CreateTutor2SubjectsPageState();
+  _CreateTutor2SubjectsPageState createState() => _CreateTutor2SubjectsPageState();
 }
 
 class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
@@ -71,8 +70,7 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                widget.tutorProfile.tutorId +
-                    ", please add some subjects you would like to tutor:",
+                widget.profile.tutorId + ", please add some subjects you would like to tutor:",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               padding: EdgeInsets.all(20),
@@ -82,7 +80,7 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
           Container(
             child: Column(
               children: [
-                for (var sub in tutorProfile.tutoredSubjects) Text(sub),
+                for (var sub in widget.profile.tutoredSubjects) Text(sub),
               ],
             ),
           ),
@@ -94,7 +92,6 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Column(
                   children: [
-
                     SizedBox(height: 10),
                     SizedBox(
                       child: ListView.builder(
@@ -105,56 +102,45 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
                         itemBuilder: (context, index) {
                           return Card(
                               child: ListTile(
-                                //tileColor: color,
-                                title: Text(
-                                  subjects[index],
-                                  style: TextStyle(fontSize: 22.0),
-                                ),
-                                subtitle: Text('Tap to add/remove a subject'),
-                                // <-- subtitle //TODO: mark for future use
-                                //trailing: Icon(Icons.group_add_outlined, color: color,),
+                            //tileColor: color,
+                            title: Text(
+                              subjects[index],
+                              style: TextStyle(fontSize: 22.0),
+                            ),
+                            subtitle: Text('Tap to add/remove a subject'),
+                            // <-- subtitle //TODO: mark for future use
+                            //trailing: Icon(Icons.group_add_outlined, color: color,),
                             onTap: () {
                               setState(() {
-                                tutorProfile.tutoredSubjects = tutorProfile.tutoredSubjects;
+                                widget.profile.tutoredSubjects = widget.profile.tutoredSubjects;
                                 color = Colors.red;
                               });
 
                               // Create Subject List if Null
-                              if (widget.tutorProfile.tutoredSubjects == null) {
+                              if (widget.profile.tutoredSubjects == null) {
                                 // The list of subjects is null
-                                widget.tutorProfile.tutoredSubjects =
-                                    new List<String>();
+                                widget.profile.tutoredSubjects = new List<String>();
                                 // TODO: onTap Change Icon/card to indicate selected
 
                               }
 
                               // List is not null
-                              if (widget
-                                  .tutorProfile.tutoredSubjects.isNotEmpty) {
-                                if (widget.tutorProfile.tutoredSubjects
-                                    .contains(subjects[index])) {
+                              if (widget.profile.tutoredSubjects.isNotEmpty) {
+                                if (widget.profile.tutoredSubjects.contains(subjects[index])) {
                                   // The list of subjects already contains this subject
-                                  widget.tutorProfile.tutoredSubjects.remove(
-                                      subjects[
-                                          index]); //remove this subject from subjects
+                                  widget.profile.tutoredSubjects
+                                      .remove(subjects[index]); //remove this subject from subjects
                                 } else {
                                   // The list of subjects is not empty, but does not contain this subject
-                                  widget.tutorProfile.tutoredSubjects.add(subjects[
-                                      index]); //TODO: Update Icons for selected courses
+                                  widget.profile.tutoredSubjects.add(
+                                      subjects[index]); //TODO: Update Icons for selected courses
                                 }
                               } else {
                                 // The list of subjects is Empty
-                                widget.tutorProfile.tutoredSubjects
-                                    .add(subjects[index]);
+                                widget.profile.tutoredSubjects.add(subjects[index]);
                               }
-                              for (int i = 0;
-                                  i <
-                                      widget
-                                          .tutorProfile.tutoredSubjects.length;
-                                  i++) {
-                                print(widget.tutorProfile.tutoredSubjects
-                                    .elementAt(i)
-                                    .toString());
+                              for (int i = 0; i < widget.profile.tutoredSubjects.length; i++) {
+                                print(widget.profile.tutoredSubjects.elementAt(i).toString());
                               }
                             },
                             //),
@@ -174,17 +160,14 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
               "Update Tutored subjects with selections",
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
             padding: EdgeInsets.all(20),
             onPressed: () {
               setState(() {
-                widget.tutorProfile.tutoredSubjects =
-                    widget.tutorProfile.tutoredSubjects;
+                widget.profile.tutoredSubjects = widget.profile.tutoredSubjects;
               });
               Navigator.pop(context);
-              print(
-                  "Update Tutored subjects with selections"); //TODO: remove debug print
+              print("Update Tutored subjects with selections"); //TODO: remove debug print
             },
           ),
         ],

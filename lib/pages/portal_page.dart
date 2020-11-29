@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 import 'package:tutoring_app_flutter/services/user_service.dart';
 
@@ -40,16 +41,16 @@ class PortalPage extends StatelessWidget {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
               onPressed: () async {
                 bool isTutor = await UserService().hasTutorProfile();
+
+              if (isTutor) {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => MainTutorProfile()));
-                /*if (isTutor) {
+                    context, MaterialPageRoute(builder: (context) => TutorDashboard()));
+              } else {
+                print("Sorry you're not a tutor");
+                  //TODO: will crash atm because we arent fetching the profile yet in maintutorprofile
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => TutorDashboard()));
-                } else {
-                  print("Sorry you're not a tutor");
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => MainTutorProfile(profile)));
-                }*/
+                      context, MaterialPageRoute(builder: (context) => CreateTutor1LevelPage())); //TODO: CREATE PROFILE TREE
+                }
               },
             ),
           ],

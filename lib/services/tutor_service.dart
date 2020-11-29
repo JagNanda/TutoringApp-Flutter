@@ -27,7 +27,6 @@ class TutorService {
   }
 
   Future<dynamic> tutorProfileCheck(String userId) async {
-
     http.Response userResp = await http.get("$baseUrl/users/$userId");
     if (userResp.statusCode == 200) {
       var user = jsonDecode(userResp.body);
@@ -36,16 +35,7 @@ class TutorService {
     }
     return userResp.statusCode;
   }
-
-
-
-
-
-
 }
-
-
-
 
 /*
 * final sharedPrefs = await SharedPreferences.getInstance();

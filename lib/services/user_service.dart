@@ -19,10 +19,8 @@ class UserService {
     if (resp.statusCode == 200) {
       var json = jsonDecode(resp.body);
       if (json["tutorId"] != null) {
-        print("field exists");
         hasTutorProfile = true;
       } else {
-        print("does not exist");
         hasTutorProfile = false;
       }
     }

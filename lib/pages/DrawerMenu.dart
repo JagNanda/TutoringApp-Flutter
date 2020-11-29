@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tutoring_app_flutter/main.dart';
-import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard.dart';
+import 'package:tutoring_app_flutter/models/education_history.dart';
+import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 import 'login_page.dart';
-import 'TestPage.dart';
 import 'Settings.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -33,7 +34,7 @@ class DrawerCodeOnly extends StatelessWidget {
           currentAccountPicture: new GestureDetector(
               child: new CircleAvatar(
                   backgroundImage: new NetworkImage(
-                      "https://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/article_images/2020/09/among_us_google_play_icon.jpg"))),
+                      "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"))),
           decoration: new BoxDecoration(
               image: new DecorationImage(
                   fit: BoxFit.fill,
@@ -53,7 +54,7 @@ class DrawerCodeOnly extends StatelessWidget {
         trailing: new Icon(Icons.arrow_right),
         onTap: () {
           Navigator.pop(context);
-          Navigator.push(context, new MaterialPageRoute(builder: (context) => new TestPage()));
+          Navigator.push(context, new MaterialPageRoute(builder: (context) => new MainTutorProfile(tutorProfile)));
         },
       ),
       new ListTile(
@@ -62,15 +63,6 @@ class DrawerCodeOnly extends StatelessWidget {
         onTap: () {
           Navigator.pop(context);
           Navigator.push(context, new MaterialPageRoute(builder: (context) => new Settings()));
-        },
-      ),
-      new ListTile(
-        title: new Text("TEMP session"),
-        trailing: new Icon(Icons.settings),
-        onTap: () {
-          Navigator.pop(context);
-          Navigator.push(
-              context, new MaterialPageRoute(builder: (context) => new SessionDashboard()));
         },
       ),
       Container(
@@ -101,3 +93,38 @@ class DrawerCodeOnly extends StatelessWidget {
     ]));
   }
 }
+
+EducationHistory educationHistory1 = new EducationHistory(
+    schoolName: 'Sheridan College',
+    schoolCity: 'Oakville',
+    schoolCountry: 'Canada',
+    schoolProgramName: 'Software Engineering',
+    schoolStartMonth: 'September',
+    schoolStartYear: '2017',
+    schoolThroughMonth: 'May',
+    schoolThroughYear: '2021',
+    schoolDescription: 'blah, blah, blah....diploma');
+
+TutorProfile tutorProfile = new TutorProfile(
+  tutorId: "Brian Holmes",
+  skillLevel: 'Elementary',
+  tutoredSubjects: ['Flutter', 'Dart', 'Statistics'],
+  tutorExpertise: 'Expert',
+  education: [educationHistory1],
+  languages: ['English', 'Spanish'],
+  languageProficiency: ['Native', 'Basic'],
+  hourlyRate: 25.0,
+  profileHeadline: 'I will help you understand Flutter!',
+  profileOverview: 'Hey there, I love math and I love '
+      'helping people explore math in simply ways that '
+      'are easy to understand and remember! Send me a '
+      'message and see how I can help YOU become a math '
+      'WHIZ!',
+  profilePicImgUrl: null,
+  tutorCountry: 'Canada',
+  tutorStreetAdd: '3220 Colebrook Court',
+  tutorCity: 'Mississauga',
+  tutorProvinceState: 'Ontario',
+  tutorPostal: 'L5N3E2',
+  isCompleted: true,
+);

@@ -49,7 +49,7 @@ class _CompletedSessionState extends State<CompletedSession> {
                 GestureDetector(
                   child: new CircleAvatar(
                       radius: 35,
-                      backgroundImage: new NetworkImage("https://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/article_images/2020/09/among_us_google_play_icon.jpg")
+                      backgroundImage: new NetworkImage("https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png")
                   ),
                 ),
                 SizedBox(

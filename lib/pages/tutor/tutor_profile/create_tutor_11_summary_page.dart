@@ -1,16 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 
 
-class CreateTutor11SummaryPage extends StatelessWidget {
-  final TutorProfile tutorProfile;
+class CreateTutor11SummaryPage extends StatefulWidget {
+  final TutorProfile profile;
 
   const CreateTutor11SummaryPage({
     Key key,
-    @required this.tutorProfile,
+    @required this.profile,
   }) : super(key: key);
 
+  @override
+  _CreateTutor11SummaryPageState createState() => _CreateTutor11SummaryPageState();
+}
+
+class _CreateTutor11SummaryPageState extends State<CreateTutor11SummaryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +44,9 @@ class CreateTutor11SummaryPage extends StatelessWidget {
                         border: OutlineInputBorder(),
                         labelText: 'Profile Headline',  //TODO: Populate with existing headline
                       ),
+                      onChanged: (String val) {
+                        widget.profile.profileHeadline = val;
+                      },
                     ),
                     SizedBox(height: 10),
                     RaisedButton(
@@ -50,8 +59,9 @@ class CreateTutor11SummaryPage extends StatelessWidget {
                       padding: EdgeInsets.all(20),
                       onPressed: (){
                         //tutorProfile.skillLevel = "Elementary";// TODO: onPressed update headline of tutorProfile
-                        Navigator.pop(context);
-                        print("Update Headline pressed");
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => CreateTutor7OverviewPage(profile: widget.profile)));
+                        print("Headline: " + widget.profile.profileHeadline);
                       },
                     ),
                   ],

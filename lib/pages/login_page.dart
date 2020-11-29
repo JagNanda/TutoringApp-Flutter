@@ -67,7 +67,9 @@ class _LoginPageState extends State<LoginPage> {
                     bool success = await userService.loginUser(email: email, password: password);
                     if (success) {
                       Navigator.push(
-                          context, MaterialPageRoute(builder: (context) => PortalPage()));
+                          context, MaterialPageRoute(builder: (context) => PortalPage(),
+                      settings: RouteSettings(name: '/portal',),
+                      ));
                     }
                     /*onPressed: ()  {//TODO remove
                   Navigator.push(context, MaterialPageRoute(builder: (context) => PortalPage(tutorProfile)));

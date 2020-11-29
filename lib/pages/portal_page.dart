@@ -47,9 +47,10 @@ class PortalPage extends StatelessWidget {
                     context, MaterialPageRoute(builder: (context) => TutorDashboard()));
               } else {
                 print("Sorry you're not a tutor");
+                TutorProfile profile = new TutorProfile();
                   //TODO: will crash atm because we arent fetching the profile yet in maintutorprofile
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => CreateTutor1LevelPage())); //TODO: CREATE PROFILE TREE
+                      context, MaterialPageRoute(builder: (context) => CreateTutor3ExperiencePage(profile: profile))); //TODO: CREATE PROFILE TREE
                 }
               },
             ),

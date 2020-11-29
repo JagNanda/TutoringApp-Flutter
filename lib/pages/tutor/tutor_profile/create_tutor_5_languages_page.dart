@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 
 import 'ListItem.dart';
 
@@ -89,7 +90,7 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
   String proficiencyComment = "";
   bool showAddButton = false;
   bool showProficiencyDropdown = false;
-  bool noLanguage = true;
+  bool hasLanguage = false;
 
   bool disableProficiency = true;
   String langNoFluency = "Please indicate your fluency.";
@@ -103,14 +104,19 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
     _proficiencyDropdownMenuItems = buildDropDownMenuItems(_proficiencyDropdownItems);
     _selectedProficiencyItem = _proficiencyDropdownMenuItems[0].value;
     if (widget.profile.languages == null) widget.profile.languages = new List<String>();
+    if (widget.profile.languageProficiency == null) widget.profile.languageProficiency = new List<String>();
+
+
+   // widget.profile.languages.add("English");
+   // widget.profile.languageProficiency.add("Basic");
   }
 
   @override
   Widget build(BuildContext context) {
     if (widget.profile.languages.length < 1) {
-      noLanguage = true;
+      hasLanguage = false;
     } else {
-      noLanguage = false;
+      hasLanguage = true;
     } // If no language has been selected, show prompt
 
     //Page Build
@@ -156,11 +162,11 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
                     SizedBox(height: 10),
                     if (showAddButton) buildAddButton(),
                     SizedBox(height: 10),
-                    if (noLanguage)
+                    if (hasLanguage)
                       Text(
-                          "Please press add Language to add languages or press on a language to remove it."),
+                          "press on a language to remove it."),
                     SizedBox(height: 10),
-                    buildKnownLanguagesListView(),
+                    if(hasLanguage)buildKnownLanguagesListView(),
                     SizedBox(height: 10),
                     RaisedButton(
                       color: Colors.blue,
@@ -172,7 +178,8 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
                       padding: EdgeInsets.all(20),
                       onPressed: () {
                         setState(() {});
-                        Navigator.pop(context);
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => CreateTutor9LocationPage(profile: widget.profile)));
                       },
                     ),
                   ],
@@ -214,8 +221,8 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
             // child: Padding(
             //   padding: const EdgeInsets.all(16.0),
             trailing: Icon(Icons.highlight_remove),
-            subtitle: Text(widget
-                .profile.languageProficiency[index]), // <-- subtitle //TODO: mark for future use
+            subtitle: Text(
+                widget.profile.languageProficiency[index]), // <-- subtitle //TODO: mark for future use
             title: Text(
               widget.profile.languages[index],
               style: TextStyle(fontSize: 22.0),
@@ -251,11 +258,17 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       padding: EdgeInsets.all(20),
       onPressed: () {
+        print("<<<LOG>>>");
+        print(widget.profile.languages);
+
+        print("<<<LOG>>>");
+
         // if the language is not in the list, add it and it's fluency
         if (!widget.profile.languages.contains(_selectedLanguageItem.text)) {
           widget.profile.languages.add(_selectedLanguageItem.text);
           widget.profile.languageProficiency.add(_selectedProficiencyItem.text);
-        } else // Language is in list already
+        }
+        else // Language is in list already
         {
           // look through the list of languages
           for (int i = 0; i < widget.profile.languages.length; i++) {
@@ -281,6 +294,7 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
   }
 
   DropdownButton<ListItem> buildProficiencyDropdown() {
+
     return DropdownButton<ListItem>(
         value: _selectedProficiencyItem,
         items: _proficiencyDropdownMenuItems,

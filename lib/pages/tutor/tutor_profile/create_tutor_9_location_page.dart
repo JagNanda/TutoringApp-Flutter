@@ -1,16 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 import 'package:validators/validators.dart';
 
 class CreateTutor9LocationPage extends StatefulWidget {
+  final TutorProfile profile;
+
+  const CreateTutor9LocationPage({
+    Key key,
+    @required this.profile, //this.subjects
+  }) : super(key: key);
+
+
   @override
   _CreateTutor9LocationPageState createState() => _CreateTutor9LocationPageState();
 }
 
 class _CreateTutor9LocationPageState extends State<CreateTutor9LocationPage> {
-  String city = "";
-  String province = "";
+  // String city = "";
+  // String province = "";
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +50,7 @@ class _CreateTutor9LocationPageState extends State<CreateTutor9LocationPage> {
                         labelText: 'City',
                       ),
                       onChanged: (String val) {
-                        city = val;
+                        widget.profile.tutorCity = val;
                       },
                     ),
                     SizedBox(height: 10),
@@ -51,7 +60,7 @@ class _CreateTutor9LocationPageState extends State<CreateTutor9LocationPage> {
                         labelText: 'State / Province',
                       ),
                       onChanged: (String val) {
-                        province = val;
+                        widget.profile.tutorProvinceState = val;
                       },
                     ),
                     SizedBox(height: 10),
@@ -65,10 +74,10 @@ class _CreateTutor9LocationPageState extends State<CreateTutor9LocationPage> {
                       padding: EdgeInsets.all(20),
                       onPressed: () {
                         //tutorProfile.skillLevel = "Elementary";// TODO: onPressed add skillLevel to tutorProfile
-                        Map<String, String> location = {"city": city, "province": province};
-
-                        Navigator.pop(context, location);
-                        print("Update Location pressed");
+                        Map<String, String> location = {"city": widget.profile.tutorCity, "province": widget.profile.tutorProvinceState};
+                        print(widget.profile.tutorCity + " , " + widget.profile.tutorProvinceState);
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => CreateTutor11SummaryPage(profile: widget.profile)));
                       },
                     ),
                   ],

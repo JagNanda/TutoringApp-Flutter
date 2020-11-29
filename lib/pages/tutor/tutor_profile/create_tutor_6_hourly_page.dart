@@ -2,16 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 
 
-class CreateTutor6HourlyPage extends StatelessWidget {
-  final TutorProfile tutorProfile;
+class CreateTutor6HourlyPage extends StatefulWidget {
+  final TutorProfile profile;
 
   const CreateTutor6HourlyPage({
     Key key,
-    @required this.tutorProfile,
+    @required this.profile,
   }) : super(key: key);
 
+  @override
+  _CreateTutor6HourlyPageState createState() => _CreateTutor6HourlyPageState();
+}
+
+class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
   @override
   Widget build(BuildContext context) {
 
@@ -40,6 +47,12 @@ class CreateTutor6HourlyPage extends StatelessWidget {
                     children: [
                       new TextField(
                       decoration: new InputDecoration(labelText: "Update your hourly rate in \$:"),
+                        onChanged: (String val) {
+                          widget.profile.hourlyRate = val;
+                          setState(() {
+
+                          });
+                        },
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly],
@@ -49,8 +62,8 @@ class CreateTutor6HourlyPage extends StatelessWidget {
                     SizedBox(height: 10),
                     Column(
                      children: [
-                       if(tutorProfile.hourlyRate!=null) Text(tutorProfile.hourlyRate.toString()),
-                       if(tutorProfile.hourlyRate==null) Text("0.00"),
+                       if(widget.profile.hourlyRate!=null) Text(widget.profile.hourlyRate.toString()),
+                       if(widget.profile.hourlyRate==null) Text("0.00"),
                      ],
                     ),
                     SizedBox(height: 10),
@@ -63,10 +76,21 @@ class CreateTutor6HourlyPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: (){
-                        //_tutorProfile.skillLevel = "Elementary";
-                        Navigator.pop(context);
-                        print("Done Pressed");
-                      }, // TODO: onPressed add skillLevel to delegate and segue to new page
+                        //TODO: Make API call to create tutorProfile then pass tutorId below to MainProfilePage
+                        widget.profile.tutorId = "1";                        
+                        print("Hourly Rate: " + widget.profile.hourlyRate);
+                        print("Headline: " + widget.profile.profileHeadline);
+                        print("Skill: " + widget.profile.skillLevel);
+                        //print("ID: " + widget.profile.tutorId);
+
+                        if(Navigator.canPop(context))
+                          {
+                            Navigator.of(context).popUntil(ModalRoute.withName('/portal'));
+                          }
+
+                        
+                        
+                      },
                     ),
                   ],
                 ),

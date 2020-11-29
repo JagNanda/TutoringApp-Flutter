@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 
 class CreateTutor2SubjectsPage extends StatefulWidget {
   final TutorProfile profile;
@@ -18,6 +19,9 @@ class CreateTutor2SubjectsPage extends StatefulWidget {
 }
 
 class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
+
+
+
   @override
   Widget build(BuildContext context) {
     // region creates subject list 'List<String> subjects'
@@ -61,7 +65,10 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
       "Project Management",
     ];
     // endregion creates subject list
-
+    if(widget.profile.tutoredSubjects == null)
+      {
+        widget.profile.tutoredSubjects = [""];
+      }
     Color color = Colors.blueGrey;
     return Scaffold(
       body: Column(
@@ -70,7 +77,7 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                widget.profile.tutorId + ", please add some subjects you would like to tutor:",
+                "Please add some subjects you would like to tutor:",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               padding: EdgeInsets.all(20),
@@ -166,7 +173,8 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
               setState(() {
                 widget.profile.tutoredSubjects = widget.profile.tutoredSubjects;
               });
-              Navigator.pop(context);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CreateTutor5LanguagesPage(profile: widget.profile)));
               print("Update Tutored subjects with selections"); //TODO: remove debug print
             },
           ),

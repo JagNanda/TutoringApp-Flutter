@@ -4,6 +4,7 @@ import 'package:tutoring_app_flutter/components/sessions/session_request.dart';
 
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/sessions_home.dart';
+import 'package:tutoring_app_flutter/pages/portal_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/jobs_tab/tutor_dashboard_jobs_home.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
@@ -48,6 +49,9 @@ class TutoringApp extends StatelessWidget {
         fontFamily: 'Nunito',
       ),
       home: LoginPage(),
+      routes: {
+        '/portal' : (context) => PortalPage(),
+      },
       //home: MainTutorProfile(tutorProfile),
       //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
       //initialRoute: '/portal',

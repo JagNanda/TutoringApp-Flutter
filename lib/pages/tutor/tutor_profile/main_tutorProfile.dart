@@ -9,7 +9,7 @@ import 'all_create_tutor_pages.dart';
 
 class MainTutorProfile extends StatefulWidget {
 
-  final int id;
+  final String id;
   MainTutorProfile({this.id});
 
   @override

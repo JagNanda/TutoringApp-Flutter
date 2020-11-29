@@ -1,18 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 
 class CreateTutor1LevelPage extends StatefulWidget {
+  final TutorProfile profile;
 
-
-  const CreateTutor1LevelPage();
+  const CreateTutor1LevelPage({
+    Key key,
+    @required this.profile,
+  }) : super(key: key);
 
   @override
   _CreateTutor1LevelPageState createState() => _CreateTutor1LevelPageState();
 }
 
 class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
-  TutorProfile profile = new TutorProfile();
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +52,10 @@ class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
                         onPressed: () {
                           //widget.tutorProfile.skillLevel = "Elementary"; //TODO: remove
                           setState(() {
-                            profile.skillLevel = "Elementary";
+                           widget.profile.skillLevel = "Elementary";
                           });
-                          Navigator.pop(context);
+                          Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => CreateTutor2SubjectsPage(profile: widget.profile)));
                           print("Elementary Pressed");
                         }, // TODO: onPressed add skillLevel to delegate and segue to new page
                       ),
@@ -70,9 +74,10 @@ class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
                         onPressed: () {
                           //widget.tutorProfile.skillLevel = "High School";//TODO: remove
                           setState(() {
-                            profile.skillLevel = "High School";
+                            widget.profile.skillLevel = "High School";
                           });
-                          Navigator.pop(context);
+                          Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => CreateTutor2SubjectsPage(profile: widget.profile)));
                           print("High School Pressed");
                         }, // TODO: onPressed add skillLevel to delegate and segue to new page
                       ),
@@ -91,9 +96,10 @@ class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
                         onPressed: () {
                           //widget.tutorProfile.skillLevel = "College / University";//TODO: remove
                           setState(() {
-                            profile.skillLevel = "College / University";
+                            widget.profile.skillLevel = "College / University";
                           });
-                          Navigator.pop(context);
+                          Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => CreateTutor2SubjectsPage(profile: widget.profile)));
                           print("College / University Pressed");
                         }, // TODO: onPressed add skillLevel to delegate and segue to new page
                       ),

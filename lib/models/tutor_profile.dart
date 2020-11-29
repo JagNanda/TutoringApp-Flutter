@@ -31,6 +31,9 @@ class TutorProfile{
   String tutorProvinceState;
   String tutorPostal;
 
+  // Tutor Phone Number
+  String phone;
+
   //validation of completed profile
   bool isCompleted;
 
@@ -52,6 +55,7 @@ class TutorProfile{
     this.tutorCity,
     this.tutorProvinceState,
     this.tutorPostal,
+    this.phone,
     this.isCompleted,
   });
 }

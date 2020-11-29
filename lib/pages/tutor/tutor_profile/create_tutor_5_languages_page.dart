@@ -167,13 +167,16 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
                     RaisedButton(
                       color: Colors.blue,
                       child: Text(
-                        "Next",
+                        "Done",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: (){
-                          Navigator.of(context).pushNamed('/create_tutor_hourly', arguments: widget.tutorProfile);
+                        setState(() {
+
+                        });
+                          Navigator.pop(context);
                       },
                     ),
                   ],
@@ -181,25 +184,6 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
               ),
             ),
           ),
-          //MARK: Back Button
-          Expanded(
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: RaisedButton(
-                color: Colors.grey,
-                child: Text(
-                  "Back",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                padding: EdgeInsets.all(20),
-                onPressed: (){
-                  Navigator.of(context).pushNamed('/create_tutor_education', arguments: widget.tutorProfile);
-                  },
-              ),
-              padding: EdgeInsets.all(20),
-            ),
-          ) // Back Button
         ],
       ),
     );
@@ -271,6 +255,7 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
                       "Add Language",
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
+
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                     padding: EdgeInsets.all(20),
                     onPressed: (){
@@ -310,7 +295,7 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
     return DropdownButton<ListItem>(
                       value: _selectedProficiencyItem,
                       items: _proficiencyDropdownMenuItems,
-                      disabledHint: Text("sss"),
+                      disabledHint: Text("How well do you speak this language?"),
                       onChanged: (value) {
                         _selectedProficiencyItem = value;
                         setState(() {

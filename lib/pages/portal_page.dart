@@ -38,7 +38,7 @@ class PortalPage extends StatelessWidget {
               padding: EdgeInsets.all(20),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => TutorDashboard()));
+                 Navigator.push(context, MaterialPageRoute(builder: (context) => TutorDashboard()));
               },
             ),
           ],

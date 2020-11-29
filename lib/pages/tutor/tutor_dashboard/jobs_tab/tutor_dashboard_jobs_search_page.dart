@@ -73,8 +73,8 @@ class _TutorDashboardJobsSearchPageState extends State<TutorDashboardJobsSearchP
       builder: (BuildContext context, AsyncSnapshot<List<StudentPostListing>> snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
           return SizedBox(child: CircularProgressIndicator(), width: 70, height: 70);
-        } else {
-          return Column(
+        } else {return !snapshot.hasData ? Text("No Data") :
+           Column(
             children: [
               Row(
                 children: [

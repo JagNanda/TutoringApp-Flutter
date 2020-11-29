@@ -37,15 +37,14 @@ class CreateTutor8PhotoPage extends StatelessWidget {
                     RaisedButton(
                       color: Colors.blue,
                       child: Text(
-                        "Next",
+                        "Add Photo",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: (){
                         //tutorProfile.skillLevel = "Elementary";
-                        Navigator.of(context).pushNamed('/create_tutor_location', arguments: tutorProfile);
-                        print("Next Pressed");
+                        Navigator.pop(context);
                       }, // TODO: onPressed add skillLevel to delegate and segue to new page
                     ),
                   ],
@@ -53,26 +52,6 @@ class CreateTutor8PhotoPage extends StatelessWidget {
               ),
             ),
           ),
-          //MARK: Back Button
-          Expanded(
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: RaisedButton(
-                color: Colors.grey,
-                child: Text(
-                  "Back",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                padding: EdgeInsets.all(20),
-                onPressed: (){
-                  Navigator.of(context).pushNamed('/create_tutor_overview', arguments: tutorProfile);
-                  print("Back Pressed");
-                  }, // TODO: onPressed segue to previous page
-              ),
-              padding: EdgeInsets.all(20),
-            ),
-          )
         ],
       ),
     );

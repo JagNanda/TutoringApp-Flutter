@@ -47,14 +47,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         icon: Icons.mail,
                         isEmail: true,
                         onChange: (text) {
-                          email = text;
+                          email = text.trim();
                         },
                       ),
                       RegisterTextFormField(
                         hint: "Username",
                         icon: Icons.person,
                         onChange: (text) {
-                          username = text;
+                          username = text.trim();
                         },
                       ),
                       RegisterTextFormField(
@@ -62,7 +62,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         icon: Icons.lock,
                         isPassword: true,
                         onChange: (text) {
-                          password = text;
+                          password = text.trim();
                         },
                       ),
                       RegisterTextFormField(
@@ -70,7 +70,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         icon: Icons.text_format,
                         isName: true,
                         onChange: (text) {
-                          firstName = text;
+                          firstName = text.trim();
                         },
                       ),
                       RegisterTextFormField(
@@ -78,7 +78,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         icon: Icons.text_format,
                         isName: true,
                         onChange: (text) {
-                          lastName = text;
+                          lastName = text.trim();
                         },
                       ),
                       SizedBox(height: 10),

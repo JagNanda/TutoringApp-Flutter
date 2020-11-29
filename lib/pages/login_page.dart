@@ -55,22 +55,24 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.0),
               child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                padding: EdgeInsets.all(12),
-                color: Colors.green,
-                child: Text('Login', style: TextStyle(color: Colors.white, fontSize: 17.0)),
-                // onPressed: () async { //TODO: Uncomment after presentation
-                //   UserService userService = new UserService();
-                //   bool success = await userService.loginUser(email: email, password: password);
-                //   if (success) {
-                //     Navigator.push(context, MaterialPageRoute(builder: (context) => PortalPage()));
-                //   }
-                onPressed: ()  {//TODO remove
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  padding: EdgeInsets.all(12),
+                  color: Colors.green,
+                  child: Text('Login', style: TextStyle(color: Colors.white, fontSize: 17.0)),
+                  onPressed: () async {
+                    //TODO: Uncomment after presentation
+                    UserService userService = new UserService();
+                    bool success = await userService.loginUser(email: email, password: password);
+                    if (success) {
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (context) => PortalPage()));
+                    }
+                    /*onPressed: ()  {//TODO remove
                   Navigator.push(context, MaterialPageRoute(builder: (context) => PortalPage(tutorProfile)));
-                  },
-              ),
+                  },*/
+                  }),
             ),
             Builder(builder: (BuildContext context) {
               return FlatButton(

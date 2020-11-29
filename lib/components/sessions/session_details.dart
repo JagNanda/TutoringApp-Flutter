@@ -5,11 +5,11 @@ class SessionDetails extends StatefulWidget {
   @override
   _SessionDetailsState createState() => _SessionDetailsState();
 }
-final String name = "Brandon";
-final String date = "November 1, 2020";
-final String cost ="20";
-final String subject = "Math";
-final String details = "Getting tutored in Math";
+final String name = "Brian Holmes";
+final String date = "November 10, 2020";
+final String cost ="60";
+final String subject = "Flutter";
+final String details = "Want to learn how to develop in flutter";
 final String education = "University";
 
 
@@ -49,9 +49,16 @@ class _SessionDetailsState extends State<SessionDetails> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             GestureDetector(
-              child: new CircleAvatar(
-                  radius: 35,
-                  backgroundImage: new NetworkImage("https://www.androidcentral.com/sites/androidcentral.com/files/styles/large/public/article_images/2020/09/among_us_google_play_icon.jpg")
+              child: Container(
+                child: Center(
+                  child: CircleAvatar(
+                    radius: 35,
+                    child: Text(
+                      'BH',
+                      style: TextStyle(color: Colors.white, fontSize: 35.0),
+                    ),
+                  ),
+                ),
               ),
             ),
            ],

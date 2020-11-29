@@ -7,26 +7,9 @@ class SessionDashboardCurrent extends StatefulWidget {
 }
 
 class _SessionDashboardCurrentState extends State<SessionDashboardCurrent> {
-  List<CurrentSession> myList = List.generate(10, (index) => CurrentSession());
-  ScrollController _scrollController = ScrollController();
-  int shownPostCount = 10;
-
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(() {
-      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
-        fetchMorePosts();
-        setState(() {});
-      }
-    });
-  }
-
-  void fetchMorePosts() {
-    for (int i = shownPostCount; i < shownPostCount + 10; i++) {
-      myList.add(CurrentSession());
-    }
-    shownPostCount += 10;
   }
 
   @override
@@ -43,18 +26,7 @@ class _SessionDashboardCurrentState extends State<SessionDashboardCurrent> {
             ),
           ),
         ),
-        Expanded(
-          child: ListView.builder(
-            controller: _scrollController,
-            itemCount: myList.length + 1,
-            itemBuilder: (context, index) {
-              if (index == myList.length) {
-                return Center(child: CircularProgressIndicator());
-              }
-              return myList[index];
-            },
-          ),
-        ),
+        Expanded(child: CurrentSession()),
       ],
     );
   }

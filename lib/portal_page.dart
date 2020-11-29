@@ -98,16 +98,17 @@ class _PortalPageState extends State<PortalPage> {
         ]),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         padding: EdgeInsets.all(20),
-        onPressed: () async {
-          final sharedPrefs = await SharedPreferences.getInstance();
-          String userId = sharedPrefs.getString('userId') ?? "";
-
-          var user = TutorService().tutorProfileCheck(userId);
-          // TODO : check if user already has a tutoProfile (if not, create one)
-
-          print(">>>>>> test \n");
-          print(user);
-          // if(user['tutorId'])
+        onPressed: () {
+        // onPressed: () async {
+          // final sharedPrefs = await SharedPreferences.getInstance();
+          // String userId = sharedPrefs.getString('userId') ?? "";
+          //
+          // var user = TutorService().tutorProfileCheck(userId);
+          // // TODO : check if user already has a tutoProfile (if not, create one)
+          //
+          // print(">>>>>> test \n");
+          // print(user);
+          // // if(user['tutorId'])
           //   {}
 
           tutorProfile = tutorProfile; // TODO : Update default constructor

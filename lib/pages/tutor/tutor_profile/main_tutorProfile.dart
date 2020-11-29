@@ -55,11 +55,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      colors: <Color>[
-                        Colors.black.withAlpha(0),
-                        Colors.black12,
-                        Colors.black45
-                      ],
+                      colors: <Color>[Colors.black.withAlpha(0), Colors.black12, Colors.black45],
                     ),
                   ),
                   child: Text(
@@ -90,10 +86,8 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                     ),
                     color: Colors.green,
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          new MaterialPageRoute(
-                              builder: (context) => new SessionRequest()));
+                      Navigator.push(context,
+                          new MaterialPageRoute(builder: (context) => new SessionRequest()));
                     }),
               ],
             ),

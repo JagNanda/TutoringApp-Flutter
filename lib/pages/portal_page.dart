@@ -3,6 +3,7 @@ import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
+import 'package:tutoring_app_flutter/services/user_service.dart';
 
 import 'student/student_dashboard/student_dashboard.dart';
 
@@ -24,7 +25,7 @@ class PortalPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => StudentDashboard(tutorProfile)),
+                  MaterialPageRoute(builder: (context) => StudentDashboard()),
                 );
               },
             ),
@@ -37,8 +38,17 @@ class PortalPage extends StatelessWidget {
               focusColor: Colors.blue,
               padding: EdgeInsets.all(20),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-              onPressed: () {
-                 Navigator.push(context, MaterialPageRoute(builder: (context) => TutorDashboard()));
+              onPressed: () async {
+                bool isTutor = await UserService().hasTutorProfile();
+                if (isTutor) {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => TutorDashboard()));
+                } else {
+                  print("Sorry you're not a tutor");
+                  //TODO: will crash atm because we arent fetching the profile yet in maintutorprofile
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => MainTutorProfile()));
+                }
               },
             ),
           ],

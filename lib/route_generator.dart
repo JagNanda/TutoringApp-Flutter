@@ -1,10 +1,13 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/main.dart';
 
 //import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
-import 'package:tutoring_app_flutter/portal_page.dart';
+*/
+/*import 'package:tutoring_app_flutter/portal_page.dart';*/ /*
+
 import 'pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 
 class RouteGenerator {
@@ -13,11 +16,14 @@ class RouteGenerator {
     final profileReceived = settings.arguments;
 
     switch (settings.name) {
-      case '/portal':
-        return MaterialPageRoute(builder: (_) => PortalPage());
+      */
+/*case '/portal':
+        return MaterialPageRoute(builder: (_) => PortalPage());*/ /*
+
       //return MaterialPageRoute(builder: (_)=> CreateTutor1LevelPage());
 
-      case '/main_tutorProfile':
+      */
+/*case '/main_tutorProfile':
         if (profileReceived is TutorProfile) {
           return MaterialPageRoute(
             builder: (_) => MainTutorProfile(
@@ -25,7 +31,8 @@ class RouteGenerator {
             ),
           );
         }
-        return _errorRoute();
+        return _errorRoute();*/ /*
+
 
       case '/create_tutor_skill':
         if (profileReceived is TutorProfile) {
@@ -102,14 +109,16 @@ class RouteGenerator {
           );
         }
         return _errorRoute();
-      case '/create_tutor_location':
+*/
+/*      case '/create_tutor_location':
         if (profileReceived is TutorProfile) {
           return MaterialPageRoute(
             builder: (_) => CreateTutor9LocationPage(
               tutorProfile: profileReceived,
             ),
           );
-        }
+        }*/ /*
+
         return _errorRoute();
       case '/create_tutor_phone':
         if (profileReceived is TutorProfile) {
@@ -143,3 +152,4 @@ class RouteGenerator {
     });
   }
 }
+*/

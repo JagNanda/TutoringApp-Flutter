@@ -54,7 +54,7 @@ class DrawerCodeOnly extends StatelessWidget {
         trailing: new Icon(Icons.arrow_right),
         onTap: () {
           Navigator.pop(context);
-          Navigator.push(context, new MaterialPageRoute(builder: (context) => new MainTutorProfile(tutorProfile)));
+          /*Navigator.push(context, new MaterialPageRoute(builder: (context) => new MainTutorProfile(tutorProfile)));*/
         },
       ),
       new ListTile(
@@ -78,7 +78,7 @@ class DrawerCodeOnly extends StatelessWidget {
                     onTap: () {
                       Navigator.pop(context);
                       Navigator.push(
-                          context, new MaterialPageRoute(builder: (context) => new LoginPage(tutorProfile)));
+                          context, new MaterialPageRoute(builder: (context) => new LoginPage()));
                     },
                   ),
                 ],
@@ -113,7 +113,7 @@ TutorProfile tutorProfile = new TutorProfile(
   education: [educationHistory1],
   languages: ['English', 'Spanish'],
   languageProficiency: ['Native', 'Basic'],
-  hourlyRate: 25.0,
+  hourlyRate: "24",
   profileHeadline: 'I will help you understand Flutter!',
   profileOverview: 'Hey there, I love math and I love '
       'helping people explore math in simply ways that '

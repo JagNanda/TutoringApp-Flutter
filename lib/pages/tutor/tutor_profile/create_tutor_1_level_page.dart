@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
-import 'package:tutoring_app_flutter/portal_page.dart';
-
 
 class CreateTutor1LevelPage extends StatefulWidget {
   final TutorProfile tutorProfile;
@@ -26,7 +24,9 @@ class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                "Hello, " + widget.tutorProfile.tutorId + "! Please select the highest level you are capable of tutoring:",
+                "Hello, " +
+                    widget.tutorProfile.tutorId +
+                    "! Please select the highest level you are capable of tutoring:",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               padding: EdgeInsets.all(20),
@@ -35,81 +35,79 @@ class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
           Expanded(
             flex: 4,
             child: SingleChildScrollView(
-
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 10),
-                      SizedBox(
-                        child: RaisedButton(
-                          color: Colors.blue,
-                          child: Text(
-                            "Elementary",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
-                          ),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                          padding: EdgeInsets.all(20),
-                          onPressed: (){
-                            //widget.tutorProfile.skillLevel = "Elementary"; //TODO: remove
-                            setState(() {
-                              widget.tutorProfile.skillLevel = "Elementary";
-                            });
-                            Navigator.pop(context);
-                            print("Elementary Pressed");
-                            }, // TODO: onPressed add skillLevel to delegate and segue to new page
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                child: Column(
+                  children: [
+                    SizedBox(height: 10),
+                    SizedBox(
+                      child: RaisedButton(
+                        color: Colors.blue,
+                        child: Text(
+                          "Elementary",
+                          style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
-                        width: double.maxFinite,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                        padding: EdgeInsets.all(20),
+                        onPressed: () {
+                          //widget.tutorProfile.skillLevel = "Elementary"; //TODO: remove
+                          setState(() {
+                            widget.tutorProfile.skillLevel = "Elementary";
+                          });
+                          Navigator.pop(context);
+                          print("Elementary Pressed");
+                        }, // TODO: onPressed add skillLevel to delegate and segue to new page
                       ),
-                      SizedBox(height: 10),
-                      SizedBox(
-                        child: RaisedButton(
-                          color: Colors.blue,
-                          child: Text(
-                            "High School",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
-                          ),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                          padding: EdgeInsets.all(20),
-                          onPressed: (){
-                            //widget.tutorProfile.skillLevel = "High School";//TODO: remove
-                            setState(() {
-                              widget.tutorProfile.skillLevel = "High School";
-                            });
-                            Navigator.pop(context);
-                            print("High School Pressed");
-                            }, // TODO: onPressed add skillLevel to delegate and segue to new page
+                      width: double.maxFinite,
+                    ),
+                    SizedBox(height: 10),
+                    SizedBox(
+                      child: RaisedButton(
+                        color: Colors.blue,
+                        child: Text(
+                          "High School",
+                          style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
-                        width: double.maxFinite,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                        padding: EdgeInsets.all(20),
+                        onPressed: () {
+                          //widget.tutorProfile.skillLevel = "High School";//TODO: remove
+                          setState(() {
+                            widget.tutorProfile.skillLevel = "High School";
+                          });
+                          Navigator.pop(context);
+                          print("High School Pressed");
+                        }, // TODO: onPressed add skillLevel to delegate and segue to new page
                       ),
-                      SizedBox(height: 10),
-                      SizedBox(
-                        child: RaisedButton(
-                          color: Colors.blue,
-                          child: Text(
-                            "College / University",
-                            style: TextStyle(color: Colors.white, fontSize: 18),
-                          ),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                          padding: EdgeInsets.all(20),
-                          onPressed: (){
-                            //widget.tutorProfile.skillLevel = "College / University";//TODO: remove
-                            setState(() {
-                              widget.tutorProfile.skillLevel = "College / University";
-                            });
-                            Navigator.pop(context);
-                            print("College / University Pressed");
-                            }, // TODO: onPressed add skillLevel to delegate and segue to new page
+                      width: double.maxFinite,
+                    ),
+                    SizedBox(height: 10),
+                    SizedBox(
+                      child: RaisedButton(
+                        color: Colors.blue,
+                        child: Text(
+                          "College / University",
+                          style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
-                        width: double.maxFinite,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                        padding: EdgeInsets.all(20),
+                        onPressed: () {
+                          //widget.tutorProfile.skillLevel = "College / University";//TODO: remove
+                          setState(() {
+                            widget.tutorProfile.skillLevel = "College / University";
+                          });
+                          Navigator.pop(context);
+                          print("College / University Pressed");
+                        }, // TODO: onPressed add skillLevel to delegate and segue to new page
                       ),
-                      SizedBox(height: 10),
-
-                    ],
-                  ),
+                      width: double.maxFinite,
+                    ),
+                    SizedBox(height: 10),
+                  ],
                 ),
               ),
             ),
+          ),
           // Expanded(
           //   child: Container(
           //     alignment: Alignment.bottomCenter,

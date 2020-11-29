@@ -3,15 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'package:validators/validators.dart';
 
+class CreateTutor9LocationPage extends StatefulWidget {
+  @override
+  _CreateTutor9LocationPageState createState() => _CreateTutor9LocationPageState();
+}
 
-class CreateTutor9LocationPage extends StatelessWidget {
-  final TutorProfile tutorProfile;
-
-  const CreateTutor9LocationPage({
-    Key key,
-    @required this.tutorProfile,
-  }) : super(key: key);
-
+class _CreateTutor9LocationPageState extends State<CreateTutor9LocationPage> {
+  String city = "";
+  String province = "";
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +40,9 @@ class CreateTutor9LocationPage extends StatelessWidget {
                         border: OutlineInputBorder(),
                         labelText: 'City',
                       ),
+                      onChanged: (String val) {
+                        city = val;
+                      },
                     ),
                     SizedBox(height: 10),
                     TextFormField(
@@ -48,6 +50,9 @@ class CreateTutor9LocationPage extends StatelessWidget {
                         border: OutlineInputBorder(),
                         labelText: 'State / Province',
                       ),
+                      onChanged: (String val) {
+                        province = val;
+                      },
                     ),
                     SizedBox(height: 10),
                     RaisedButton(
@@ -58,9 +63,11 @@ class CreateTutor9LocationPage extends StatelessWidget {
                       ),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
-                      onPressed: (){
+                      onPressed: () {
                         //tutorProfile.skillLevel = "Elementary";// TODO: onPressed add skillLevel to tutorProfile
-                        Navigator.pop(context);
+                        Map<String, String> location = {"city": city, "province": province};
+
+                        Navigator.pop(context, location);
                         print("Update Location pressed");
                       },
                     ),

@@ -47,8 +47,8 @@ class TutoringApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Nunito',
       ),
-      home: LoginPage(tutorProfile),
-      //home: MainTutorProfile(tutorProfile),
+      home: LoginPage(),
+
       //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
       //initialRoute: '/portal',
       //: RouteGenerator.generateRoute,
@@ -56,9 +56,7 @@ class TutoringApp extends StatelessWidget {
   }
 }
 
-
-
-EducationHistory educationHistory1 = new EducationHistory(
+/*EducationHistory educationHistory1 = new EducationHistory(
     schoolName: 'Sheridan College',
     schoolCity: 'Oakville',
     schoolCountry: 'Canada',
@@ -67,9 +65,9 @@ EducationHistory educationHistory1 = new EducationHistory(
     schoolStartYear: '2017',
     schoolThroughMonth: 'May',
     schoolThroughYear: '2021',
-    schoolDescription: 'blah, blah, blah....diploma');
+    schoolDescription: 'blah, blah, blah....diploma');*/
 
-TutorProfile tutorProfile = new TutorProfile(
+/*TutorProfile tutorProfile = new TutorProfile(
   tutorId: "Brian Holmes",
   skillLevel: 'Elementary',
   tutoredSubjects: ['Flutter', 'Dart', 'Statistics'],
@@ -92,4 +90,4 @@ TutorProfile tutorProfile = new TutorProfile(
   tutorPostal: 'L5N3E2',
   phone: "(416) 987-1234",
   isCompleted: true,
-);
+);*/

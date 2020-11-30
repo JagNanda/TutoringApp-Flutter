@@ -2,15 +2,63 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 
 
-class CreateTutor6HourlyPage extends StatelessWidget {
-  final TutorProfile tutorProfile;
+class CreateTutor6HourlyPage extends StatefulWidget {
+  final TutorProfile profile;
 
   const CreateTutor6HourlyPage({
     Key key,
-    @required this.tutorProfile,
+    @required this.profile,
   }) : super(key: key);
+
+  @override
+  _CreateTutor6HourlyPageState createState() => _CreateTutor6HourlyPageState();
+}
+
+class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
+
+  noHourlyRateAlertDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("No Hourly Rate"),
+            content: Text("Please input your desired hourly rate to continue"),
+            actions: <Widget>[
+              MaterialButton(
+                elevation: 5.0,
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  completeProfileAlertDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("No Profile Overview"),
+            content: Text("Use your Overview to tell students how you can help them learn"),
+            actions: <Widget>[
+              MaterialButton(
+                elevation: 5.0,
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +88,12 @@ class CreateTutor6HourlyPage extends StatelessWidget {
                     children: [
                       new TextField(
                       decoration: new InputDecoration(labelText: "Update your hourly rate in \$:"),
+                        onChanged: (String val) {
+                          widget.profile.hourlyRate = val;
+                          setState(() {
+
+                          });
+                        },
                       keyboardType: TextInputType.number,
                       inputFormatters: <TextInputFormatter>[
                         FilteringTextInputFormatter.digitsOnly],
@@ -49,8 +103,8 @@ class CreateTutor6HourlyPage extends StatelessWidget {
                     SizedBox(height: 10),
                     Column(
                      children: [
-                       if(tutorProfile.hourlyRate!=null) Text(tutorProfile.hourlyRate.toString()),
-                       if(tutorProfile.hourlyRate==null) Text("0.00"),
+                       if(widget.profile.hourlyRate!=null) Text(widget.profile.hourlyRate.toString()),
+                       if(widget.profile.hourlyRate==null) Text("0.00"),
                      ],
                     ),
                     SizedBox(height: 10),
@@ -63,10 +117,24 @@ class CreateTutor6HourlyPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: (){
-                        //_tutorProfile.skillLevel = "Elementary";
-                        Navigator.pop(context);
-                        print("Done Pressed");
-                      }, // TODO: onPressed add skillLevel to delegate and segue to new page
+                        //setState(() {});
+
+
+
+                        if(widget.profile.hourlyRate == null){
+                          //print(">>>  ALERT DIALOG  <<<<");  //TODO: REMOVE PRINT STATEMENT
+                          noHourlyRateAlertDialog(context);
+                        }
+                        else
+                        {
+                          //TODO: Make API call to create tutorProfile then pass tutorId below to MainProfilePage
+
+                          if(Navigator.canPop(context))
+                          {
+                            Navigator.of(context).popUntil(ModalRoute.withName('/portal'));
+                          }
+                        }
+                      },
                     ),
                   ],
                 ),

@@ -6,6 +6,8 @@ import 'package:tutoring_app_flutter/pages/registration_page.dart';
 import '../services/user_service.dart';
 
 class LoginPage extends StatefulWidget {
+
+  LoginPage();
   static String tag = 'login-page';
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -65,7 +67,9 @@ class _LoginPageState extends State<LoginPage> {
                     bool success = await userService.loginUser(email: email, password: password);
                     if (success) {
                       Navigator.push(
-                          context, MaterialPageRoute(builder: (context) => PortalPage()));
+                          context, MaterialPageRoute(builder: (context) => PortalPage(),
+                      settings: RouteSettings(name: '/portal',),
+                      ));
                     }
                     /*onPressed: ()  {//TODO remove
                   Navigator.push(context, MaterialPageRoute(builder: (context) => PortalPage(tutorProfile)));

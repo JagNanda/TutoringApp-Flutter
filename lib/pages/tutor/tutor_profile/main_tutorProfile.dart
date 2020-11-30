@@ -8,7 +8,8 @@ import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'all_create_tutor_pages.dart';
 
 class MainTutorProfile extends StatefulWidget {
-  final int id;
+
+  final String id;
   MainTutorProfile({this.id});
 
   @override

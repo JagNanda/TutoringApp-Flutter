@@ -24,6 +24,13 @@ class TutorService {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String userId = prefs.getString("userId");
     String token = prefs.getString("token");
+
+    //TODO: Remove Debug Print Statements
+    print("<<<< Prefs  >>>");
+    print(userId);
+    print(token);
+    print("<<<< Prefs  - end>>>");
+
     http.Response resp = await http.post(
       "$baseUrl/$userId",
       headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},

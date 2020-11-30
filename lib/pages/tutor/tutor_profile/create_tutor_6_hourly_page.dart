@@ -118,7 +118,9 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
                       onPressed: () async {
                         if (widget.profile.hourlyRate == null) {
                           noHourlyRateAlertDialog(context);
-                        } else {
+                        }
+                        else
+                        {
                           //TODO: Make API call to create tutorProfile then pass tutorId below to MainProfilePage
                           bool created = await TutorService().createTutorProfile(widget.profile);
                           print(created);

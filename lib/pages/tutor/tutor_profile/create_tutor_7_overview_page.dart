@@ -78,7 +78,7 @@ class _CreateTutor7OverviewPageState extends State<CreateTutor7OverviewPage> {
                     RaisedButton(
                       color: Colors.blue,
                       child: Text(
-                        "Update Headline",
+                        "Update Profile Messsage",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),

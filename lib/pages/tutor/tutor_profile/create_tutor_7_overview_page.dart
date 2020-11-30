@@ -17,6 +17,28 @@ class CreateTutor7OverviewPage extends StatefulWidget {
 }
 
 class _CreateTutor7OverviewPageState extends State<CreateTutor7OverviewPage> {
+
+  noOverviewAlertDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("No Profile Overview"),
+            content: Text("Use your Overview to tell students how you can help them learn"),
+            actions: <Widget>[
+              MaterialButton(
+                elevation: 5.0,
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +48,7 @@ class _CreateTutor7OverviewPageState extends State<CreateTutor7OverviewPage> {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                "Update your profile headline: ",
+                "Update your profile overview: ",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               padding: EdgeInsets.all(30),
@@ -43,9 +65,10 @@ class _CreateTutor7OverviewPageState extends State<CreateTutor7OverviewPage> {
                       minLines: 8,
                       maxLines: 16,
                       maxLength: 240,
+                      textAlignVertical: TextAlignVertical.top,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Profile Message',  //TODO: Populate with existing profile message
+                        labelText: 'Profile Overview',  //TODO: Populate with existing profile message
                       ),
                       onChanged: (String val) {
                         widget.profile.profileOverview = val;
@@ -61,10 +84,16 @@ class _CreateTutor7OverviewPageState extends State<CreateTutor7OverviewPage> {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: (){
-                        //tutorProfile.skillLevel = "Elementary";// TODO: onPressed update headline of tutorProfile
-                        Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => CreateTutor6HourlyPage(profile: widget.profile)));
-                        print("Overview: " + widget.profile.profileOverview);
+                        setState(() {});
+                        if(widget.profile.profileOverview == null || widget.profile.profileOverview.isEmpty){
+                          print(">>>  ALERT DIALOG  <<<<");  //TODO: REMOVE PRINT STATEMENT
+                          noOverviewAlertDialog(context);
+                        }
+                        else
+                        {
+                          Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => CreateTutor6HourlyPage(profile: widget.profile)));
+                        }
                       },
                     ),
                   ],

@@ -19,6 +19,47 @@ class CreateTutor6HourlyPage extends StatefulWidget {
 }
 
 class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
+
+  noHourlyRateAlertDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("No Hourly Rate"),
+            content: Text("Please input your desired hourly rate to continue"),
+            actions: <Widget>[
+              MaterialButton(
+                elevation: 5.0,
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  completeProfileAlertDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("No Profile Overview"),
+            content: Text("Use your Overview to tell students how you can help them learn"),
+            actions: <Widget>[
+              MaterialButton(
+                elevation: 5.0,
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -76,20 +117,21 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: (){
+                        setState(() {});
                         //TODO: Make API call to create tutorProfile then pass tutorId below to MainProfilePage
-                        widget.profile.tutorId = "1";                        
-                        print("Hourly Rate: " + widget.profile.hourlyRate);
-                        print("Headline: " + widget.profile.profileHeadline);
-                        print("Skill: " + widget.profile.skillLevel);
-                        //print("ID: " + widget.profile.tutorId);
 
-                        if(Navigator.canPop(context))
+
+                        if(widget.profile.hourlyRate == null){
+                          print(">>>  ALERT DIALOG  <<<<");  //TODO: REMOVE PRINT STATEMENT
+                          noHourlyRateAlertDialog(context);
+                        }
+                        else
+                        {
+                          if(Navigator.canPop(context))
                           {
                             Navigator.of(context).popUntil(ModalRoute.withName('/portal'));
                           }
-
-                        
-                        
+                        }
                       },
                     ),
                   ],

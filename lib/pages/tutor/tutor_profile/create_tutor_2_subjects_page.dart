@@ -19,7 +19,26 @@ class CreateTutor2SubjectsPage extends StatefulWidget {
 }
 
 class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
+  noSubjectsAlertDialog(BuildContext context)
+  {
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        title: Text("No subjects selected"),
+        content: Text("Please select at least one subject to tutor"),
+        actions: <Widget>[
+          MaterialButton(
+            elevation: 5.0,
+            child: Text('Ok'),
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
+          )
+        ],
+      );
 
+    });
+
+  }
 
 
   @override
@@ -69,7 +88,6 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
       {
         widget.profile.tutoredSubjects = [""];
       }
-    Color color = Colors.blueGrey;
     return Scaffold(
       body: Column(
         children: [
@@ -87,6 +105,7 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
           Container(
             child: Column(
               children: [
+                Text("Current Selections: "),
                 for (var sub in widget.profile.tutoredSubjects) Text(sub),
               ],
             ),
@@ -119,16 +138,12 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
                             //trailing: Icon(Icons.group_add_outlined, color: color,),
                             onTap: () {
                               setState(() {
-                                widget.profile.tutoredSubjects = widget.profile.tutoredSubjects;
-                                color = Colors.red;
                               });
 
                               // Create Subject List if Null
                               if (widget.profile.tutoredSubjects == null) {
                                 // The list of subjects is null
                                 widget.profile.tutoredSubjects = new List<String>();
-                                // TODO: onTap Change Icon/card to indicate selected
-
                               }
 
                               // List is not null
@@ -140,7 +155,7 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
                                 } else {
                                   // The list of subjects is not empty, but does not contain this subject
                                   widget.profile.tutoredSubjects.add(
-                                      subjects[index]); //TODO: Update Icons for selected courses
+                                      subjects[index]);
                                 }
                               } else {
                                 // The list of subjects is Empty
@@ -173,9 +188,23 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
               setState(() {
                 widget.profile.tutoredSubjects = widget.profile.tutoredSubjects;
               });
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => CreateTutor5LanguagesPage(profile: widget.profile)));
-              print("Update Tutored subjects with selections"); //TODO: remove debug print
+              print(widget.profile.tutoredSubjects.length); //TODO: REMOVE PRINT STATEMENT
+              int count = 1; //TODO: REMOVE PRINT STATEMENT
+              for(var sub in widget.profile.tutoredSubjects) //TODO: REMOVE PRINT STATEMENT
+                {
+                  print(sub + count.toString());
+                  count++;
+                }
+
+              if(widget.profile.tutoredSubjects.length <=1){
+                print(">>>  ALERT DIALOG  <<<<");  //TODO: REMOVE PRINT STATEMENT
+                noSubjectsAlertDialog(context);
+              }
+              else
+              {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => CreateTutor5LanguagesPage(profile: widget.profile)));
+              }
             },
           ),
         ],

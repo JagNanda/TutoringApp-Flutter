@@ -17,6 +17,28 @@ class CreateTutor11SummaryPage extends StatefulWidget {
 }
 
 class _CreateTutor11SummaryPageState extends State<CreateTutor11SummaryPage> {
+
+  noHeadlineAlertDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("No Headline!"),
+            content: Text("Give your profile a headline to continue"),
+            actions: <Widget>[
+              MaterialButton(
+                elevation: 5.0,
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,10 +80,16 @@ class _CreateTutor11SummaryPageState extends State<CreateTutor11SummaryPage> {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: (){
-                        //tutorProfile.skillLevel = "Elementary";// TODO: onPressed update headline of tutorProfile
-                        Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => CreateTutor7OverviewPage(profile: widget.profile)));
-                        print("Headline: " + widget.profile.profileHeadline);
+                        setState(() {});
+                        if(widget.profile.profileHeadline == null){
+                          print(">>>  ALERT DIALOG  <<<<");  //TODO: REMOVE PRINT STATEMENT
+                          noHeadlineAlertDialog(context);
+                        }
+                        else
+                        {
+                          Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => CreateTutor7OverviewPage(profile: widget.profile)));
+                        }
                       },
                     ),
                   ],

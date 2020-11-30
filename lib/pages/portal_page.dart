@@ -12,8 +12,6 @@ class PortalPage extends StatelessWidget {
 
   noProfileAlertDialog(BuildContext context)
   {
-    TextEditingController controller = TextEditingController();
-
     return showDialog(context: context, builder: (context){
       return AlertDialog(
         title: Text("You do not have a profile"),

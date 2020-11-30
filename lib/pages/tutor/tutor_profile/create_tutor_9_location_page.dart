@@ -12,14 +12,52 @@ class CreateTutor9LocationPage extends StatefulWidget {
     @required this.profile, //this.subjects
   }) : super(key: key);
 
-
   @override
-  _CreateTutor9LocationPageState createState() => _CreateTutor9LocationPageState();
+  _CreateTutor9LocationPageState createState() =>
+      _CreateTutor9LocationPageState();
 }
 
 class _CreateTutor9LocationPageState extends State<CreateTutor9LocationPage> {
-  // String city = "";
-  // String province = "";
+
+  noCityAlertDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("No location selected"),
+            content: Text("Please enter a city to continue"),
+            actions: <Widget>[
+              MaterialButton(
+                elevation: 5.0,
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  noProvinceAlertDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("No location selected"),
+            content: Text("Please enter a province or state to continue"),
+            actions: <Widget>[
+              MaterialButton(
+                elevation: 5.0,
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,14 +108,34 @@ class _CreateTutor9LocationPageState extends State<CreateTutor9LocationPage> {
                         "Update Location",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: () {
-                        //tutorProfile.skillLevel = "Elementary";// TODO: onPressed add skillLevel to tutorProfile
-                        Map<String, String> location = {"city": widget.profile.tutorCity, "province": widget.profile.tutorProvinceState};
-                        print(widget.profile.tutorCity + " , " + widget.profile.tutorProvinceState);
-                        Navigator.push(
-                            context, MaterialPageRoute(builder: (context) => CreateTutor11SummaryPage(profile: widget.profile)));
+                        //tutorProfile.skillLevel = "Elementary";  // TODO: Remove this code
+                        //Map<String, String> location = {"city": widget.profile.tutorCity, "province": widget.profile.tutorProvinceState};  // TODO: Remove this code
+                        //print(widget.profile.tutorCity + " , " + widget.profile.tutorProvinceState);  // TODO: Remove this code
+                        print(widget.profile.tutorCity);
+                        print(widget.profile.tutorProvinceState);
+                        setState(() {});
+                        if (widget.profile.tutorCity == null ||
+                            widget.profile.tutorProvinceState == null) {
+                          print(
+                              ">>>  ALERT DIALOG  <<<<"); //TODO: REMOVE PRINT STATEMENT
+                          if (widget.profile.tutorCity == null) {
+                            noCityAlertDialog(context);
+                          }
+                          if (widget.profile.tutorProvinceState == null) {
+                            noProvinceAlertDialog(context);
+                          }
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      CreateTutor11SummaryPage(
+                                          profile: widget.profile)));
+                        }
                       },
                     ),
                   ],

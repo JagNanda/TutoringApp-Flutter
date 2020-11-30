@@ -101,7 +101,7 @@ class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
                           Navigator.push(
                               context, MaterialPageRoute(builder: (context) => CreateTutor2SubjectsPage(profile: widget.profile)));
                           print("College / University Pressed");
-                        }, // TODO: onPressed add skillLevel to delegate and segue to new page
+                        },
                       ),
                       width: double.maxFinite,
                     ),

@@ -188,16 +188,16 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
               setState(() {
                 widget.profile.tutoredSubjects = widget.profile.tutoredSubjects;
               });
-              print(widget.profile.tutoredSubjects.length); //TODO: REMOVE PRINT STATEMENT
-              int count = 1; //TODO: REMOVE PRINT STATEMENT
-              for(var sub in widget.profile.tutoredSubjects) //TODO: REMOVE PRINT STATEMENT
-                {
-                  print(sub + count.toString());
-                  count++;
-                }
+              // print(widget.profile.tutoredSubjects.length); //TODO: REMOVE PRINT STATEMENT
+              // int count = 1; //TODO: REMOVE PRINT STATEMENT
+              // for(var sub in widget.profile.tutoredSubjects) //TODO: REMOVE PRINT STATEMENT
+              //   {
+              //     print(sub + count.toString());
+              //     count++;
+              //   }
 
               if(widget.profile.tutoredSubjects.length <=1){
-                print(">>>  ALERT DIALOG  <<<<");  //TODO: REMOVE PRINT STATEMENT
+                //print(">>>  ALERT DIALOG  <<<<");  //TODO: REMOVE PRINT STATEMENT
                 noSubjectsAlertDialog(context);
               }
               else

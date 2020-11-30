@@ -122,7 +122,7 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
 
 
                         if(widget.profile.hourlyRate == null){
-                          print(">>>  ALERT DIALOG  <<<<");  //TODO: REMOVE PRINT STATEMENT
+                          //print(">>>  ALERT DIALOG  <<<<");  //TODO: REMOVE PRINT STATEMENT
                           noHourlyRateAlertDialog(context);
                         }
                         else

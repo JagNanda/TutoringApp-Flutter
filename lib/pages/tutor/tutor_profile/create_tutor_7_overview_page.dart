@@ -86,7 +86,6 @@ class _CreateTutor7OverviewPageState extends State<CreateTutor7OverviewPage> {
                       onPressed: (){
                         setState(() {});
                         if(widget.profile.profileOverview == null || widget.profile.profileOverview.isEmpty){
-                          print(">>>  ALERT DIALOG  <<<<");  //TODO: REMOVE PRINT STATEMENT
                           noOverviewAlertDialog(context);
                         }
                         else

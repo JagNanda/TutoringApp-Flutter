@@ -117,8 +117,8 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: (){
-                        setState(() {});
-                        //TODO: Make API call to create tutorProfile then pass tutorId below to MainProfilePage
+                        //setState(() {});
+
 
 
                         if(widget.profile.hourlyRate == null){
@@ -127,6 +127,8 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
                         }
                         else
                         {
+                          //TODO: Make API call to create tutorProfile then pass tutorId below to MainProfilePage
+
                           if(Navigator.canPop(context))
                           {
                             Navigator.of(context).popUntil(ModalRoute.withName('/portal'));

@@ -8,14 +8,16 @@ class UserService {
 
   //check if user has a tutor profile
   Future<bool> hasTutorProfile() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
+    /*SharedPreferences preferences = await SharedPreferences.getInstance();
     String tutorId = preferences.getString("tutorId");
+    print(tutorId);
+    print(tutorId == null);
     if (tutorId != null) {
       return true;
     } else {
       return false;
-    }
-    /*bool hasTutorProfile = false;
+    }*/
+    bool hasTutorProfile = false;
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String userId = preferences.getString("userId");
     String token = preferences.getString("token");
@@ -31,7 +33,7 @@ class UserService {
         hasTutorProfile = false;
       }
     }
-    return hasTutorProfile;*/
+    return hasTutorProfile;
   }
 
   //login user using email and password and store token, userId, and tuteeId in sharedPrefs
@@ -127,10 +129,6 @@ class UserService {
     return success;
   }
 }
-
-
-
-
 
 // import 'dart:convert';
 // import 'package:http/http.dart' as http;

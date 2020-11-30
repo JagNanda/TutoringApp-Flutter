@@ -9,6 +9,33 @@ import 'package:tutoring_app_flutter/services/user_service.dart';
 import 'student/student_dashboard/student_dashboard.dart';
 
 class PortalPage extends StatelessWidget {
+
+  noProfileAlertDialog(BuildContext context)
+  {
+    TextEditingController controller = TextEditingController();
+
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        title: Text("You do not have a profile"),
+        content: Text("Do you want to create a tutor profile?"),
+        actions: <Widget>[
+          MaterialButton(
+            elevation: 5.0,
+              child: Text('Create Profile'),
+            onPressed: (){
+              TutorProfile profile = new TutorProfile();
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CreateTutor3ExperiencePage(profile: profile)));
+            },
+          )
+        ],
+        );
+
+    });
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,10 +74,12 @@ class PortalPage extends StatelessWidget {
                     context, MaterialPageRoute(builder: (context) => TutorDashboard()));
               } else {
                 print("Sorry you're not a tutor");
-                TutorProfile profile = new TutorProfile();
+                //TutorProfile profile = new TutorProfile();
                   //TODO: will crash atm because we arent fetching the profile yet in maintutorprofile
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => CreateTutor3ExperiencePage(profile: profile))); //TODO: CREATE PROFILE TREE
+                noProfileAlertDialog(context);
+
+                  // Navigator.push(
+                  //     context, MaterialPageRoute(builder: (context) => CreateTutor3ExperiencePage(profile: profile))); //TODO: CREATE PROFILE TREE
                 }
               },
             ),

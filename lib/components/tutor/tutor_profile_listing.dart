@@ -91,7 +91,7 @@ class _TutorProfileListingState extends State<TutorProfileListing> {
                   if (favorite == false) {
                     await StudentService().addTutorToFavourites(widget.id);
                   } else if (favorite == true) {
-                    await StudentService().removeTutorToFavourites(widget.id);
+                    await StudentService().removeTutorInFavourites(widget.id);
                   }
                   setState(() {
                     favorite = !favorite;

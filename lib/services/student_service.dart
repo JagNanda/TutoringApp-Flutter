@@ -18,6 +18,8 @@ class StudentService {
       var favTutors = jsonDecode(getResp.body);
       return favTutors;
     }
+    print("no favorite tutors found");
+    return null;
   }
 
   Future<bool> addTutorToFavourites(String tutorId) async {
@@ -42,7 +44,7 @@ class StudentService {
     return success;
   }
 
-  Future<bool> removeTutorToFavourites(String tutorId) async {
+  Future<bool> removeTutorInFavourites(String tutorId) async {
     bool success = false;
     //get token
     final sharedPrefs = await SharedPreferences.getInstance();

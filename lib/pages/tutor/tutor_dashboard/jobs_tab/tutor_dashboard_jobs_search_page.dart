@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/components/student/student_post_listing.dart';
 import 'package:tutoring_app_flutter/services/student_post_service.dart';
+import 'package:tutoring_app_flutter/services/tutor_service.dart';
 
 class TutorDashboardJobsSearchPage extends StatefulWidget {
   @override
@@ -10,8 +11,9 @@ class TutorDashboardJobsSearchPage extends StatefulWidget {
 class _TutorDashboardJobsSearchPageState extends State<TutorDashboardJobsSearchPage> {
   final textController = TextEditingController();
   bool search = false;
-  bool isEmpty = false;
+  bool isSearchEmpty = false;
   List<dynamic> allPosts;
+  List<dynamic> favoritedPosts;
 
   @override
   void initState() {
@@ -27,8 +29,18 @@ class _TutorDashboardJobsSearchPageState extends State<TutorDashboardJobsSearchP
 
   Future<List<StudentPostListing>> loadStudentPostings() async {
     allPosts = await StudentPostService().getAllPosts();
+    //check if of the posts are favorited already
+    favoritedPosts = await TutorService().getFavouritePosts();
     return allPosts.map((post) {
+      String id = post["_id"];
+      bool favorited = false;
+      favoritedPosts.forEach((element) {
+        if (element["_id"] == id) {
+          favorited = true;
+        }
+      });
       return StudentPostListing(
+        id: id,
         title: post["title"],
         subject: post["subject"],
         levelOfEducation: post["levelOfEducation"],
@@ -36,6 +48,7 @@ class _TutorDashboardJobsSearchPageState extends State<TutorDashboardJobsSearchP
         showSavedIcon: true,
         date: post["date"],
         description: post["description"],
+        favorite: favorited,
       );
     }).toList();
   }
@@ -104,7 +117,11 @@ class _TutorDashboardJobsSearchPageState extends State<TutorDashboardJobsSearchP
                       ],
                     ),
                     snapshot.data.length == 0
-                        ? Text("No Results")
+                        ? Center(
+                            child: Text(
+                            "There are no student postings available",
+                            textAlign: TextAlign.center,
+                          ))
                         : Expanded(
                             child: ListView.builder(
                               scrollDirection: Axis.vertical,

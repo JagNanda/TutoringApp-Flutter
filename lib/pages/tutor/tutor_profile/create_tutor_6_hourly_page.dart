@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
-
+import 'package:tutoring_app_flutter/services/tutor_service.dart';
 
 class CreateTutor6HourlyPage extends StatefulWidget {
   final TutorProfile profile;
@@ -19,7 +19,6 @@ class CreateTutor6HourlyPage extends StatefulWidget {
 }
 
 class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
-
   noHourlyRateAlertDialog(BuildContext context) {
     return showDialog(
         context: context,
@@ -62,7 +61,6 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Column(
         children: [
@@ -83,29 +81,30 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 child: Column(
                   children: [
-                  SizedBox(height: 10),
-                  Column(
-                    children: [
-                      new TextField(
-                      decoration: new InputDecoration(labelText: "Update your hourly rate in \$:"),
-                        onChanged: (String val) {
-                          widget.profile.hourlyRate = val;
-                          setState(() {
-
-                          });
-                        },
-                      keyboardType: TextInputType.number,
-                      inputFormatters: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly],
-                      ),
-                    ],
-                  ),
                     SizedBox(height: 10),
                     Column(
-                     children: [
-                       if(widget.profile.hourlyRate!=null) Text(widget.profile.hourlyRate.toString()),
-                       if(widget.profile.hourlyRate==null) Text("0.00"),
-                     ],
+                      children: [
+                        new TextField(
+                          decoration:
+                              new InputDecoration(labelText: "Update your hourly rate in \$:"),
+                          onChanged: (String val) {
+                            widget.profile.hourlyRate = val;
+                            setState(() {});
+                          },
+                          keyboardType: TextInputType.number,
+                          inputFormatters: <TextInputFormatter>[
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Column(
+                      children: [
+                        if (widget.profile.hourlyRate != null)
+                          Text(widget.profile.hourlyRate.toString()),
+                        if (widget.profile.hourlyRate == null) Text("0.00"),
+                      ],
                     ),
                     SizedBox(height: 10),
                     RaisedButton(
@@ -116,22 +115,18 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
                       ),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
-                      onPressed: (){
-                        //setState(() {});
-
-
-
-                        if(widget.profile.hourlyRate == null){
-                          //print(">>>  ALERT DIALOG  <<<<");  //TODO: REMOVE PRINT STATEMENT
+                      onPressed: () async {
+                        if (widget.profile.hourlyRate == null) {
                           noHourlyRateAlertDialog(context);
                         }
                         else
                         {
                           widget.profile.isCompleted = true;
-                          //TODO: Make API call to create tutorProfile then pass tutorId below to MainProfilePage
 
-                          if(Navigator.canPop(context))
-                          {
+                          //TODO: Make API call to create tutorProfile then pass tutorId below to MainProfilePage
+                          bool created = await TutorService().createTutorProfile(widget.profile);
+                          print(created);
+                          if (created && Navigator.canPop(context)) {
                             Navigator.of(context).popUntil(ModalRoute.withName('/portal'));
                           }
                         }

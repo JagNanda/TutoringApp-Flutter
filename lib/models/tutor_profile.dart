@@ -3,16 +3,12 @@ import 'package:tutoring_app_flutter/models/education_history.dart';
 class TutorProfile {
   String tutorId;
   String skillLevel;
-  List<String> tutoredSubjects = [];
+  List<String> tutoredSubjects;
   String tutorExpertise;
 
-  //Education
-  List<EducationHistory> education = [];
-
   // Languages
-
-  List<String> languages = [];
-  List<String> languageProficiency = [];
+  List<String> languages;
+  List<String> languageProficiency;
 
   // Wages
   String hourlyRate;
@@ -39,22 +35,21 @@ class TutorProfile {
 
   TutorProfile({
     this.tutorId,
-    this.skillLevel = "high",
+    this.skillLevel,
     this.tutoredSubjects,
-    this.tutorExpertise = "",
-    this.education,
+    this.tutorExpertise,
     this.languages,
     this.languageProficiency,
-    this.hourlyRate = "",
-    this.profileHeadline = "",
-    this.profileOverview = "",
+    this.hourlyRate,
+    this.profileHeadline,
+    this.profileOverview,
     this.profilePicImgUrl,
-    this.tutorCountry = "",
-    this.tutorStreetAdd = "",
-    this.tutorCity = "",
-    this.tutorProvinceState = "",
-    this.tutorPostal = "",
-    this.phone = "",
+    this.tutorCountry,
+    this.tutorStreetAdd,
+    this.tutorCity,
+    this.tutorProvinceState,
+    this.tutorPostal,
+    this.phone,
     this.isCompleted,
   });
 }

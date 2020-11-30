@@ -4,6 +4,7 @@ import 'package:tutoring_app_flutter/components/sessions/session_request.dart';
 
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/sessions_home.dart';
+import 'package:tutoring_app_flutter/pages/portal_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/jobs_tab/tutor_dashboard_jobs_home.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_dashboard/tutor_dashboard.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
@@ -48,7 +49,10 @@ class TutoringApp extends StatelessWidget {
         fontFamily: 'Nunito',
       ),
       home: LoginPage(),
-
+      routes: {
+        '/portal' : (context) => PortalPage(),
+      },
+      //home: MainTutorProfile(tutorProfile),
       //NOTE: Comment out the two below lines and un-comment 'home:' line above to test page
       //initialRoute: '/portal',
       //: RouteGenerator.generateRoute,
@@ -56,38 +60,41 @@ class TutoringApp extends StatelessWidget {
   }
 }
 
-/*EducationHistory educationHistory1 = new EducationHistory(
-    schoolName: 'Sheridan College',
-    schoolCity: 'Oakville',
-    schoolCountry: 'Canada',
-    schoolProgramName: 'Software Engineering',
-    schoolStartMonth: 'September',
-    schoolStartYear: '2017',
-    schoolThroughMonth: 'May',
-    schoolThroughYear: '2021',
-    schoolDescription: 'blah, blah, blah....diploma');*/
 
-/*TutorProfile tutorProfile = new TutorProfile(
-  tutorId: "Brian Holmes",
-  skillLevel: 'Elementary',
-  tutoredSubjects: ['Flutter', 'Dart', 'Statistics'],
-  tutorExpertise: 'Expert',
-  education: [educationHistory1],
-  languages: ['English', 'Spanish'],
-  languageProficiency: ['Native', 'Basic'],
-  hourlyRate: 25.0,
-  profileHeadline: 'I will help you understand Flutter!',
-  profileOverview: 'Hey there, I love math and I love '
-      'helping people explore math in simply ways that '
-      'are easy to understand and remember! Send me a '
-      'message and see how I can help YOU become a math '
-      'WHIZ!',
-  profilePicImgUrl: null,
-  tutorCountry: 'Canada',
-  tutorStreetAdd: '3220 Colebrook Court',
-  tutorCity: 'Mississauga',
-  tutorProvinceState: 'Ontario',
-  tutorPostal: 'L5N3E2',
-  phone: "(416) 987-1234",
-  isCompleted: true,
-);*/
+
+// EducationHistory educationHistory1 = new EducationHistory(
+//     schoolName: 'Sheridan College',
+//     schoolCity: 'Oakville',
+//     schoolCountry: 'Canada',
+//     schoolProgramName: 'Software Engineering',
+//     schoolStartMonth: 'September',
+//     schoolStartYear: '2017',
+//     schoolThroughMonth: 'May',
+//     schoolThroughYear: '2021',
+//     schoolDescription: 'blah, blah, blah....diploma'
+// );
+//
+// TutorProfile tutorProfile = new TutorProfile(
+//   tutorId: "Brian Holmes",
+//   skillLevel: 'Elementary',
+//   tutoredSubjects: ['Flutter', 'Dart', 'Statistics'],
+//   tutorExpertise: 'Expert',
+//   //education: [educationHistory1],
+//   languages: ['English', 'Spanish'],
+//   languageProficiency: ['Native', 'Basic'],
+//   hourlyRate: 25.0,
+//   profileHeadline: 'I will help you understand Flutter!',
+//   profileOverview: 'Hey there, I love math and I love '
+//       'helping people explore math in simply ways that '
+//       'are easy to understand and remember! Send me a '
+//       'message and see how I can help YOU become a math '
+//       'WHIZ!',
+//   profilePicImgUrl: null,
+//   tutorCountry: 'Canada',
+//   tutorStreetAdd: '3220 Colebrook Court',
+//   tutorCity: 'Mississauga',
+//   tutorProvinceState: 'Ontario',
+//   tutorPostal: 'L5N3E2',
+//   phone: "(416) 987-1234",
+//   isCompleted: true,
+// );

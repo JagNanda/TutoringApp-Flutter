@@ -1,15 +1,43 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 
 
-class CreateTutor11SummaryPage extends StatelessWidget {
-  final TutorProfile tutorProfile;
+class CreateTutor11SummaryPage extends StatefulWidget {
+  final TutorProfile profile;
 
   const CreateTutor11SummaryPage({
     Key key,
-    @required this.tutorProfile,
+    @required this.profile,
   }) : super(key: key);
+
+  @override
+  _CreateTutor11SummaryPageState createState() => _CreateTutor11SummaryPageState();
+}
+
+class _CreateTutor11SummaryPageState extends State<CreateTutor11SummaryPage> {
+
+  noHeadlineAlertDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("No Headline!"),
+            content: Text("Give your profile a headline to continue"),
+            actions: <Widget>[
+              MaterialButton(
+                elevation: 5.0,
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +66,9 @@ class CreateTutor11SummaryPage extends StatelessWidget {
                         border: OutlineInputBorder(),
                         labelText: 'Profile Headline',  //TODO: Populate with existing headline
                       ),
+                      onChanged: (String val) {
+                        widget.profile.profileHeadline = val;
+                      },
                     ),
                     SizedBox(height: 10),
                     RaisedButton(
@@ -49,9 +80,16 @@ class CreateTutor11SummaryPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: (){
-                        //tutorProfile.skillLevel = "Elementary";// TODO: onPressed update headline of tutorProfile
-                        Navigator.pop(context);
-                        print("Update Headline pressed");
+                        setState(() {});
+                        if(widget.profile.profileHeadline == null){
+                          print(">>>  ALERT DIALOG  <<<<");  //TODO: REMOVE PRINT STATEMENT
+                          noHeadlineAlertDialog(context);
+                        }
+                        else
+                        {
+                          Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => CreateTutor7OverviewPage(profile: widget.profile)));
+                        }
                       },
                     ),
                   ],

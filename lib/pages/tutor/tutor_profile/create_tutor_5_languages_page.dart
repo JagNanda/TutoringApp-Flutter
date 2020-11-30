@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 
 import 'ListItem.dart';
 
@@ -17,7 +18,8 @@ class CreateTutor5LanguagesPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CreateTutor5LanguagesPageState createState() => _CreateTutor5LanguagesPageState();
+  _CreateTutor5LanguagesPageState createState() =>
+      _CreateTutor5LanguagesPageState();
 }
 
 class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
@@ -77,8 +79,10 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
     ListItem(2, "I write in the language decently"),
     ListItem(3, "I write and speak this language well"),
     ListItem(4, "I write and speak this language almost perfectly"),
-    ListItem(5, "I write and speak this language perfectly, including colloquialisms"),
+    ListItem(5,
+        "I write and speak this language perfectly, including colloquialisms"),
   ];
+
   // endregion
 
   // region variable declarations
@@ -89,28 +93,55 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
   String proficiencyComment = "";
   bool showAddButton = false;
   bool showProficiencyDropdown = false;
-  bool noLanguage = true;
+  bool hasLanguage = false;
 
   bool disableProficiency = true;
   String langNoFluency = "Please indicate your fluency.";
 
   // #endregion
 
+  noLanguagesAlertDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("No languages selected"),
+            content: Text("Please add at least one language"),
+            actions: <Widget>[
+              MaterialButton(
+                elevation: 5.0,
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
   void initState() {
     super.initState();
     _languageDropdownMenuItems = buildDropDownMenuItems(_languageDropdownItems);
     _selectedLanguageItem = _languageDropdownMenuItems[0].value;
-    _proficiencyDropdownMenuItems = buildDropDownMenuItems(_proficiencyDropdownItems);
+    _proficiencyDropdownMenuItems =
+        buildDropDownMenuItems(_proficiencyDropdownItems);
     _selectedProficiencyItem = _proficiencyDropdownMenuItems[0].value;
-    if (widget.profile.languages == null) widget.profile.languages = new List<String>();
+    if (widget.profile.languages == null)
+      widget.profile.languages = new List<String>();
+    if (widget.profile.languageProficiency == null)
+      widget.profile.languageProficiency = new List<String>();
+
+    // widget.profile.languages.add("English");
+    // widget.profile.languageProficiency.add("Basic");
   }
 
   @override
   Widget build(BuildContext context) {
     if (widget.profile.languages.length < 1) {
-      noLanguage = true;
+      hasLanguage = false;
     } else {
-      noLanguage = false;
+      hasLanguage = true;
     } // If no language has been selected, show prompt
 
     //Page Build
@@ -140,7 +171,8 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
                       items: _languageDropdownMenuItems,
                       onChanged: (value) {
                         _selectedLanguageItem = value;
-                        _selectedProficiencyItem = _proficiencyDropdownMenuItems[0]
+                        _selectedProficiencyItem = _proficiencyDropdownMenuItems[
+                                0]
                             .value; // resets the fluency level when the language is changed
                         setState(() {
                           controlAddLanguageButtonVisibility();
@@ -156,11 +188,9 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
                     SizedBox(height: 10),
                     if (showAddButton) buildAddButton(),
                     SizedBox(height: 10),
-                    if (noLanguage)
-                      Text(
-                          "Please press add Language to add languages or press on a language to remove it."),
+                    if (hasLanguage) Text("press on a language to remove it."),
                     SizedBox(height: 10),
-                    buildKnownLanguagesListView(),
+                    if (hasLanguage) buildKnownLanguagesListView(),
                     SizedBox(height: 10),
                     RaisedButton(
                       color: Colors.blue,
@@ -168,11 +198,24 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
                         "Done",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: () {
+                        print(widget.profile.languages); //TODO: REMOVE PRINT STATEMENT
                         setState(() {});
-                        Navigator.pop(context);
+                        if (widget.profile.languages.length < 1) {
+                          print(
+                              ">>>  ALERT DIALOG  <<<<"); //TODO: REMOVE PRINT STATEMENT
+                          noLanguagesAlertDialog(context);
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      CreateTutor9LocationPage(
+                                          profile: widget.profile)));
+                        }
                       },
                     ),
                   ],
@@ -214,8 +257,8 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
             // child: Padding(
             //   padding: const EdgeInsets.all(16.0),
             trailing: Icon(Icons.highlight_remove),
-            subtitle: Text(widget
-                .profile.languageProficiency[index]), // <-- subtitle //TODO: mark for future use
+            subtitle: Text(widget.profile.languageProficiency[index]),
+            // <-- subtitle //TODO: mark for future use
             title: Text(
               widget.profile.languages[index],
               style: TextStyle(fontSize: 22.0),
@@ -251,6 +294,11 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       padding: EdgeInsets.all(20),
       onPressed: () {
+        print("<<<LOG>>>"); //TODO: REMOVE PRINT STATEMENT
+        print(widget.profile.languages); //TODO: REMOVE PRINT STATEMENT
+
+        print("<<<LOG>>>"); //TODO: REMOVE PRINT STATEMENT
+
         // if the language is not in the list, add it and it's fluency
         if (!widget.profile.languages.contains(_selectedLanguageItem.text)) {
           widget.profile.languages.add(_selectedLanguageItem.text);
@@ -262,9 +310,11 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
             // find the language in question
             if (widget.profile.languages[i] == _selectedLanguageItem.text) {
               // Check the list of languages to see if language has correct fluency
-              if (widget.profile.languageProficiency[i] != _selectedProficiencyItem.text) {
+              if (widget.profile.languageProficiency[i] !=
+                  _selectedProficiencyItem.text) {
                 // if the selected fluency is not the current fluency for that language, update it
-                widget.profile.languageProficiency[i] = _selectedProficiencyItem.text;
+                widget.profile.languageProficiency[i] =
+                    _selectedProficiencyItem.text;
               }
             }
           }
@@ -299,7 +349,8 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
   }
 
   void controlAddLanguageButtonVisibility() {
-    if (_selectedLanguageItem.value == 1 || _selectedProficiencyItem.value == 1) {
+    if (_selectedLanguageItem.value == 1 ||
+        _selectedProficiencyItem.value == 1) {
       showAddButton = false;
     } else {
       showAddButton = true;

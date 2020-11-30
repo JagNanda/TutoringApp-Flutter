@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 
 class CreateTutor2SubjectsPage extends StatefulWidget {
   final TutorProfile profile;
@@ -18,6 +19,28 @@ class CreateTutor2SubjectsPage extends StatefulWidget {
 }
 
 class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
+  noSubjectsAlertDialog(BuildContext context)
+  {
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        title: Text("No subjects selected"),
+        content: Text("Please select at least one subject to tutor"),
+        actions: <Widget>[
+          MaterialButton(
+            elevation: 5.0,
+            child: Text('Ok'),
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
+          )
+        ],
+      );
+
+    });
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     // region creates subject list 'List<String> subjects'
@@ -61,8 +84,10 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
       "Project Management",
     ];
     // endregion creates subject list
-
-    Color color = Colors.blueGrey;
+    if(widget.profile.tutoredSubjects == null)
+      {
+        widget.profile.tutoredSubjects = [""];
+      }
     return Scaffold(
       body: Column(
         children: [
@@ -70,7 +95,7 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                widget.profile.tutorId + ", please add some subjects you would like to tutor:",
+                "Please add some subjects you would like to tutor:",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               padding: EdgeInsets.all(20),
@@ -80,6 +105,7 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
           Container(
             child: Column(
               children: [
+                Text("Current Selections: "),
                 for (var sub in widget.profile.tutoredSubjects) Text(sub),
               ],
             ),
@@ -112,16 +138,12 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
                             //trailing: Icon(Icons.group_add_outlined, color: color,),
                             onTap: () {
                               setState(() {
-                                widget.profile.tutoredSubjects = widget.profile.tutoredSubjects;
-                                color = Colors.red;
                               });
 
                               // Create Subject List if Null
                               if (widget.profile.tutoredSubjects == null) {
                                 // The list of subjects is null
                                 widget.profile.tutoredSubjects = new List<String>();
-                                // TODO: onTap Change Icon/card to indicate selected
-
                               }
 
                               // List is not null
@@ -133,7 +155,7 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
                                 } else {
                                   // The list of subjects is not empty, but does not contain this subject
                                   widget.profile.tutoredSubjects.add(
-                                      subjects[index]); //TODO: Update Icons for selected courses
+                                      subjects[index]);
                                 }
                               } else {
                                 // The list of subjects is Empty
@@ -166,8 +188,23 @@ class _CreateTutor2SubjectsPageState extends State<CreateTutor2SubjectsPage> {
               setState(() {
                 widget.profile.tutoredSubjects = widget.profile.tutoredSubjects;
               });
-              Navigator.pop(context);
-              print("Update Tutored subjects with selections"); //TODO: remove debug print
+              // print(widget.profile.tutoredSubjects.length); //TODO: REMOVE PRINT STATEMENT
+              // int count = 1; //TODO: REMOVE PRINT STATEMENT
+              // for(var sub in widget.profile.tutoredSubjects) //TODO: REMOVE PRINT STATEMENT
+              //   {
+              //     print(sub + count.toString());
+              //     count++;
+              //   }
+
+              if(widget.profile.tutoredSubjects.length <=1){
+                //print(">>>  ALERT DIALOG  <<<<");  //TODO: REMOVE PRINT STATEMENT
+                noSubjectsAlertDialog(context);
+              }
+              else
+              {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => CreateTutor5LanguagesPage(profile: widget.profile)));
+              }
             },
           ),
         ],

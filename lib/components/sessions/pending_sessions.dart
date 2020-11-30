@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/constants.dart';
-import 'package:tutoring_app_flutter/components/sessions/session_details.dart';
+import 'package:tutoring_app_flutter/pages/Sessions/session_details.dart';
+//import 'package:tutoring_app_flutter/components/sessions/session_details.dart';
 
 class PendingSession extends StatefulWidget {
   //TODO: make constructor params required after db is connected

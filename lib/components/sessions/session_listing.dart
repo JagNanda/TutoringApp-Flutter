@@ -1,40 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:tutoring_app_flutter/components/sessions/session_request.dart';
 import 'package:tutoring_app_flutter/constants.dart';
-import 'package:tutoring_app_flutter/components/sessions/session_details.dart';
+import 'package:tutoring_app_flutter/pages/Sessions/session_details.dart';
 
-class CurrentSession extends StatefulWidget {
+class SessionListing extends StatefulWidget {
   //TODO: make constructor params required after db is connected
   final String title;
   final String date;
   final String name;
-  final String profilePicture;
 
-  CurrentSession({this.title, this.date, this.name, this.profilePicture});
+  SessionListing({this.title, this.date, this.name});
 
   @override
-  _CurrentSessionState createState() => _CurrentSessionState();
+  _SessionListingState createState() => _SessionListingState();
 }
 
-class CSessionUsers {
-  String name;
-  String date;
-
-  CSessionUsers({this.name, this.date});
-}
-
-class _CurrentSessionState extends State<CurrentSession> {
-  List<CSessionUsers> sessionUsers;
+class _SessionListingState extends State<SessionListing> {
   @override
   void initState() {
     super.initState();
-    //remove name once db in implemented
-    sessionUsers = [
-      CSessionUsers(name: "Brandon", date: "Nov 13th 2020"),
-      CSessionUsers(name: "Brian", date: "Nov 14th 2020"),
-      CSessionUsers(name: "Jag", date: "Nov 15th 2020"),
-      CSessionUsers(name: "Ryan", date: "Nov 16th 2020")
-    ];
   }
 
   @override

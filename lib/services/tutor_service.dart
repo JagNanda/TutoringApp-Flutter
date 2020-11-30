@@ -2,10 +2,50 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 
 class TutorService {
   final String baseUrl = "http://10.0.2.2:5000/api/tutors";
   final sharedPrefs = SharedPreferences.getInstance();
+
+  //get a tutor profile by id
+  Future<dynamic> getTutorById(String tutorId) async {
+    http.Response tutorProfileResp = await http.get("$baseUrl/tutor/$tutorId");
+    if (tutorProfileResp.statusCode == 200) {
+      var profile = jsonDecode(tutorProfileResp.body);
+      return profile;
+    }
+    return null;
+  }
+
+  //create a tutor
+  Future<bool> createTutorProfile(TutorProfile profile) async {
+    bool success = false;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String userId = prefs.getString("userId");
+    String token = prefs.getString("token");
+    http.Response resp = await http.post(
+      "$baseUrl/$userId",
+      headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
+      body: jsonEncode(<dynamic, dynamic>{
+        'skillLevel': profile.skillLevel,
+        'headline': profile.profileHeadline,
+        'bio': profile.profileOverview,
+        'tutorExpertise': profile.tutorExpertise,
+        'hourlyRate': profile.hourlyRate,
+        'subjects': profile.tutoredSubjects,
+        'languages': profile.languages,
+        'languageProficiency': profile.languageProficiency,
+        'city': profile.tutorCity,
+        'province': profile.tutorProvinceState
+      }),
+    );
+    if (resp.statusCode == 200) {
+      success = true;
+    }
+    print(resp.statusCode);
+    return success;
+  }
 
   Future<dynamic> getTutorProfiles() async {
     http.Response tutorProfilesResp = await http.get("$baseUrl/all");
@@ -13,7 +53,7 @@ class TutorService {
       var allPosts = jsonDecode(tutorProfilesResp.body);
       return allPosts;
     }
-    return tutorProfilesResp.statusCode;
+    return null;
   }
 
   //can include a comma seperated list with subjects to search for
@@ -85,6 +125,9 @@ class TutorService {
     }
     return success;
   }
+
+  //create Session Request
+  Future<bool> CreateSessionRequest() async {}
 }
 
 /*

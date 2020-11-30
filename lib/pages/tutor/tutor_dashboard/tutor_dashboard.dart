@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 import 'jobs_tab/tutor_dashboard_jobs_favourites.dart';
 import 'jobs_tab//tutor_dashboard_jobs_my_students.dart';
 import 'jobs_tab//tutor_dashboard_jobs_search_page.dart';
@@ -12,10 +14,25 @@ class TutorDashboard extends StatefulWidget {
 class _TutorDashboardState extends State<TutorDashboard> {
   int selectedIndex = 0;
   BottomNavigationBar _bottomNavigationBar;
+  List<Widget> _widgetOptions;
+  String tutorId;
+
+  Future<Null> getTutorId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    tutorId = prefs.getString("tutorId");
+  }
 
   @override
   void initState() {
     super.initState();
+    getTutorId();
+    _widgetOptions = <Widget>[
+      TutorDashboardJobsHome(),
+      MainTutorProfile(id: tutorId),
+      //TODO: Replace with sessions once done
+      //TODO: Replace with chat once done
+      //TODO: Replace with profile once done
+    ];
     _bottomNavigationBar = BottomNavigationBar(
       currentIndex: selectedIndex,
       onTap: changeTabs,
@@ -29,13 +46,6 @@ class _TutorDashboardState extends State<TutorDashboard> {
       ],
     );
   }
-
-  static List<Widget> _widgetOptions = <Widget>[
-    TutorDashboardJobsHome(),
-    //TODO: Replace with sessions once done
-    //TODO: Replace with chat once done
-    //TODO: Replace with profile once done
-  ];
 
   changeTabs(int index) {
     setState(() {

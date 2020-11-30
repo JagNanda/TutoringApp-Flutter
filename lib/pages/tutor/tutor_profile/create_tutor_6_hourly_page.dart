@@ -127,6 +127,7 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
                         }
                         else
                         {
+                          widget.profile.isCompleted = true;
                           //TODO: Make API call to create tutorProfile then pass tutorId below to MainProfilePage
 
                           if(Navigator.canPop(context))

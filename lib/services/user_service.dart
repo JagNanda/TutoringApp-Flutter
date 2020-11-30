@@ -8,7 +8,14 @@ class UserService {
 
   //check if user has a tutor profile
   Future<bool> hasTutorProfile() async {
-    bool hasTutorProfile = false;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String tutorId = preferences.getString("tutorId");
+    if (tutorId != null) {
+      return true;
+    } else {
+      return false;
+    }
+    /*bool hasTutorProfile = false;
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String userId = preferences.getString("userId");
     String token = preferences.getString("token");
@@ -26,7 +33,7 @@ class UserService {
         hasTutorProfile = false;
       }
     }
-    return hasTutorProfile;
+    return hasTutorProfile;*/
   }
 
   //login user using email and password and store token, userId, and tuteeId in sharedPrefs
@@ -59,6 +66,10 @@ class UserService {
         var user = jsonDecode(userIdResponse.body);
         sharedPrefs.setString("userId", user["_id"]);
         sharedPrefs.setString("tuteeId", user["tuteeId"]);
+        //check if user has tutorId and add to sharedPrefs if they do
+        if (user["tutorId"] != null) {
+          sharedPrefs.setString("tutorId", user["tutorId"]);
+        }
       }
     } else {
       print(resp.statusCode);
@@ -84,9 +95,7 @@ class UserService {
       }),
     );
 
-
     if (resp.statusCode == 200) {
-
       //user token to get their userid
       var body = jsonDecode(resp.body);
       String token = body["token"];
@@ -97,9 +106,7 @@ class UserService {
         headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
       ).catchError((err) => print("header err $err"));
 
-
       if (userIdResponse.statusCode == 200) {
-
         var user = jsonDecode(userIdResponse.body);
         var userId = user["_id"];
         print("auth success: $userId");
@@ -108,7 +115,6 @@ class UserService {
           "$baseUrl/tutees/$userId",
           headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
         );
-
 
         if (profileResponse.statusCode == 200) {
           success = true;

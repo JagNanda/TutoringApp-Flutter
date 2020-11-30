@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/constants.dart';
+import 'package:tutoring_app_flutter/services/tutor_service.dart';
 
 class StudentPostListing extends StatefulWidget {
-  //TODO: make constructor params required after db is connected
+  final String id;
   final String title;
   final String budgetRange;
   final String date;
   final String levelOfEducation;
   final String subject;
   final String description;
+  final bool favorite;
   final bool showSavedIcon; //dont want the student to be able to favorite their own posts
 
   StudentPostListing({
-    @required this.title,
+    this.title,
+    this.id,
     this.budgetRange,
     this.date,
     this.levelOfEducation,
     this.subject,
     this.description,
+    this.favorite = false,
     this.showSavedIcon = false,
   });
 
@@ -26,8 +30,7 @@ class StudentPostListing extends StatefulWidget {
 }
 
 class _StudentPostListingState extends State<StudentPostListing> {
-  //TODO: remove favorite and put in the constructor instead after db implementation
-  bool favorite = false;
+  bool favorite;
   bool isExpanded = false;
   String longDescription;
   String shortDescription;
@@ -39,10 +42,11 @@ class _StudentPostListingState extends State<StudentPostListing> {
     // TODO: Remove longDescription after db implementation
     longDescription = widget.description;
     // TODO: description must be over 40 characters so this will always work
-    shortDescription = longDescription.substring(0, 39);
+    shortDescription = longDescription.substring(0, (longDescription.length / 2).round());
     DateTime dateCreated = DateTime.parse(widget.date);
     formattedDateCreated =
         "${dateCreated.year}-${dateCreated.month.toString().padLeft(2, '0')}-${dateCreated.day.toString().padLeft(2, '0')}";
+    favorite = widget.favorite;
   }
 
   @override
@@ -67,9 +71,13 @@ class _StudentPostListingState extends State<StudentPostListing> {
                   child: favorite == true
                       ? Icon(Icons.favorite, color: Colors.pink)
                       : Icon(Icons.favorite_border),
-                  onTap: () {
+                  onTap: () async {
+                    if (favorite == false) {
+                      await TutorService().addStudentPostToTutorFavorites(widget.id);
+                    } else {
+                      await TutorService().removeFavoritePostFromTutor(widget.id);
+                    }
                     setState(() {
-                      //TODO: database call to save as favorite
                       favorite = !favorite;
                     });
                   },

@@ -66,12 +66,18 @@ class _StudentDashboardPostingsState extends State<StudentDashboardPostings> {
           if (snapshot.connectionState != ConnectionState.done) {
             return SizedBox(child: CircularProgressIndicator(), width: 70, height: 70);
           } else {
-            return ListView.builder(
-              itemCount: snapshot.data.length,
-              itemBuilder: (BuildContext context, int index) {
-                return snapshot.data[index];
-              },
-            );
+            return snapshot.data.length == 0
+                ? Center(
+                    child: Text(
+                    "You haven't created any Posts yet.",
+                    textAlign: TextAlign.center,
+                  ))
+                : ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return snapshot.data[index];
+                    },
+                  );
           }
         },
       ),

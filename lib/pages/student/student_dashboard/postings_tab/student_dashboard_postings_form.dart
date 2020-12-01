@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tutoring_app_flutter/models/student_post.dart';
 import 'package:tutoring_app_flutter/services/student_post_service.dart';
 import 'package:tutoring_app_flutter/utils/education_levels.dart';
@@ -39,6 +40,7 @@ class _StudentDashboardPostingsFormState extends State<StudentDashboardPostingsF
                     changed: (String val) {
                       postTitle = val;
                     },
+                    fieldMaxLength: 40,
                   ),
                   SizedBox(height: 10),
                   DropdownButtonFormField(
@@ -59,6 +61,7 @@ class _StudentDashboardPostingsFormState extends State<StudentDashboardPostingsF
                         child: CreatePostTextFormField(
                           label: "Min",
                           inputBorder: OutlineInputBorder(),
+                          numsOnly: true,
                           changed: (String min) {
                             setState(() {
                               budgetMin = int.parse(min);
@@ -72,6 +75,7 @@ class _StudentDashboardPostingsFormState extends State<StudentDashboardPostingsF
                         child: CreatePostTextFormField(
                           label: "Max",
                           inputBorder: OutlineInputBorder(),
+                          numsOnly: true,
                           changed: (String max) {
                             setState(() {
                               budgetMax = int.parse(max);
@@ -99,6 +103,7 @@ class _StudentDashboardPostingsFormState extends State<StudentDashboardPostingsF
                   CreatePostTextFormField(
                     label: "Description",
                     inputBorder: OutlineInputBorder(),
+                    fieldMaxLength: 240,
                     multiLine: true,
                     changed: (String val) {
                       description = val;
@@ -152,6 +157,8 @@ class CreatePostTextFormField extends StatelessWidget {
   final bool multiLine;
   final bool useValidator;
   final Function validatorFunc;
+  final int fieldMaxLength;
+  final bool numsOnly;
 
   CreatePostTextFormField({
     @required this.label,
@@ -160,6 +167,8 @@ class CreatePostTextFormField extends StatelessWidget {
     this.multiLine = false,
     this.useValidator = false,
     this.validatorFunc,
+    this.fieldMaxLength,
+    this.numsOnly = false,
   });
 
   @override
@@ -171,9 +180,19 @@ class CreatePostTextFormField extends StatelessWidget {
         isDense: true,
         contentPadding: EdgeInsets.all(10),
       ),
-      keyboardType: multiLine == true ? TextInputType.multiline : TextInputType.text,
+      keyboardType: multiLine == true
+          ? TextInputType.multiline
+          : numsOnly
+              ? TextInputType.number
+              : TextInputType.text,
       maxLines: multiLine == true ? 10 : 1,
+      maxLength: fieldMaxLength,
       onChanged: changed,
+      inputFormatters: numsOnly
+          ? <TextInputFormatter>[
+              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+            ]
+          : null,
       validator: useValidator == true
           ? validatorFunc
           : (val) {

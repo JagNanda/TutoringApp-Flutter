@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/components/sessions/completed_sessions.dart';
 
-class SessionDashboardCompleted extends StatefulWidget {
+class SessionDashboardAccepted extends StatefulWidget {
   @override
-  _SessionDashboardCompletedState createState() => _SessionDashboardCompletedState();
+  _SessionDashboardAcceptedState createState() => _SessionDashboardAcceptedState();
 }
 
-class _SessionDashboardCompletedState extends State<SessionDashboardCompleted> {
+class _SessionDashboardAcceptedState extends State<SessionDashboardAccepted> {
   @override
   void initState() {
     super.initState();

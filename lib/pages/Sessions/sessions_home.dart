@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard_completed.dart';
+import 'package:tutoring_app_flutter/pages/Sessions/session_accepted_requests.dart';
+import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard_accepted.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/session_outgoing_requests.dart';
 
 class SessionsHome extends StatefulWidget {
@@ -14,7 +15,7 @@ class _SessionsHomeState extends State<SessionsHome> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -28,12 +29,7 @@ class _SessionsHomeState extends State<SessionsHome> {
             ),
             Tab(
               child: Column(
-                children: [Icon(Icons.bookmarks_outlined), Text("Current")],
-              ),
-            ),
-            Tab(
-              child: Column(
-                children: [Icon(Icons.check), Text("Completed")],
+                children: [Icon(Icons.check), Text("Accepted")],
               ),
             ),
           ]),
@@ -41,8 +37,7 @@ class _SessionsHomeState extends State<SessionsHome> {
         body: TabBarView(
           children: [
             SessionOutgoingRequests(isStudent: widget.isStudent),
-            SessionDashboardCompleted(),
-            SessionDashboardCompleted(),
+            SessionAcceptedRequests(isStudent: widget.isStudent),
           ],
         ),
       ),

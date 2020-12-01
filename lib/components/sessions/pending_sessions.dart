@@ -1,6 +1,7 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/constants.dart';
-import 'package:tutoring_app_flutter/components/sessions/session_details.dart';
+import 'file:///C:/Users/Jag/AndroidStudioProjects/TutoringApp-Flutter/lib/pages/session_details.dart';
 
 class PendingSession extends StatefulWidget {
   //TODO: make constructor params required after db is connected
@@ -9,13 +10,7 @@ class PendingSession extends StatefulWidget {
   final String name;
   final String profilePicture;
 
-
-  PendingSession({
-    this.title,
-    this.date,
-    this.name,
-    this.profilePicture
-  });
+  PendingSession({this.title, this.date, this.name, this.profilePicture});
 
   @override
   _PendingSessionState createState() => _PendingSessionState();
@@ -29,7 +24,6 @@ class _PendingSessionState extends State<PendingSession> {
 
     //remove name once db in implemented
     name = "Brandon";
-
   }
 
   @override
@@ -38,8 +32,7 @@ class _PendingSessionState extends State<PendingSession> {
       child: Container(
         decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
         padding: EdgeInsets.all(17),
-        child:
-        Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           //TODO: Replace placeholder text with class variables
           children: [
@@ -49,8 +42,8 @@ class _PendingSessionState extends State<PendingSession> {
                 GestureDetector(
                   child: new CircleAvatar(
                       radius: 35,
-                      backgroundImage: new NetworkImage("https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png")
-                  ),
+                      backgroundImage: new NetworkImage(
+                          "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png")),
                 ),
                 SizedBox(
                   width: 30,
@@ -73,13 +66,8 @@ class _PendingSessionState extends State<PendingSession> {
               crossAxisAlignment: CrossAxisAlignment.baseline,
               children: [
                 //SizedBox(width: 40),
-                Text(
-                    "October 13, 2020",
-                    textAlign: TextAlign.right,
-                    style: new TextStyle(
-                        fontWeight: FontWeight.bold
-                    )
-                ),
+                Text("October 13, 2020",
+                    textAlign: TextAlign.right, style: new TextStyle(fontWeight: FontWeight.bold)),
               ],
             ),
             SizedBox(
@@ -90,9 +78,10 @@ class _PendingSessionState extends State<PendingSession> {
           ],
         ),
       ),
-      onTap: (){
+      onTap: () {
         Navigator.push(context, new MaterialPageRoute(builder: (context) => new SessionDetails()));
       },
     );
   }
 }
+*/

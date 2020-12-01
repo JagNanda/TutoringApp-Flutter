@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/components/sessions/session_listing.dart';
 import 'package:tutoring_app_flutter/services/student_service.dart';
 
-class SessionDashboardCurrent extends StatefulWidget {
+class SessionOutgoingRequests extends StatefulWidget {
   @override
-  _SessionDashboardCurrentState createState() => _SessionDashboardCurrentState();
+  _SessionOutgoingRequestsState createState() => _SessionOutgoingRequestsState();
 }
 
-class _SessionDashboardCurrentState extends State<SessionDashboardCurrent> {
+class _SessionOutgoingRequestsState extends State<SessionOutgoingRequests> {
   @override
   void initState() {
     super.initState();
@@ -16,7 +16,6 @@ class _SessionDashboardCurrentState extends State<SessionDashboardCurrent> {
   Future<List<SessionListing>> loadAllSessions() async {
     List<dynamic> allSessions = await StudentService().getAllSessionRequests();
     return allSessions.map((session) {
-      print(session);
       return SessionListing(
         details: session["details"],
         firstName: session["userInfo"]["firstName"],

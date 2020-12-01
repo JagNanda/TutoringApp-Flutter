@@ -64,4 +64,23 @@ class StudentService {
 
     return success;
   }
+
+  //get all current sessions for students
+  Future<dynamic> getAllSessionRequests() async {
+    final sharedPrefs = await SharedPreferences.getInstance();
+    String token = sharedPrefs.getString("token");
+    String tuteeId = sharedPrefs.getString("tuteeId");
+
+    http.Response getSessionsReq = await http.get(
+      "$baseUrl/sessions/current/$tuteeId",
+      headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
+    );
+
+    if (getSessionsReq.statusCode == 200) {
+      var allCurrentSessions = jsonDecode(getSessionsReq.body);
+      return allCurrentSessions;
+    }
+
+    return null;
+  }
 }

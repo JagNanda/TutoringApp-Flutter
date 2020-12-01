@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/constants.dart';
-import 'package:tutoring_app_flutter/components/sessions/session_details.dart';
+import 'package:tutoring_app_flutter/pages/Sessions/session_details.dart';
 
 class CompletedSession extends StatefulWidget {
   //TODO: make constructor params required after db is connected
@@ -9,13 +9,7 @@ class CompletedSession extends StatefulWidget {
   final String name;
   final String profilePicture;
 
-
-  CompletedSession({
-    this.title,
-    this.date,
-    this.name,
-    this.profilePicture
-  });
+  CompletedSession({this.title, this.date, this.name, this.profilePicture});
 
   @override
   _CompletedSessionState createState() => _CompletedSessionState();
@@ -29,7 +23,6 @@ class _CompletedSessionState extends State<CompletedSession> {
 
     //remove name once db in implemented
     name = "Brandon";
-
   }
 
   @override
@@ -38,8 +31,7 @@ class _CompletedSessionState extends State<CompletedSession> {
       child: Container(
         decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
         padding: EdgeInsets.all(17),
-        child:
-        Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           //TODO: Replace placeholder text with class variables
           children: [
@@ -49,8 +41,8 @@ class _CompletedSessionState extends State<CompletedSession> {
                 GestureDetector(
                   child: new CircleAvatar(
                       radius: 35,
-                      backgroundImage: new NetworkImage("https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png")
-                  ),
+                      backgroundImage: new NetworkImage(
+                          "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png")),
                 ),
                 SizedBox(
                   width: 30,
@@ -62,7 +54,6 @@ class _CompletedSessionState extends State<CompletedSession> {
                     style: kPostTitleText,
                   ),
                 )
-
               ],
             ),
             SizedBox(
@@ -74,13 +65,8 @@ class _CompletedSessionState extends State<CompletedSession> {
               crossAxisAlignment: CrossAxisAlignment.baseline,
               children: [
                 //SizedBox(width: 40),
-                Text(
-                    "October 13, 2020",
-                    textAlign: TextAlign.right,
-                    style: new TextStyle(
-                        fontWeight: FontWeight.bold
-                    )
-                ),
+                Text("October 13, 2020",
+                    textAlign: TextAlign.right, style: new TextStyle(fontWeight: FontWeight.bold)),
               ],
             ),
             SizedBox(
@@ -91,7 +77,7 @@ class _CompletedSessionState extends State<CompletedSession> {
           ],
         ),
       ),
-      onTap: (){
+      onTap: () {
         Navigator.push(context, new MaterialPageRoute(builder: (context) => new SessionDetails()));
       },
     );

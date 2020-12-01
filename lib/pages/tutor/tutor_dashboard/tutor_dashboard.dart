@@ -15,20 +15,23 @@ class _TutorDashboardState extends State<TutorDashboard> {
   int selectedIndex = 0;
   BottomNavigationBar _bottomNavigationBar;
   List<Widget> _widgetOptions;
-  String tutorId;
-
+  /*String tutorId;*/
+/*
   Future<Null> getTutorId() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     tutorId = prefs.getString("tutorId");
-  }
+    print(tutorId);
+  }*/
 
   @override
   void initState() {
     super.initState();
-    getTutorId();
+/*    getTutorId();*/
     _widgetOptions = <Widget>[
       TutorDashboardJobsHome(),
-      MainTutorProfile(id: tutorId),
+      MainTutorProfile(
+        viewingOwnProfile: true,
+      ),
       //TODO: Replace with sessions once done
       //TODO: Replace with chat once done
       //TODO: Replace with profile once done

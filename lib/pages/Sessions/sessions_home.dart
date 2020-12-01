@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard_completed.dart';
-import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard_current.dart';
+import 'package:tutoring_app_flutter/pages/Sessions/session_outgoing_requests.dart';
+
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard_pending.dart';
 
 class SessionsHome extends StatefulWidget {
@@ -17,18 +18,30 @@ class _SessionsHomeState extends State<SessionsHome> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           centerTitle: true,
-          title: Text("Student Dashboard"),
+          title: Text("Sessions"),
           bottom: TabBar(tabs: [
-            Text('Current', style: TextStyle(fontSize: 20, height: .7)),
-            Text('Pending', style: TextStyle(fontSize: 20, height: .7)),
-            Text('Completed', style: TextStyle(fontSize: 20, height: .7))
+            Tab(
+              child: Column(
+                children: [Icon(Icons.arrow_forward), Text("Requests")],
+              ),
+            ),
+            Tab(
+              child: Column(
+                children: [Icon(Icons.bookmarks_outlined), Text("Current")],
+              ),
+            ),
+            Tab(
+              child: Column(
+                children: [Icon(Icons.check), Text("Completed")],
+              ),
+            ),
           ]),
         ),
         body: TabBarView(
           children: [
-            SessionDashboardCurrent(),
-            SessionDashboardPending(),
-            SessionDashboardCompleted()
+            SessionOutgoingRequests(),
+            SessionDashboardCompleted(),
+            SessionDashboardCompleted(),
           ],
         ),
       ),

@@ -4,20 +4,37 @@ import 'package:tutoring_app_flutter/pages/Sessions/session_details.dart';
 
 class SessionListing extends StatefulWidget {
   //TODO: make constructor params required after db is connected
-  final String title;
-  final String date;
-  final String name;
 
-  SessionListing({this.title, this.date, this.name});
+  final String firstName;
+  final String lastName;
+  final String subject;
+  final String details;
+  final String levelOfEducation;
+  final String date;
+
+  SessionListing(
+      {this.firstName,
+      this.lastName,
+      this.subject,
+      this.details,
+      this.date,
+      this.levelOfEducation});
 
   @override
   _SessionListingState createState() => _SessionListingState();
 }
 
 class _SessionListingState extends State<SessionListing> {
+  String initials;
+  String formattedDateCreated;
+
   @override
   void initState() {
     super.initState();
+    DateTime dateCreated = DateTime.parse(widget.date);
+    formattedDateCreated =
+        "${dateCreated.year}-${dateCreated.month.toString().padLeft(2, '0')}-${dateCreated.day.toString().padLeft(2, '0')}";
+    initials = widget.firstName[0] + widget.lastName[0];
   }
 
   @override
@@ -39,7 +56,7 @@ class _SessionListingState extends State<SessionListing> {
                       child: CircleAvatar(
                         radius: 35,
                         child: Text(
-                          'BH',
+                          initials,
                           style: TextStyle(color: Colors.white, fontSize: 35.0),
                         ),
                       ),
@@ -51,7 +68,7 @@ class _SessionListingState extends State<SessionListing> {
                 ),
                 Flexible(
                   child: new Text(
-                    "Upcoming Session with " + "Brian Holmes",
+                    "Upcoming Session with ${widget.firstName} ${widget.lastName}",
                     textAlign: TextAlign.center,
                     style: kPostTitleText,
                   ),
@@ -67,15 +84,10 @@ class _SessionListingState extends State<SessionListing> {
               crossAxisAlignment: CrossAxisAlignment.baseline,
               children: [
                 //SizedBox(width:),
-                Text("November 10, 2020",
+                Text(formattedDateCreated,
                     textAlign: TextAlign.center, style: new TextStyle(fontWeight: FontWeight.bold)),
               ],
             ),
-            SizedBox(
-              height: 4,
-            ),
-            SizedBox(height: 10),
-            SizedBox(height: 10),
           ],
         ),
       ),

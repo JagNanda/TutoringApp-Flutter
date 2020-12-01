@@ -16,16 +16,6 @@ class _SessionDashboardCompletedState extends State<SessionDashboardCompleted> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          padding: EdgeInsets.all(20),
-          child: TextField(
-            decoration: InputDecoration(
-              hintText: "Search your Sessions",
-              icon: Icon(Icons.search),
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-            ),
-          ),
-        ),
         Expanded(child: CompletedSession()),
       ],
     );

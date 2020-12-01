@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/sessions_home.dart';
+import 'package:tutoring_app_flutter/pages/messaging/messaging_page.dart';
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/postings_tab/student_dashboard_postings.dart';
 import 'package:tutoring_app_flutter/pages/student/student_dashboard/tutors_tab/student_dashboard_tutors_home.dart';
 
 class StudentDashboard extends StatefulWidget {
-
   @override
   _StudentDashboardState createState() => _StudentDashboardState();
 }
@@ -17,7 +17,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
     StudentDashboardTutorsHome(),
     //TODO(jag): Replace with messaging once done
     SessionsHome(),
-    SessionsHome(),
+    MessagingPage(),
     StudentDashboardPostings()
   ];
 

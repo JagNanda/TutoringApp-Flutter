@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/Sessions/session_request.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 import 'package:tutoring_app_flutter/services/tutor_service.dart';
 
@@ -241,10 +241,17 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                       style: TextStyle(color: Colors.white, fontSize: 18),
                                     ),
                                     color: Colors.green,
-                                    onPressed: () {
-                                      print("pressed");
-                                      /*Navigator.push(context,
-                                    new MaterialPageRoute(builder: (context) => new SessionRequest()));*/
+                                    onPressed: () async {
+                                      Navigator.push(
+                                          context,
+                                          new MaterialPageRoute(
+                                              builder: (context) => SessionRequest(
+                                                    tutorId: widget.id,
+                                                    cost: snapshot.data.hourlyRate,
+                                                    firstName: firstName,
+                                                    lastName: lastName,
+                                                    initials: initials,
+                                                  )));
                                     }),
                           ),
                         ]);

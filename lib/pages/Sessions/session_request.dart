@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tutoring_app_flutter/pages/messaging/messaging_page.dart';
+import 'package:tutoring_app_flutter/services/tutor_service.dart';
 import 'package:tutoring_app_flutter/utils/subjects.dart';
 //import 'package:tutoring_app_flutter/pages/DrawerMenu.dart';
 
 class SessionRequest extends StatefulWidget {
+  final String tutorId;
+  final String cost;
+  final String firstName;
+  final String lastName;
+  final String initials;
+
+  SessionRequest(
+      {@required this.tutorId,
+      @required this.cost,
+      @required this.firstName,
+      @required this.lastName,
+      @required this.initials});
   @override
   _SessionRequestState createState() => _SessionRequestState();
 }
-
-final String name = "Brian Holmes";
 
 class _SessionRequestState extends State<SessionRequest> {
   TextEditingController _controller = TextEditingController();
@@ -20,13 +31,14 @@ class _SessionRequestState extends State<SessionRequest> {
   int calculatedCost;
   String pickedSubject;
   String dropdownValue;
+  String details;
 
   @override
   void initState() {
     super.initState();
     _controller.text = "1";
     formattedDate = "";
-    cost = 20;
+    cost = int.parse(widget.cost);
     dropdownValue = "Math";
     pickedSubject = "Math";
   }
@@ -46,17 +58,17 @@ class _SessionRequestState extends State<SessionRequest> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               GestureDetector(
-                  child: Container(
-                    child: Center(
-                      child: CircleAvatar(
-                        radius: 35,
-                        child: Text(
-                          'BH',
-                          style: TextStyle(color: Colors.white, fontSize: 40.0),
-                        ),
+                child: Container(
+                  child: Center(
+                    child: CircleAvatar(
+                      radius: 35,
+                      child: Text(
+                        widget.initials,
+                        style: TextStyle(color: Colors.white, fontSize: 40.0),
                       ),
                     ),
                   ),
+                ),
               ),
             ],
           ),
@@ -69,7 +81,7 @@ class _SessionRequestState extends State<SessionRequest> {
                   height: 35.0,
                   child: Center(
                     child: Text(
-                      name,
+                      "${widget.firstName} ${widget.lastName}",
                       style: TextStyle(
                         fontSize: 20.0,
                         color: Colors.black,
@@ -236,8 +248,7 @@ class _SessionRequestState extends State<SessionRequest> {
           SizedBox(
             height: 4,
           ),
-
-        DropdownButton<String>(
+          DropdownButton<String>(
             value: dropdownValue,
             icon: Icon(Icons.arrow_downward),
             iconSize: 24,
@@ -253,8 +264,8 @@ class _SessionRequestState extends State<SessionRequest> {
                 pickedSubject = newValue;
               });
             },
-          items: subjects.map((s) => DropdownMenuItem(value: s, child: Text(s))).toList(),
-        ),
+            items: subjects.map((s) => DropdownMenuItem(value: s, child: Text(s))).toList(),
+          ),
           Row(
             children: <Widget>[
               Expanded(
@@ -278,13 +289,31 @@ class _SessionRequestState extends State<SessionRequest> {
             cursorHeight: 30,
             keyboardType: TextInputType.multiline,
             maxLines: 3,
+            decoration: InputDecoration(hintText: "Please enter some details"),
+            onChanged: (val) {
+              details = val;
+            },
           ),
           const SizedBox(height: 30),
           Builder(builder: (BuildContext context) {
             return RaisedButton(
-              onPressed: () {
-                /*Navigator.push(context, MaterialPageRoute(builder: (context) => MessagingPage()));*/
-                Scaffold.of(context).showSnackBar(SnackBar(content: Text("Session Request Sent!")));
+              onPressed: () async {
+                bool success = await TutorService().createSessionRequest(
+                  date: _dateTime,
+                  duration: _controller.text,
+                  subject: pickedSubject,
+                  details: details,
+                  totalCost: calculatedCost,
+                  tutorId: widget.tutorId,
+                );
+                print(success);
+                if (success) {
+                  Scaffold.of(context)
+                      .showSnackBar(SnackBar(content: Text("Session Request Sent!")));
+                } else {
+                  Scaffold.of(context).showSnackBar(
+                      SnackBar(content: Text("Please make sure all fields are filled")));
+                }
               },
               textColor: Colors.black,
               padding: const EdgeInsets.all(0.0),

@@ -62,7 +62,6 @@ class _LoginPageState extends State<LoginPage> {
                   color: Colors.green,
                   child: Text('Login', style: TextStyle(color: Colors.white, fontSize: 17.0)),
                   onPressed: () async {
-                    //TODO: Uncomment after presentation
                     UserService userService = new UserService();
                     bool success = await userService.loginUser(email: email, password: password);
                     if (success) {
@@ -71,9 +70,6 @@ class _LoginPageState extends State<LoginPage> {
                       settings: RouteSettings(name: '/portal',),
                       ));
                     }
-                    /*onPressed: ()  {//TODO remove
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => PortalPage(tutorProfile)));
-                  },*/
                   }),
             ),
             Builder(builder: (BuildContext context) {

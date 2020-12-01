@@ -55,7 +55,7 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
                         //tutorProfile.languages.add("Fluent");
                         Navigator.of(context).pushNamed('/create_tutor_hourly', arguments: tutorProfile);
                         print("Step forward Pressed");
-                      }, // TODO: onPressed add skillLevel to delegate and segue to new page
+                      },
                     ),
                   ],
                 ),
@@ -77,7 +77,7 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
                 onPressed: (){
                   Navigator.of(context).pushNamed('/create_tutor_education', arguments: tutorProfile);
                   print("Back Pressed");
-                }, // TODO: onPressed segue to previous page
+                },
               ),
               padding: EdgeInsets.all(20),
             ),

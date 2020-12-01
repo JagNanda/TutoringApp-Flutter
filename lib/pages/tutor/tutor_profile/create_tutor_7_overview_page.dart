@@ -69,25 +69,17 @@ class _CreateTutor7OverviewPageState extends State<CreateTutor7OverviewPage> {
                       textAlignVertical: TextAlignVertical.top,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Profile Overview',  //TODO: Populate with existing profile message
+                        labelText: 'Profile Overview',
                       ),
                       onChanged: (String val) {
                         widget.profile.profileOverview = val;
                       },
                     ),
-                    // SizedBox(height: 30),
-                    // SizedBox(
-                    //   child: Column(
-                    //     children: [
-                    //       if(widget.profile.profileOverview.isNotEmpty) Text('Current Overview: ' + widget.profile.profileOverview),
-                    //     ],
-                    //   ),
-                    // ),
                     SizedBox(height: 10),
                     RaisedButton(
                       color: Colors.blue,
                       child: Text(
-                        "Update Profile Messsage",
+                        "Update Profile Message",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),

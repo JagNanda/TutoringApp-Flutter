@@ -183,7 +183,6 @@
 //             //   padding: const EdgeInsets.all(16.0),
 //             trailing: Icon(Icons.highlight_remove),
 //             subtitle: Text(tutorProfile.languageProficiency[index]),
-//             // <-- subtitle //TODO: mark for future use
 //             title: Text(
 //               tutorProfile.languages[index],
 //               style: TextStyle(fontSize: 22.0),
@@ -238,7 +237,7 @@
 //               }
 //             }
 //           }
-//           // TODO: Remove the below block (print of languages for testing
+//
 //           print(">>>> Languages:");
 //           for (int i = 0; i < tutorProfile.languages.length; i++) {
 //             print(tutorProfile.languages[i]);
@@ -291,7 +290,7 @@
 //           ListTile(
 //             title: Text("Add your location: "),
 //           ),
-//           //TODO: Get name from userID
+//
 //           TextFormField(
 //             decoration: InputDecoration(
 //               border: OutlineInputBorder(),
@@ -328,7 +327,7 @@
 //             decoration: InputDecoration(
 //               border: OutlineInputBorder(),
 //               labelText:
-//                   'Tell students how you can help them learn', //TODO: Populate with existing profile message
+//                   'Tell students how you can help them learn',
 //             ),
 //           ),
 //           SizedBox(height: 30),
@@ -337,7 +336,6 @@
 //                 "What is the highest level of student you would like to tutor?"),
 //           ),
 //           SizedBox(height: 10),
-//           // TODO: Add dropDown for skillLevel
 //
 //           GestureDetector(
 //             child: Card(
@@ -353,7 +351,7 @@
 //                       builder: (context) =>
 //                           CreateTutor1LevelPage(tutorProfile: tutorProfile)));
 //               setState(() {
-//                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+//
 //               });
 //             },
 //           ),
@@ -397,7 +395,6 @@
 //                               style: TextStyle(fontSize: 22.0),
 //                             ),
 //                             subtitle: Text('Tap to add/remove a subject'),
-//                             // <-- subtitle //TODO: mark for future use
 //                             //trailing: Icon(Icons.group_add_outlined, color: color,),
 //                             onTap: () {
 //                               setState(() {
@@ -411,7 +408,6 @@
 //                                 // The list of subjects is null
 //                                 profile.tutoredSubjects =
 //                                     new List<String>();
-//                                 // TODO: onTap Change Icon/card to indicate selected
 //
 //                               }
 //
@@ -425,7 +421,7 @@
 //                                 } else {
 //                                   // The list of subjects is not empty, but does not contain this subject
 //                                   profile.tutoredSubjects.add(subjects[
-//                                       index]); //TODO: Update Icons for selected courses
+//                                       index]);
 //                                 }
 //                               } else {
 //                                 // The list of subjects is Empty
@@ -456,7 +452,7 @@
 //           ),
 //           SizedBox(height: 10),
 //
-//           // TODO: Add dropDown for experience
+//
 //           Card(
 //             child: ListTile(
 //               title: Center(
@@ -528,7 +524,7 @@
 //                   style: TextStyle(color: Colors.white, fontSize: 18),
 //                 ),
 //                 onPressed:
-//                     null), //TODO: Change color of button and text to -> "tap field to edit", and enable GestureDetectors
+//                     null),
 //           ),
 //         ]),
 //       ),

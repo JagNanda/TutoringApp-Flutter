@@ -65,7 +65,7 @@ class _CreateTutor11SummaryPageState extends State<CreateTutor11SummaryPage> {
                       initialValue:  widget.profile.profileHeadline,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Profile Headline',  //TODO: Populate with existing headline
+                        labelText: 'Profile Headline',
                       ),
                       onChanged: (String val) {
                         widget.profile.profileHeadline = val;
@@ -83,7 +83,6 @@ class _CreateTutor11SummaryPageState extends State<CreateTutor11SummaryPage> {
                       onPressed: (){
                         setState(() {});
                         if(widget.profile.profileHeadline == null){
-                          print(">>>  ALERT DIALOG  <<<<");  //TODO: REMOVE PRINT STATEMENT
                           noHeadlineAlertDialog(context);
                         }
                         else
@@ -93,14 +92,6 @@ class _CreateTutor11SummaryPageState extends State<CreateTutor11SummaryPage> {
                         }
                       },
                     ),
-                    // SizedBox(height: 30),
-                    // SizedBox(
-                    //   child: Column(
-                    //     children: [
-                    //       if(widget.profile.profileHeadline.isNotEmpty) Text('Current Headline: ' + widget.profile.profileHeadline),
-                    //     ],
-                    //   ),
-                    // ),
                   ],
                 ),
               ),

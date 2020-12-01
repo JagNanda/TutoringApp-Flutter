@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
-import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
-import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 import 'package:tutoring_app_flutter/services/tutor_service.dart';
 
 class CreateTutor6HourlyPage extends StatefulWidget {
@@ -122,7 +120,7 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
                         } else {
                           if (widget.profile.isEditingProfile == true) {
                             print('>>> Editing Profile <<<');
-                            //TODO: edit profile api call
+                            //TODO: 'edit profile' api call
                             // bool updated = await TutorService().updateTutorProfile(widget.profile);
                             // print(updated);
                             //  if (Navigator.canPop(context)) {
@@ -150,14 +148,3 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
     );
   }
 }
-
-/*
-*
-* NumberPicker.integer(
-                initialValue: _currentValue,
-                minValue: 0,
-                maxValue: 100,
-                onChanged: (newValue) =>
-                    setState(() => _currentValue = newValue)),
-*
-* */

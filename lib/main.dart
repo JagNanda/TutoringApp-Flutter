@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:tutoring_app_flutter/pages/portal_page.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 import 'pages/login_page.dart';
 
 void main() {
@@ -19,6 +20,7 @@ class TutoringApp extends StatelessWidget {
       home: LoginPage(),
       routes: {
         '/portal': (context) => PortalPage(),
+        // '/mainProfile': (context) => MainTutorProfile(),
       },
     );
   }

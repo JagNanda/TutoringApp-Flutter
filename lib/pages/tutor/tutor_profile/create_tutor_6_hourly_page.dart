@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
-import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
-import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 import 'package:tutoring_app_flutter/services/tutor_service.dart';
 
 class CreateTutor6HourlyPage extends StatefulWidget {
@@ -84,7 +82,8 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
                     SizedBox(height: 10),
                     Column(
                       children: [
-                        new TextField(
+                        new TextFormField(
+                          initialValue: widget.profile.hourlyRate,
                           decoration:
                               new InputDecoration(labelText: "Update your hourly rate in \$:"),
                           onChanged: (String val) {
@@ -119,10 +118,17 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
                         if (widget.profile.hourlyRate == null) {
                           noHourlyRateAlertDialog(context);
                         } else {
-                          //TODO: Make API call to create tutorProfile then pass tutorId below to MainProfilePage
                           if (widget.profile.isEditingProfile == true) {
-                            //edit profile api call
+                            print('>>> Editing Profile <<<');
+                            //TODO: 'edit profile' api call
+                            // bool updated = await TutorService().updateTutorProfile(widget.profile);
+                            // print(updated);
+                            //  if (Navigator.canPop(context)) {
+                            //    Navigator.of(context).popUntil(
+                            //        ModalRoute.withName('/portal'));
+                            //  }
                           } else {
+                            print('>>> Creating New Profile <<<');
                             bool created = await TutorService().createTutorProfile(widget.profile);
                             print(created);
                             if (created && Navigator.canPop(context)) {
@@ -142,14 +148,3 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
     );
   }
 }
-
-/*
-*
-* NumberPicker.integer(
-                initialValue: _currentValue,
-                minValue: 0,
-                maxValue: 100,
-                onChanged: (newValue) =>
-                    setState(() => _currentValue = newValue)),
-*
-* */

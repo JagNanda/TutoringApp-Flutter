@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
@@ -11,7 +12,6 @@ class TutorService {
   //get a tutor profile by id
   Future<dynamic> getTutorById(String tutorId) async {
     http.Response tutorProfileResp = await http.get("$baseUrl/tutor/$tutorId");
-    print(tutorProfileResp.statusCode);
     if (tutorProfileResp.statusCode == 200) {
       var profile = jsonDecode(tutorProfileResp.body);
       return profile;
@@ -25,12 +25,6 @@ class TutorService {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String userId = prefs.getString("userId");
     String token = prefs.getString("token");
-
-    //TODO: Remove Debug Print Statements
-    print("<<<< Prefs  >>>");
-    print(userId);
-    print(token);
-    print("<<<< Prefs  - end>>>");
 
     http.Response resp = await http.post(
       "$baseUrl/$userId",
@@ -50,8 +44,9 @@ class TutorService {
     );
     if (resp.statusCode == 200) {
       success = true;
+      var registrationInfo = jsonDecode(resp.body);
+      prefs.setString("tutorId", registrationInfo["tutorInfo"]["_id"]);
     }
-    print(resp.statusCode);
     return success;
   }
 
@@ -79,7 +74,6 @@ class TutorService {
     http.Response userResp = await http.get("$baseUrl/users/$userId");
     if (userResp.statusCode == 200) {
       var user = jsonDecode(userResp.body);
-      print(user.runtimeType);
       return user;
     }
     return userResp.statusCode;
@@ -98,7 +92,6 @@ class TutorService {
       var favPosts = jsonDecode(getResp.body);
       return favPosts;
     }
-    print("no favorite posts found");
     return null;
   }
 
@@ -127,29 +120,67 @@ class TutorService {
       "$baseUrl/post/$postId/$tutorId",
       headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
     );
-    print(remPostResp.statusCode);
     if (remPostResp.statusCode == 200) {
       success = true;
     }
     return success;
   }
 
+  //get incoming session requests for tutor
+  Future<dynamic> getAllSessionRequests() async {
+    final sharedPrefs = await SharedPreferences.getInstance();
+    String token = sharedPrefs.getString("token");
+    String tutorId = sharedPrefs.getString("tutorId");
+
+    http.Response getSessionsReq = await http.get(
+      "$baseUrl/sessions/requests/$tutorId",
+      headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
+    );
+    if (getSessionsReq.statusCode == 200) {
+      var allCurrentSessions = jsonDecode(getSessionsReq.body);
+      return allCurrentSessions;
+    }
+
+    return null;
+  }
+
   //create Session Request
-  Future<bool> CreateSessionRequest() async {}
+  Future<bool> createSessionRequest({date, duration, subject, details, totalCost, tutorId}) async {
+    /*api/tutors/request/:tutee_id/:tutor_id*/
+    bool success = false;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String tuteeId = prefs.getString("tuteeId");
+    String token = prefs.getString("token");
+    http.Response createSessionsReq = await http.post(
+      "$baseUrl/request/$tuteeId/$tutorId",
+      headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
+      body: jsonEncode(<String, String>{
+        'subject': subject,
+        'date': date.toString(),
+        'duration': duration,
+        'details': details,
+        'cost': totalCost.toString()
+      }),
+    );
+    if (createSessionsReq.statusCode == 200) {
+      success = true;
+    }
+    return success;
+  }
+
+  Future<bool> acceptSessionRequest({@required String tutorId, @required String requestId}) async {
+    bool success = false;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String tuteeId = prefs.getString("tuteeId");
+    String token = prefs.getString("token");
+    http.Response acceptSessionsReq = await http.post(
+      "$baseUrl/request/accept/$requestId/$tutorId/$tuteeId",
+      headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
+    );
+    print(acceptSessionsReq.statusCode);
+    if (acceptSessionsReq.statusCode == 200) {
+      success = true;
+    }
+    return success;
+  }
 }
-
-/*
-* final sharedPrefs = await SharedPreferences.getInstance();
-
-          http.Response userIdResponse = await http.get(
-          "$baseUrl/auth",
-          headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
-          ).catchError((err) => print("header err $err"));
-          if (userIdResponse.statusCode == 200) {
-          success = true;
-          var user = jsonDecode(userIdResponse.body);
-          sharedPrefs.setString("userId", user["_id"]);
-          sharedPrefs.setString("tuteeId", user["tuteeId"]);
-*
-*
-* */

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard_completed.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/session_outgoing_requests.dart';
 
-import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard_pending.dart';
-import 'package:tutoring_app_flutter/pages/Sessions/session_outgoing_requests.dart';
-
 class SessionsHome extends StatefulWidget {
+  final bool isStudent;
+
+  SessionsHome({@required this.isStudent});
   @override
   _SessionsHomeState createState() => _SessionsHomeState();
 }
@@ -40,7 +40,7 @@ class _SessionsHomeState extends State<SessionsHome> {
         ),
         body: TabBarView(
           children: [
-            SessionOutgoingRequests(),
+            SessionOutgoingRequests(isStudent: widget.isStudent),
             SessionDashboardCompleted(),
             SessionDashboardCompleted(),
           ],

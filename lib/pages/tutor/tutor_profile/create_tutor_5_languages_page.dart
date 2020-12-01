@@ -1,12 +1,8 @@
-//import 'dart:html';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
-
 import 'ListItem.dart';
 
 class CreateTutor5LanguagesPage extends StatefulWidget {
@@ -131,9 +127,6 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
       widget.profile.languages = new List<String>();
     if (widget.profile.languageProficiency == null)
       widget.profile.languageProficiency = new List<String>();
-
-    // widget.profile.languages.add("English");
-    // widget.profile.languageProficiency.add("Basic");
   }
 
   @override
@@ -171,9 +164,7 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
                       items: _languageDropdownMenuItems,
                       onChanged: (value) {
                         _selectedLanguageItem = value;
-                        _selectedProficiencyItem = _proficiencyDropdownMenuItems[
-                                0]
-                            .value; // resets the fluency level when the language is changed
+                        _selectedProficiencyItem = _proficiencyDropdownMenuItems[0].value; // resets the fluency level when the language is changed
                         setState(() {
                           controlAddLanguageButtonVisibility();
                         });
@@ -202,11 +193,8 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
                           borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: () {
-                        print(widget.profile.languages); //TODO: REMOVE PRINT STATEMENT
                         setState(() {});
                         if (widget.profile.languages.length < 1) {
-                          print(
-                              ">>>  ALERT DIALOG  <<<<"); //TODO: REMOVE PRINT STATEMENT
                           noLanguagesAlertDialog(context);
                         } else {
                           Navigator.push(
@@ -258,7 +246,6 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
             //   padding: const EdgeInsets.all(16.0),
             trailing: Icon(Icons.highlight_remove),
             subtitle: Text(widget.profile.languageProficiency[index]),
-            // <-- subtitle //TODO: mark for future use
             title: Text(
               widget.profile.languages[index],
               style: TextStyle(fontSize: 22.0),
@@ -294,16 +281,12 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       padding: EdgeInsets.all(20),
       onPressed: () {
-        print("<<<LOG>>>"); //TODO: REMOVE PRINT STATEMENT
-        print(widget.profile.languages); //TODO: REMOVE PRINT STATEMENT
-
-        print("<<<LOG>>>"); //TODO: REMOVE PRINT STATEMENT
-
         // if the language is not in the list, add it and it's fluency
         if (!widget.profile.languages.contains(_selectedLanguageItem.text)) {
           widget.profile.languages.add(_selectedLanguageItem.text);
           widget.profile.languageProficiency.add(_selectedProficiencyItem.text);
-        } else // Language is in list already
+        }
+        else // Language is in list already
         {
           // look through the list of languages
           for (int i = 0; i < widget.profile.languages.length; i++) {
@@ -317,12 +300,6 @@ class _CreateTutor5LanguagesPageState extends State<CreateTutor5LanguagesPage> {
                     _selectedProficiencyItem.text;
               }
             }
-          }
-          // TODO: Remove the below block (print of languages for testing
-          print(">>>> Languages:");
-          for (int i = 0; i < widget.profile.languages.length; i++) {
-            print(widget.profile.languages[i]);
-            print("    " + widget.profile.languageProficiency[i]);
           }
         }
         setState(() {}); // Updates list of language cards

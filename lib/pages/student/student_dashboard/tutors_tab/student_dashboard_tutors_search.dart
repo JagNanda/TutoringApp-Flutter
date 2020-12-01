@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tutoring_app_flutter/components/tutor/tutor_profile_listing.dart';
 import 'package:tutoring_app_flutter/services/student_service.dart';
 import 'package:tutoring_app_flutter/services/tutor_service.dart';
@@ -17,23 +18,28 @@ class _StudentDashBoardTutorsSearchState extends State<StudentDashBoardTutorsSea
     //check if tutor already favorited
     List<dynamic> favouriteProfiles = await StudentService().getFavouriteTutors();
 
+    //check if user profile is in the list of profiles and dont include it
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String studentsTutorId = prefs.getString("tutorId");
+
     return allProfiles.map((profile) {
-      //TODO:Return gesture detector wrapper that passes a tutorId to tutor profile page one profile page is done
-      String id = profile["_id"];
-      bool favorited = false;
-      favouriteProfiles.forEach((element) {
-        if (element["_id"] == id) {
-          favorited = true;
-        }
-      });
-      return TutorProfileListing(
-        id: id,
-        bio: profile["bio"],
-        name: "${profile["userInfo"]["firstName"]} ${profile["userInfo"]["lastName"]}",
-        hourlyRate: profile["hourlyRate"].toString(),
-        subjects: profile["subjects"],
-        favorite: favorited,
-      );
+      String tutorId = profile["_id"];
+      if (studentsTutorId == null || studentsTutorId != tutorId) {
+        bool favorited = false;
+        favouriteProfiles.forEach((element) {
+          if (element["_id"] == tutorId) {
+            favorited = true;
+          }
+        });
+        return TutorProfileListing(
+          id: tutorId,
+          bio: profile["bio"],
+          name: "${profile["userInfo"]["firstName"]} ${profile["userInfo"]["lastName"]}",
+          hourlyRate: profile["hourlyRate"].toString(),
+          subjects: profile["subjects"],
+          favorite: favorited,
+        );
+      }
     }).toList();
   }
 

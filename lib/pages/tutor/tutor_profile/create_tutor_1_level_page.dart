@@ -50,14 +50,13 @@ class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         padding: EdgeInsets.all(20),
                         onPressed: () {
-                          //widget.tutorProfile.skillLevel = "Elementary"; //TODO: remove
                           setState(() {
                            widget.profile.skillLevel = "Elementary";
                           });
                           Navigator.push(
                               context, MaterialPageRoute(builder: (context) => CreateTutor2SubjectsPage(profile: widget.profile)));
                           print("Elementary Pressed");
-                        }, // TODO: onPressed add skillLevel to delegate and segue to new page
+                        },
                       ),
                       width: double.maxFinite,
                     ),
@@ -72,14 +71,13 @@ class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         padding: EdgeInsets.all(20),
                         onPressed: () {
-                          //widget.tutorProfile.skillLevel = "High School";//TODO: remove
                           setState(() {
                             widget.profile.skillLevel = "High School";
                           });
                           Navigator.push(
                               context, MaterialPageRoute(builder: (context) => CreateTutor2SubjectsPage(profile: widget.profile)));
                           print("High School Pressed");
-                        }, // TODO: onPressed add skillLevel to delegate and segue to new page
+                        },
                       ),
                       width: double.maxFinite,
                     ),
@@ -94,7 +92,6 @@ class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                         padding: EdgeInsets.all(20),
                         onPressed: () {
-                          //widget.tutorProfile.skillLevel = "College / University";//TODO: remove
                           setState(() {
                             widget.profile.skillLevel = "College / University";
                           });
@@ -111,26 +108,6 @@ class _CreateTutor1LevelPageState extends State<CreateTutor1LevelPage> {
               ),
             ),
           ),
-          // Expanded(
-          //   child: Container(
-          //     alignment: Alignment.bottomCenter,
-          //     child: RaisedButton(
-          //       color: Colors.grey,
-          //       child: Text(
-          //         "Back",
-          //         style: TextStyle(color: Colors.white, fontSize: 18),
-          //       ),
-          //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-          //       padding: EdgeInsets.all(20),
-          //       onPressed: (){
-          //         //Navigator.of(context).pushNamed('/portal', arguments: widget.tutorProfile);
-          //         Navigator.of(context).pop();
-          //         print("Back Pressed");
-          //         }, // TODO: onPressed segue to previous page
-          //     ),
-          //     padding: EdgeInsets.all(20),
-          //   ),
-          // )
         ],
       ),
     );

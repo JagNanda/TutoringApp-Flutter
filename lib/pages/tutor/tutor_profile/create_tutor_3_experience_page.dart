@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 
-
-
 class CreateTutor3ExperiencePage extends StatefulWidget {
   final TutorProfile profile;
 
@@ -14,10 +12,12 @@ class CreateTutor3ExperiencePage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CreateTutor3ExperiencePageState createState() => _CreateTutor3ExperiencePageState();
+  _CreateTutor3ExperiencePageState createState() =>
+      _CreateTutor3ExperiencePageState();
 }
 
-class _CreateTutor3ExperiencePageState extends State<CreateTutor3ExperiencePage> {
+class _CreateTutor3ExperiencePageState
+    extends State<CreateTutor3ExperiencePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,28 +44,30 @@ class _CreateTutor3ExperiencePageState extends State<CreateTutor3ExperiencePage>
                     SizedBox(
                       child: RaisedButton(
                         color: Colors.blue,
-                        child: Column(
-                            children: [
-                              Text(
-                                "Entry Level",
-                                style: TextStyle(color: Colors.white, fontSize: 24),
-                              ),
-                              Text(
-                                "(I'm new to this)",
-                                style: TextStyle(color: Colors.white, fontSize: 12),
-                              )
-                            ]
-                        ),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                        child: Column(children: [
+                          Text(
+                            "Entry Level",
+                            style: TextStyle(color: Colors.white, fontSize: 24),
+                          ),
+                          Text(
+                            "(I'm new to this)",
+                            style: TextStyle(color: Colors.white, fontSize: 12),
+                          )
+                        ]),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
                         padding: EdgeInsets.all(20),
-                        onPressed: (){
+                        onPressed: () {
                           setState(() {
                             widget.profile.tutorExpertise = "Entry Level";
                           });
-                            print("Entry Level Pressed");
+                          print("Entry Level Pressed");
                           Navigator.push(
-                              context, MaterialPageRoute(builder: (context) => CreateTutor1LevelPage(profile: widget.profile)));
-                        }, // TODO: onPressed add tutorExpertise to delegate and segue to new page
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CreateTutor1LevelPage(
+                                      profile: widget.profile)));
+                        },
                       ),
                       width: double.maxFinite,
                     ),
@@ -73,28 +75,30 @@ class _CreateTutor3ExperiencePageState extends State<CreateTutor3ExperiencePage>
                     SizedBox(
                       child: RaisedButton(
                         color: Colors.blue,
-                        child: Column(
-                            children: [
-                              Text(
-                                "Intermediate",
-                                style: TextStyle(color: Colors.white, fontSize: 24),
-                              ),
-                              Text(
-                                "(I have substantial experience tutoring at this level)",
-                                style: TextStyle(color: Colors.white, fontSize: 12),
-                              )
-                            ]
-                        ),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                        child: Column(children: [
+                          Text(
+                            "Intermediate",
+                            style: TextStyle(color: Colors.white, fontSize: 24),
+                          ),
+                          Text(
+                            "(I have substantial experience tutoring at this level)",
+                            style: TextStyle(color: Colors.white, fontSize: 12),
+                          )
+                        ]),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
                         padding: EdgeInsets.all(20),
-                        onPressed: (){
+                        onPressed: () {
                           setState(() {
                             widget.profile.tutorExpertise = "Intermediate";
                           });
                           Navigator.push(
-                              context, MaterialPageRoute(builder: (context) => CreateTutor1LevelPage(profile: widget.profile)));
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CreateTutor1LevelPage(
+                                      profile: widget.profile)));
                           print("Intermediate Pressed");
-                          }, // TODO: onPressed add tutorExpertise to delegate and segue to new page
+                        },
                       ),
                       width: double.maxFinite,
                     ),
@@ -102,28 +106,30 @@ class _CreateTutor3ExperiencePageState extends State<CreateTutor3ExperiencePage>
                     SizedBox(
                       child: RaisedButton(
                         color: Colors.blue,
-                        child: Column(
-                            children: [
-                              Text(
-                                "Expert",
-                                style: TextStyle(color: Colors.white, fontSize: 24),
-                              ),
-                              Text(
-                                "(I have extensive experience in tutoring students at this level)",
-                                style: TextStyle(color: Colors.white, fontSize: 12),
-                              )
-                            ]
-                        ),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                        child: Column(children: [
+                          Text(
+                            "Expert",
+                            style: TextStyle(color: Colors.white, fontSize: 24),
+                          ),
+                          Text(
+                            "(I have extensive experience in tutoring students at this level)",
+                            style: TextStyle(color: Colors.white, fontSize: 12),
+                          )
+                        ]),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
                         padding: EdgeInsets.all(20),
-                        onPressed: (){
+                        onPressed: () {
                           setState(() {
                             widget.profile.tutorExpertise = "Expert";
                           });
                           Navigator.push(
-                              context, MaterialPageRoute(builder: (context) => CreateTutor1LevelPage(profile: widget.profile)));
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CreateTutor1LevelPage(
+                                      profile: widget.profile)));
                           print("Expert Pressed");
-                          }, // TODO: onPressed add tutorExpertise to delegate and segue to new page
+                        },
                       ),
                       width: double.maxFinite,
                     ),

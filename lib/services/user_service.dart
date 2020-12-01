@@ -8,15 +8,6 @@ class UserService {
 
   //check if user has a tutor profile
   Future<bool> hasTutorProfile() async {
-    /*SharedPreferences preferences = await SharedPreferences.getInstance();
-    String tutorId = preferences.getString("tutorId");
-    print(tutorId);
-    print(tutorId == null);
-    if (tutorId != null) {
-      return true;
-    } else {
-      return false;
-    }*/
     bool hasTutorProfile = false;
     SharedPreferences preferences = await SharedPreferences.getInstance();
     String userId = preferences.getString("userId");
@@ -54,6 +45,7 @@ class UserService {
       String token = json['token'];
 
       final sharedPrefs = await SharedPreferences.getInstance();
+      sharedPrefs.clear();
       await sharedPrefs.setString("token", token).then((value) => (success = value));
 
       //get user and save userId and tuteeId to prefences

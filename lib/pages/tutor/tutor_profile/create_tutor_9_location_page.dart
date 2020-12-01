@@ -2,14 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
-import 'package:validators/validators.dart';
 
 class CreateTutor9LocationPage extends StatefulWidget {
   final TutorProfile profile;
 
   const CreateTutor9LocationPage({
     Key key,
-    @required this.profile, //this.subjects
+    @required this.profile,
   }) : super(key: key);
 
   @override
@@ -83,6 +82,7 @@ class _CreateTutor9LocationPageState extends State<CreateTutor9LocationPage> {
                   children: [
                     SizedBox(height: 10),
                     TextFormField(
+                      initialValue: widget.profile.tutorCity,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'City',
@@ -93,6 +93,7 @@ class _CreateTutor9LocationPageState extends State<CreateTutor9LocationPage> {
                     ),
                     SizedBox(height: 10),
                     TextFormField(
+                      initialValue: widget.profile.tutorProvinceState,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'State / Province',
@@ -112,16 +113,11 @@ class _CreateTutor9LocationPageState extends State<CreateTutor9LocationPage> {
                           borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
                       onPressed: () {
-                        //tutorProfile.skillLevel = "Elementary";  // TODO: Remove this code
-                        //Map<String, String> location = {"city": widget.profile.tutorCity, "province": widget.profile.tutorProvinceState};  // TODO: Remove this code
-                        //print(widget.profile.tutorCity + " , " + widget.profile.tutorProvinceState);  // TODO: Remove this code
                         print(widget.profile.tutorCity);
                         print(widget.profile.tutorProvinceState);
                         setState(() {});
                         if (widget.profile.tutorCity == null ||
                             widget.profile.tutorProvinceState == null) {
-                          print(
-                              ">>>  ALERT DIALOG  <<<<"); //TODO: REMOVE PRINT STATEMENT
                           if (widget.profile.tutorCity == null) {
                             noCityAlertDialog(context);
                           }

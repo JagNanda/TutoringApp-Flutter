@@ -62,13 +62,14 @@ class _CreateTutor7OverviewPageState extends State<CreateTutor7OverviewPage> {
                 child: Column(
                   children: [
                     TextFormField(
+                      initialValue: widget.profile.profileOverview,
                       minLines: 8,
                       maxLines: 16,
                       maxLength: 240,
                       textAlignVertical: TextAlignVertical.top,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Profile Overview',  //TODO: Populate with existing profile message
+                        labelText: 'Profile Overview',
                       ),
                       onChanged: (String val) {
                         widget.profile.profileOverview = val;
@@ -78,7 +79,7 @@ class _CreateTutor7OverviewPageState extends State<CreateTutor7OverviewPage> {
                     RaisedButton(
                       color: Colors.blue,
                       child: Text(
-                        "Update Profile Messsage",
+                        "Update Profile Message",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),

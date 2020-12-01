@@ -48,7 +48,7 @@
 //                     ),
 //                   ),
 //                   child: Text(
-//                     tutorProfile.tutorId, //TODO: Get name from userID
+//                     tutorProfile.tutorId,
 //                     style: TextStyle(color: Colors.white, fontSize: 20.0),
 //                   ),
 //                 ),
@@ -84,7 +84,7 @@
 //           GestureDetector(
 //             child: Card(
 //               child: ListTile(
-//                 title: Text(tutorProfile.tutorId), //TODO: Get name from userID
+//                 title: Text(tutorProfile.tutorId),
 //                 subtitle: Text(
 //                     tutorProfile.tutorCity + ', ' + tutorProfile.tutorCountry),
 //               ),
@@ -96,7 +96,7 @@
 //                       builder: (context) => CreateTutor9LocationPage()));
 //
 //               setState(() {
-//                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+//
 //               });
 //             },
 //           ), // Location Input
@@ -113,7 +113,7 @@
 //                       builder: (context) => CreateTutor11SummaryPage(
 //                           tutorProfile: tutorProfile)));
 //               setState(() {
-//                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+//
 //               });
 //             },
 //           ), // Profile Headline Input
@@ -131,7 +131,7 @@
 //                       builder: (context) => CreateTutor7OverviewPage(
 //                           tutorProfile: tutorProfile)));
 //               setState(() {
-//                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+//
 //               });
 //             },
 //           ), // Profile Message Input
@@ -148,7 +148,7 @@
 //                       builder: (context) =>
 //                           CreateTutor1LevelPage(tutorProfile: tutorProfile)));
 //               setState(() {
-//                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+//
 //               });
 //             },
 //           ), // Tutoring Skill Level Input
@@ -168,7 +168,7 @@
 //                       builder: (context) => CreateTutor2SubjectsPage(
 //                           tutorProfile: tutorProfile)));
 //               setState(() {
-//                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+//
 //               });
 //             },
 //           ), // Tutored Subjects Input
@@ -189,7 +189,7 @@
 //                       builder: (context) => CreateTutor3ExperiencePage(
 //                           tutorProfile: tutorProfile)));
 //               setState(() {
-//                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+//
 //               });
 //             },
 //           ), // Tutoring Experience
@@ -222,7 +222,7 @@
 //                       builder: (context) => CreateTutor5LanguagesPage(
 //                           tutorProfile: tutorProfile)));
 //               setState(() {
-//                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+//
 //               });
 //             },
 //           ), // Languages
@@ -243,13 +243,13 @@
 //                       builder: (context) =>
 //                           CreateTutor6HourlyPage(tutorProfile: tutorProfile)));
 //               setState(() {
-//                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+//
 //               });
 //             },
 //           ), // Hourly Rate Input
 //           SizedBox(height: 20),
 //           GestureDetector(
-//             // TODO: Only visible to tutorProfile owner
+//
 //             child: Column(
 //               children: [
 //                 Text('For Internal use Only: '),
@@ -269,7 +269,7 @@
 //                       builder: (context) =>
 //                           CreateTutor10PhonePage(tutorProfile: tutorProfile)));
 //               setState(() {
-//                 /// TODO: add code in  setState to enable/disable tapping to edit if Tutor is viewing own profile
+//
 //               });
 //             },
 //           ),
@@ -281,7 +281,7 @@
 //                   "Edit Profile",
 //                   style: TextStyle(color: Colors.white, fontSize: 18),
 //                 ),
-//                 onPressed: null), //TODO: Change color of button and text to -> "tap field to edit", and enable GestureDetectors
+//                 onPressed: null),
 //           ),
 //         ]),
 //       ),

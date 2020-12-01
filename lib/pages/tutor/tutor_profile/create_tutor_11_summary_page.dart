@@ -62,9 +62,10 @@ class _CreateTutor11SummaryPageState extends State<CreateTutor11SummaryPage> {
                 child: Column(
                   children: [
                     TextFormField(
+                      initialValue:  widget.profile.profileHeadline,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'Profile Headline',  //TODO: Populate with existing headline
+                        labelText: 'Profile Headline',
                       ),
                       onChanged: (String val) {
                         widget.profile.profileHeadline = val;
@@ -82,7 +83,6 @@ class _CreateTutor11SummaryPageState extends State<CreateTutor11SummaryPage> {
                       onPressed: (){
                         setState(() {});
                         if(widget.profile.profileHeadline == null){
-                          print(">>>  ALERT DIALOG  <<<<");  //TODO: REMOVE PRINT STATEMENT
                           noHeadlineAlertDialog(context);
                         }
                         else

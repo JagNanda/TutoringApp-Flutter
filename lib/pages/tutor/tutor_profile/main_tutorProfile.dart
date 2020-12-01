@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/Sessions/session_request.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 import 'package:tutoring_app_flutter/services/tutor_service.dart';
 
@@ -18,10 +18,12 @@ class MainTutorProfile extends StatefulWidget {
 class _MainTutorProfileState extends State<MainTutorProfile> {
   String firstName;
   String lastName;
+  String initials;
 
   Future<TutorProfile> getOwnProfile() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String id = prefs.getString("tutorId");
+    print(id);
     var profileInfo = await TutorService().getTutorById(id);
     TutorProfile profile = new TutorProfile(
         tutoredSubjects: new List<String>(),
@@ -47,6 +49,8 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
 
     firstName = profileInfo["user"][0]["firstName"];
     lastName = profileInfo["user"][0]["lastName"];
+    initials = firstName.substring(0, 1).toUpperCase() + lastName.substring(0, 1).toUpperCase();
+
     return profile;
   }
 
@@ -76,6 +80,8 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
 
     firstName = profileInfo["user"][0]["firstName"];
     lastName = profileInfo["user"][0]["lastName"];
+    initials = firstName.substring(0, 1).toUpperCase() + lastName.substring(0, 1).toUpperCase();
+
     return profile;
   }
 
@@ -109,12 +115,11 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                 Container(
                                   child: Center(
                                     child: CircleAvatar(
-                                      radius: 90,
-                                      child: Text(
-                                        'BH',
-                                        style: TextStyle(color: Colors.white, fontSize: 80.0),
-                                      ),
-                                    ),
+                                        radius: 90,
+                                        child: Text(
+                                          "$initials",
+                                          style: TextStyle(color: Colors.white, fontSize: 80.0),
+                                        )),
                                   ),
                                 ),
                                 Container(
@@ -131,34 +136,40 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                       ],
                                     ),
                                   ),
-                                  /*   child: Text(
-                                    "$firstName $lastName", //TODO: Get name from userID
+                                  child: Text(
+                                    "$firstName $lastName",
                                     style: TextStyle(color: Colors.white, fontSize: 20.0),
-                                  ),*/
+                                  ),
                                 ),
                               ],
                             ),
                           ),
                           Card(
                             child: ListTile(
-                              title: Text("$firstName $lastName"), //TODO: Get name from userID
-                              subtitle: Text(snapshot.data.tutorCity),
+                              title: Text("Location: "),
+                              subtitle: Center(
+                                  child: Text(snapshot.data.tutorCity +
+                                      ", " +
+                                      snapshot.data.tutorProvinceState)),
                             ),
                           ),
                           Card(
                             child: ListTile(
-                              title: Center(child: Text(snapshot.data.profileHeadline)),
+                              title: Text("Headline: "),
+                              subtitle: Center(child: Text(snapshot.data.profileHeadline)),
                             ),
                           ), // Profile Headline Input
                           Card(
                             child: ListTile(
-                              title: Center(child: Text(snapshot.data.profileOverview)),
+                              title: Text("Bio: "),
+                              subtitle: Center(child: Text(snapshot.data.profileOverview)),
                               contentPadding: const EdgeInsets.all(10),
                             ),
                           ), // Profile Message Input
                           Card(
                             child: ListTile(
-                              title: Center(child: Text(snapshot.data.skillLevel + ' level tutor')),
+                              title: Text("Target student level: "),
+                              subtitle: Center(child: Text(snapshot.data.skillLevel)),
                             ),
                           ), // Tutoring Skill Level Input
                           Card(
@@ -171,11 +182,8 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                           ),
                           Card(
                             child: ListTile(
-                              title: Center(
-                                child: Text('Subject expertise: ' +
-                                    snapshot.data.tutorExpertise +
-                                    ' level'),
-                              ),
+                              title: Text('Tutor Experience: '),
+                              subtitle: Center(child: Text(snapshot.data.tutorExpertise)),
                             ),
                           ),
                           Card(
@@ -201,10 +209,9 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                           ), // Languages
                           Card(
                             child: ListTile(
-                              title: Center(
-                                child: Text('Hourly rate: \$' +
-                                    snapshot.data.hourlyRate.toString() +
-                                    '/hr'),
+                              title: Text('Hourly rate:'),
+                              subtitle: Center(
+                                child: Text(snapshot.data.hourlyRate.toString() + '/hr'),
                               ),
                             ),
                           ), // Hourly Rate Input
@@ -225,18 +232,27 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                           new MaterialPageRoute(
                                               builder: (context) => CreateTutor3ExperiencePage(
                                                   profile: snapshot.data)));
-                                    })
+                                    },
+                                    color: Colors.redAccent,
+                                  )
                                 : RaisedButton(
                                     child: Text(
                                       "Request Session",
                                       style: TextStyle(color: Colors.white, fontSize: 18),
                                     ),
                                     color: Colors.green,
-                                    onPressed: () {
-                                      print("pressed");
-                                      /*Navigator.push(context,
-                                    new MaterialPageRoute(builder: (context) => new SessionRequest()));*/
-                                    }), //TODO: Change color of button and text to -> "tap field to edit", and enable GestureDetectors
+                                    onPressed: () async {
+                                      Navigator.push(
+                                          context,
+                                          new MaterialPageRoute(
+                                              builder: (context) => SessionRequest(
+                                                    tutorId: widget.id,
+                                                    cost: snapshot.data.hourlyRate,
+                                                    firstName: firstName,
+                                                    lastName: lastName,
+                                                    initials: initials,
+                                                  )));
+                                    }),
                           ),
                         ]);
                 }

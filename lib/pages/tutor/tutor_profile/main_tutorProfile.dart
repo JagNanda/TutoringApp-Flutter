@@ -18,6 +18,7 @@ class MainTutorProfile extends StatefulWidget {
 class _MainTutorProfileState extends State<MainTutorProfile> {
   String firstName;
   String lastName;
+  String initials;
 
   Future<TutorProfile> getOwnProfile() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -48,6 +49,8 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
 
     firstName = profileInfo["user"][0]["firstName"];
     lastName = profileInfo["user"][0]["lastName"];
+    initials = firstName.substring(0, 1).toUpperCase() + lastName.substring(0, 1).toUpperCase();
+
     return profile;
   }
 
@@ -77,6 +80,8 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
 
     firstName = profileInfo["user"][0]["firstName"];
     lastName = profileInfo["user"][0]["lastName"];
+    initials = firstName.substring(0, 1).toUpperCase() + lastName.substring(0, 1).toUpperCase();
+
     return profile;
   }
 
@@ -110,12 +115,11 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                 Container(
                                   child: Center(
                                     child: CircleAvatar(
-                                      radius: 90,
-                                      child: Text(
-                                        'BH',
-                                        style: TextStyle(color: Colors.white, fontSize: 80.0),
-                                      ),
-                                    ),
+                                        radius: 90,
+                                        child: Text(
+                                          "$initials",
+                                          style: TextStyle(color: Colors.white, fontSize: 80.0),
+                                        )),
                                   ),
                                 ),
                                 Container(
@@ -132,34 +136,40 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                       ],
                                     ),
                                   ),
-                                  /*   child: Text(
+                                  child: Text(
                                     "$firstName $lastName",
                                     style: TextStyle(color: Colors.white, fontSize: 20.0),
-                                  ),*/
+                                  ),
                                 ),
                               ],
                             ),
                           ),
                           Card(
                             child: ListTile(
-                              title: Text("$firstName $lastName"),
-                              subtitle: Text(snapshot.data.tutorCity),
+                              title: Text("Location: "),
+                              subtitle: Center(
+                                  child: Text(snapshot.data.tutorCity +
+                                      ", " +
+                                      snapshot.data.tutorProvinceState)),
                             ),
                           ),
                           Card(
                             child: ListTile(
-                              title: Center(child: Text(snapshot.data.profileHeadline)),
+                              title: Text("Headline: "),
+                              subtitle: Center(child: Text(snapshot.data.profileHeadline)),
                             ),
                           ), // Profile Headline Input
                           Card(
                             child: ListTile(
-                              title: Center(child: Text(snapshot.data.profileOverview)),
+                              title: Text("Bio: "),
+                              subtitle: Center(child: Text(snapshot.data.profileOverview)),
                               contentPadding: const EdgeInsets.all(10),
                             ),
                           ), // Profile Message Input
                           Card(
                             child: ListTile(
-                              title: Center(child: Text(snapshot.data.skillLevel + ' level tutor')),
+                              title: Text("Target student level: "),
+                              subtitle: Center(child: Text(snapshot.data.skillLevel)),
                             ),
                           ), // Tutoring Skill Level Input
                           Card(
@@ -172,11 +182,8 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                           ),
                           Card(
                             child: ListTile(
-                              title: Center(
-                                child: Text('Subject expertise: ' +
-                                    snapshot.data.tutorExpertise +
-                                    ' level'),
-                              ),
+                              title: Text('Tutor Experience: '),
+                              subtitle: Center(child: Text(snapshot.data.tutorExpertise)),
                             ),
                           ),
                           Card(
@@ -202,10 +209,9 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                           ), // Languages
                           Card(
                             child: ListTile(
-                              title: Center(
-                                child: Text('Hourly rate: \$' +
-                                    snapshot.data.hourlyRate.toString() +
-                                    '/hr'),
+                              title: Text('Hourly rate:'),
+                              subtitle: Center(
+                                child: Text(snapshot.data.hourlyRate.toString() + '/hr'),
                               ),
                             ),
                           ), // Hourly Rate Input
@@ -226,7 +232,9 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                           new MaterialPageRoute(
                                               builder: (context) => CreateTutor3ExperiencePage(
                                                   profile: snapshot.data)));
-                                    })
+                                    },
+                                    color: Colors.redAccent,
+                                  )
                                 : RaisedButton(
                                     child: Text(
                                       "Request Session",

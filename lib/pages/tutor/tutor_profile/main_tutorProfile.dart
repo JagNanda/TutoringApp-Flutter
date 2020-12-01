@@ -133,7 +133,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                     ),
                                   ),
                                   /*   child: Text(
-                                    "$firstName $lastName", //TODO: Get name from userID
+                                    "$firstName $lastName",
                                     style: TextStyle(color: Colors.white, fontSize: 20.0),
                                   ),*/
                                 ),
@@ -142,7 +142,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                           ),
                           Card(
                             child: ListTile(
-                              title: Text("$firstName $lastName"), //TODO: Get name from userID
+                              title: Text("$firstName $lastName"),
                               subtitle: Text(snapshot.data.tutorCity),
                             ),
                           ),
@@ -237,7 +237,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                       print("pressed");
                                       /*Navigator.push(context,
                                     new MaterialPageRoute(builder: (context) => new SessionRequest()));*/
-                                    }), //TODO: Change color of button and text to -> "tap field to edit", and enable GestureDetectors
+                                    }),
                           ),
                         ]);
                 }

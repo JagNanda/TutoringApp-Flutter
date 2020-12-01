@@ -37,18 +37,6 @@ class _TutorDashboardState extends State<TutorDashboard> {
         viewingOwnProfile: true,
       ),
     ];
-    _bottomNavigationBar = BottomNavigationBar(
-      currentIndex: selectedIndex,
-      onTap: changeTabs,
-      selectedItemColor: Colors.blue,
-      unselectedItemColor: Colors.grey,
-      items: [
-        BottomNavigationBarItem(icon: Icon(Icons.school), label: "Tutors"),
-        BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: "Sessions"),
-        BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chat"),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-      ],
-    );
   }
 
   changeTabs(int index) {
@@ -63,7 +51,18 @@ class _TutorDashboardState extends State<TutorDashboard> {
       length: 3,
       child: Scaffold(
         body: _widgetOptions[selectedIndex],
-        bottomNavigationBar: _bottomNavigationBar,
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: selectedIndex,
+          onTap: changeTabs,
+          selectedItemColor: Colors.blue,
+          unselectedItemColor: Colors.grey,
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.school), label: "Tutors"),
+            BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: "Sessions"),
+            BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chat"),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+          ],
+        ),
       ),
     );
   }

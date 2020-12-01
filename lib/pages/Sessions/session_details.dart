@@ -2,20 +2,30 @@ import 'package:flutter/material.dart';
 //import 'package:tutoring_app_flutter/pages/DrawerMenu.dart';
 
 class SessionDetails extends StatefulWidget {
+  final String firstName;
+  final String lastName;
+  final String date;
+  final String cost;
+  final String subject;
+  final String details;
+  final String education;
+
+  SessionDetails(
+      {this.firstName,
+      this.lastName,
+      this.date,
+      this.cost,
+      this.subject,
+      this.details,
+      this.education});
+
   @override
   _SessionDetailsState createState() => _SessionDetailsState();
 }
-final String name = "Brian Holmes";
-final String date = "November 10, 2020";
-final String cost ="60";
-final String subject = "Flutter";
-final String details = "Want to learn how to develop in flutter";
-final String education = "University";
-
 
 class _SessionDetailsState extends State<SessionDetails> {
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return new Scaffold(
       //drawer: new DrawerCodeOnly(), // line needed to have Drawer menu on each page, not needed as back button is more appropriate
       appBar: new AppBar(
@@ -26,14 +36,13 @@ class _SessionDetailsState extends State<SessionDetails> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-
             Expanded(
               child: Container(
                 color: Colors.lightBlue,
                 height: 50.0,
                 child: Center(
                   child: Text(
-                    "Session with " + name,
+                    "Session with ${widget.firstName} ${widget.lastName}",
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.black,
@@ -61,7 +70,7 @@ class _SessionDetailsState extends State<SessionDetails> {
                 ),
               ),
             ),
-           ],
+          ],
         ),
         SizedBox(
           height: 4,
@@ -69,65 +78,64 @@ class _SessionDetailsState extends State<SessionDetails> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Container(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                color: Colors.lightBlue,
+                height: 50.0,
+                child: Center(
+                  child: Text(
+                    "Date: ${widget.date}",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 4,
+        ),
+        Row(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                color: Colors.lightBlue,
+                height: 50.0,
+                child: Center(
+                  child: Text(
+                    "Cost: \$" + widget.cost,
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 4,
+        ),
+        Row(
+          children: <Widget>[
+            Expanded(
+              child: Container(
                   color: Colors.lightBlue,
                   height: 50.0,
                   child: Center(
                     child: Text(
-                      "Date: " + date,
+                      "Subject: " + widget.subject,
                       style: TextStyle(
                         fontSize: 18.0,
                         color: Colors.black,
                       ),
                     ),
-                  ),
-                ),
-          ),
-        ],
-        ),
-        SizedBox(
-          height: 4,
-        ),
-        Row(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                color: Colors.lightBlue,
-                height: 50.0,
-                child: Center(
-                child: Text(
-                  "Cost: \$" + cost,
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
-        ),
-        ],
-        ),
-        SizedBox(
-          height: 4,
-        ),
-        Row(
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                color: Colors.lightBlue,
-                height: 50.0,
-                child: Center(
-                  child: Text(
-                    "Subject: " + subject,
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.black,
-                    ),
-                  ),
-                )
-              ),
+                  )),
             ),
           ],
         ),
@@ -138,23 +146,21 @@ class _SessionDetailsState extends State<SessionDetails> {
           children: <Widget>[
             Expanded(
               child: Container(
-                color: Colors.lightBlue,
-                padding: EdgeInsets.only(bottom: 20),
-                height: 50.0,
-                child: Center(
-                  child: Text(
-                    "Details",
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.black,
+                  color: Colors.lightBlue,
+                  padding: EdgeInsets.only(bottom: 20),
+                  height: 50.0,
+                  child: Center(
+                    child: Text(
+                      "Details",
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                )
-              ),
+                  )),
             ),
           ],
         ),
-
         Row(
           children: <Widget>[
             Expanded(
@@ -163,7 +169,7 @@ class _SessionDetailsState extends State<SessionDetails> {
                 padding: EdgeInsets.only(bottom: 20),
                 height: 50.0,
                 child: Text(
-                  details,
+                  widget.details,
                   style: TextStyle(
                     fontSize: 18.0,
                     color: Colors.black,
@@ -180,24 +186,22 @@ class _SessionDetailsState extends State<SessionDetails> {
           children: <Widget>[
             Expanded(
               child: Container(
-                color: Colors.lightBlue,
-                padding: EdgeInsets.only(bottom: 20),
-                height: 50.0,
-                child:Center(
-                  child: Text(
-                    "Level of Education: " + education,
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.black,
+                  color: Colors.lightBlue,
+                  padding: EdgeInsets.only(bottom: 20),
+                  height: 50.0,
+                  child: Center(
+                    child: Text(
+                      "Level of Education: " + widget.education,
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                )
-              ),
+                  )),
             ),
           ],
         ),
-      ]
-      ),
+      ]),
     );
   }
 }

@@ -14,12 +14,12 @@ class MessagingPage extends StatefulWidget {
 }
 
 class _MessagingPageState extends State<MessagingPage> {
-  Future<List<ChatRoom>> _chatRooms;
-  HttpService httpService = new HttpService();
+  /*Future<List<ChatRoom>> _chatRooms;
+  HttpService httpService = new HttpService();*/
 
   initState() {
     super.initState();
-    _chatRooms = httpService.fetchChatRooms();
+    /*_chatRooms = httpService.fetchChatRooms();*/
   }
 
   @override
@@ -27,10 +27,10 @@ class _MessagingPageState extends State<MessagingPage> {
     super.dispose();
   }
 
-  void _addMessage(String userId, String chatRoomId, String message) {
+/*  void _addMessage(String userId, String chatRoomId, String message) {
     // add message via http request to chatroom by userId(tutorId or tuteeId)
     // add message to list of messages in app so message list updates
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {

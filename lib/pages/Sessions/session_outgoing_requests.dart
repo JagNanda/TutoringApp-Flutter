@@ -14,7 +14,6 @@ class SessionOutgoingRequests extends StatefulWidget {
 class _SessionOutgoingRequestsState extends State<SessionOutgoingRequests> {
   @override
   void initState() {
-    print(widget.isStudent);
     super.initState();
   }
 
@@ -34,10 +33,12 @@ class _SessionOutgoingRequestsState extends State<SessionOutgoingRequests> {
   }
 
   Future<List<SessionListing>> loadTutorsIncomingRequests() async {
-    List<dynamic> allSessions = await TutorService().getAllSessionRequests();
-    return allSessions.map((session) {
+    List<dynamic> allSessionInfo = await TutorService().getAllSessionRequests();
+
+    List<SessionListing> allSessionListings = new List<SessionListing>();
+    allSessionInfo.forEach((session) {
       if (session["accepted"] == false) {
-        return SessionListing(
+        allSessionListings.add(SessionListing(
           requestId: session["_id"],
           tutorId: session["tutorId"],
           details: session["details"],
@@ -46,9 +47,10 @@ class _SessionOutgoingRequestsState extends State<SessionOutgoingRequests> {
           levelOfEducation: session["levelOfEducation"],
           subject: session["subject"],
           date: session["date"],
-        );
+        ));
       }
-    }).toList();
+    });
+    return allSessionListings;
   }
 
   @override

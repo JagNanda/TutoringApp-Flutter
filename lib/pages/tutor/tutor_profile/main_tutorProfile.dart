@@ -80,6 +80,8 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
 
     firstName = profileInfo["user"][0]["firstName"];
     lastName = profileInfo["user"][0]["lastName"];
+    initials = firstName.substring(0, 1).toUpperCase() + lastName.substring(0, 1).toUpperCase();
+
     return profile;
   }
 
@@ -89,7 +91,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
-            title: Center(child: Text('$firstName $lastName')), //TODO: Get Tutor's Initials
+            title: Center(child: Text('Tutor Profile')),
           ),
           body: FutureBuilder(
               future: widget.viewingOwnProfile == true ? getOwnProfile() : getTutorProfileById(),
@@ -114,7 +116,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                   child: Center(
                                     child: CircleAvatar(
                                       radius: 90,
-                                      child: Text(//TODO: Get Tutor's Initials
+                                      child: Text(
                                         "$initials",
                                         style: TextStyle(color: Colors.white, fontSize: 80.0),
                                       )
@@ -135,10 +137,10 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                       ],
                                     ),
                                   ),
-                                  /*   child: Text(
-                                    "$firstName $lastName", //TODO: Get name from userID
+                                     child: Text(
+                                    "$firstName $lastName",
                                     style: TextStyle(color: Colors.white, fontSize: 20.0),
-                                  ),*/
+                                  ),
                                 ),
                               ],
                             ),
@@ -240,7 +242,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                       print("pressed");
                                       /*Navigator.push(context,
                                     new MaterialPageRoute(builder: (context) => new SessionRequest()));*/
-                                    }), //TODO: Change color of button and text to -> "tap field to edit", and enable GestureDetectors
+                                    }),
                           ),
                         ]);
                 }

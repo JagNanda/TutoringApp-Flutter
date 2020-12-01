@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/main.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
 
-
 class CreateTutor4EducationPage extends StatefulWidget {
-  final TutorProfile tutorProfile;
+  final TutorProfile profile;
 
   const CreateTutor4EducationPage({
     Key key,
-    @required this.tutorProfile,
+    @required this.profile,
   }) : super(key: key);
 
   @override
@@ -40,27 +40,38 @@ class _CreateTutor4EducationPageState extends State<CreateTutor4EducationPage> {
                   children: [
                     SizedBox(height: 10),
                     Text("Name of school:"),
-                    TextFormField(
-
-                    ),
+                    TextFormField(),
+                    SizedBox(height: 10),
                     RaisedButton(
-                      color: Colors.blue,
-                      child: Column(
-                          children: [
-                            Text(
-                              "Step forward",
-                              style: TextStyle(color: Colors.white, fontSize: 24),
-                            ),
-                            Text(
-                              "(I have substantial experience tutoring at this level)",
-                              style: TextStyle(color: Colors.white, fontSize: 12),
-                            )
-                          ]
+                      color: Colors.deepPurple,
+                      child: Text(
+                        "Test",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
-                      onPressed: (){
-                        Navigator.of(context).pushNamed('/create_tutor_languages', arguments: widget.tutorProfile);
+                      onPressed: () {
+                        print(">>>> Languages:");
+                        for (int i = 0; i < widget.profile.languages.length; i++) {
+                          print(widget.profile.languages[i]);
+                          print("    " + widget.profile.languageProficiency[i]);
+                        }
+                      },
+                    ),
+                    SizedBox(height: 10),
+                    RaisedButton(
+                      color: Colors.blue,
+                      child: Column(children: [
+                        Text(
+                          "next",
+                          style: TextStyle(color: Colors.white, fontSize: 24),
+                        ),
+                      ]),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                      padding: EdgeInsets.all(20),
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pushNamed('/create_tutor_languages', arguments: widget.profile);
                         print("step forward pressed");
                       }, // TODO: onPressed add tutorEducation to delegate and segue to new page
                     ),
@@ -80,15 +91,15 @@ class _CreateTutor4EducationPageState extends State<CreateTutor4EducationPage> {
                 ),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                 padding: EdgeInsets.all(20),
-                onPressed: (){
-                  Navigator.of(context).pushNamed('/create_tutor_experience', arguments: widget.tutorProfile);
+                onPressed: () {
+                  Navigator.of(context)
+                      .pushNamed('/create_tutor_experience', arguments: widget.profile);
                   print("Back Pressed");
-                  }, // TODO: onPressed segue to previous page
+                }, // TODO: onPressed segue to previous page
               ),
               padding: EdgeInsets.all(20),
             ),
           ),
-
         ],
       ),
     );

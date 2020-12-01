@@ -1,44 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/constants.dart';
+import 'package:tutoring_app_flutter/services/tutor_service.dart';
 
 class StudentPostListing extends StatefulWidget {
-  //TODO: make constructor params required after db is connected
+  final String id;
   final String title;
-  final String budget;
+  final String budgetRange;
   final String date;
-  final String education;
-  final String expertise;
+  final String levelOfEducation;
+  final String subject;
   final String description;
+  final bool favorite;
   final bool showSavedIcon; //dont want the student to be able to favorite their own posts
 
-  StudentPostListing(
-      {this.title,
-      this.budget,
-      this.date,
-      this.education,
-      this.expertise,
-      this.description,
-      this.showSavedIcon = false});
+  StudentPostListing({
+    this.title,
+    this.id,
+    this.budgetRange,
+    this.date,
+    this.levelOfEducation,
+    this.subject,
+    this.description,
+    this.favorite = false,
+    this.showSavedIcon = false,
+  });
 
   @override
   _StudentPostListingState createState() => _StudentPostListingState();
 }
 
 class _StudentPostListingState extends State<StudentPostListing> {
-  //TODO: remove favorite and put in the constructor instead after db implementation
-  bool favorite = false;
+  bool favorite;
   bool isExpanded = false;
   String longDescription;
   String shortDescription;
+  String formattedDateCreated;
 
   @override
   void initState() {
     super.initState();
-    // TODO: Remove longDescription after db implementation
-    longDescription =
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ";
-    // TODO: description must be over 40 characters so this will always work
-    shortDescription = longDescription.substring(0, 30);
+    longDescription = widget.description;
+    shortDescription = longDescription.substring(0, (longDescription.length / 2).round());
+    DateTime dateCreated = DateTime.parse(widget.date);
+    formattedDateCreated =
+        "${dateCreated.year}-${dateCreated.month.toString().padLeft(2, '0')}-${dateCreated.day.toString().padLeft(2, '0')}";
+    favorite = widget.favorite;
   }
 
   @override
@@ -48,13 +54,12 @@ class _StudentPostListingState extends State<StudentPostListing> {
       padding: EdgeInsets.all(17),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        //TODO: Replace placeholder text with class variables
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Job Title Job Title Job Title",
+                widget.title,
                 textAlign: TextAlign.left,
                 style: kPostTitleText,
               ),
@@ -63,9 +68,13 @@ class _StudentPostListingState extends State<StudentPostListing> {
                   child: favorite == true
                       ? Icon(Icons.favorite, color: Colors.pink)
                       : Icon(Icons.favorite_border),
-                  onTap: () {
+                  onTap: () async {
+                    if (favorite == false) {
+                      await TutorService().addStudentPostToTutorFavorites(widget.id);
+                    } else {
+                      await TutorService().removeFavoritePostFromTutor(widget.id);
+                    }
                     setState(() {
-                      //TODO: database call to save as favorite
                       favorite = !favorite;
                     });
                   },
@@ -80,12 +89,12 @@ class _StudentPostListingState extends State<StudentPostListing> {
             crossAxisAlignment: CrossAxisAlignment.baseline,
             children: [
               Text(
-                "\$40 an hour",
+                "\$${widget.budgetRange} per hour",
                 style: kPostBoldText,
               ),
               SizedBox(width: 10),
               Text(
-                "September 20, 2020",
+                formattedDateCreated,
                 style: kPostDateText,
               ),
             ],
@@ -100,8 +109,8 @@ class _StudentPostListingState extends State<StudentPostListing> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text("Hours Needed", style: kPostSmallText),
-                    Text("6 to 8", style: kPostBoldText)
+                    Text("Subject", style: kPostSmallText),
+                    Text(widget.subject, style: kPostBoldText)
                   ],
                 ),
               ),
@@ -109,8 +118,8 @@ class _StudentPostListingState extends State<StudentPostListing> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text("Expertise Required", style: kPostSmallText),
-                    Text("Intermediate", style: kPostBoldText)
+                    Text("Expertise Needed", style: kPostSmallText),
+                    Text(widget.levelOfEducation, style: kPostBoldText)
                   ],
                 ),
               ),

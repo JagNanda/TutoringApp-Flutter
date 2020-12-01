@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 
 
 
 class CreateTutor3ExperiencePage extends StatefulWidget {
-  final TutorProfile tutorProfile;
+  final TutorProfile profile;
 
   const CreateTutor3ExperiencePage({
     Key key,
-    @required this.tutorProfile,
+    @required this.profile,
   }) : super(key: key);
 
   @override
@@ -59,13 +60,12 @@ class _CreateTutor3ExperiencePageState extends State<CreateTutor3ExperiencePage>
                         padding: EdgeInsets.all(20),
                         onPressed: (){
                           setState(() {
-                            widget.tutorProfile.tutorExpertise = "Entry Level";
+                            widget.profile.tutorExpertise = "Entry Level";
                           });
                             print("Entry Level Pressed");
-                            Navigator.of(context).pushNamed(
-                                '/create_tutor_education',
-                                arguments: widget.tutorProfile);
-                          }, // TODO: onPressed add tutorExpertise to delegate and segue to new page
+                          Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => CreateTutor1LevelPage(profile: widget.profile)));
+                        }, // TODO: onPressed add tutorExpertise to delegate and segue to new page
                       ),
                       width: double.maxFinite,
                     ),
@@ -89,9 +89,10 @@ class _CreateTutor3ExperiencePageState extends State<CreateTutor3ExperiencePage>
                         padding: EdgeInsets.all(20),
                         onPressed: (){
                           setState(() {
-                            widget.tutorProfile.tutorExpertise = "Intermediate";
+                            widget.profile.tutorExpertise = "Intermediate";
                           });
-                          Navigator.of(context).pushNamed('/create_tutor_education', arguments: widget.tutorProfile);
+                          Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => CreateTutor1LevelPage(profile: widget.profile)));
                           print("Intermediate Pressed");
                           }, // TODO: onPressed add tutorExpertise to delegate and segue to new page
                       ),
@@ -117,9 +118,10 @@ class _CreateTutor3ExperiencePageState extends State<CreateTutor3ExperiencePage>
                         padding: EdgeInsets.all(20),
                         onPressed: (){
                           setState(() {
-                            widget.tutorProfile.tutorExpertise = "Expert";
+                            widget.profile.tutorExpertise = "Expert";
                           });
-                          Navigator.of(context).pushNamed('/create_tutor_education', arguments: widget.tutorProfile);
+                          Navigator.push(
+                              context, MaterialPageRoute(builder: (context) => CreateTutor1LevelPage(profile: widget.profile)));
                           print("Expert Pressed");
                           }, // TODO: onPressed add tutorExpertise to delegate and segue to new page
                       ),
@@ -130,25 +132,6 @@ class _CreateTutor3ExperiencePageState extends State<CreateTutor3ExperiencePage>
               ),
             ),
           ),
-          Expanded(
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: RaisedButton(
-                color: Colors.grey,
-                child: Text(
-                  "Back",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                padding: EdgeInsets.all(20),
-                onPressed: (){
-                  Navigator.of(context).pushNamed('/create_tutor_subjects', arguments: widget.tutorProfile);
-                  print("Back Pressed");
-                  }, // TODO: onPressed segue to previous page
-              ),
-              padding: EdgeInsets.all(20),
-            ),
-          )
         ],
       ),
     );

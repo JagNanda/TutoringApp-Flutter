@@ -1,16 +1,63 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
+import 'package:validators/validators.dart';
 
-
-class CreateTutor9LocationPage extends StatelessWidget {
-  final TutorProfile tutorProfile;
+class CreateTutor9LocationPage extends StatefulWidget {
+  final TutorProfile profile;
 
   const CreateTutor9LocationPage({
     Key key,
-    @required this.tutorProfile,
+    @required this.profile, //this.subjects
   }) : super(key: key);
 
+  @override
+  _CreateTutor9LocationPageState createState() =>
+      _CreateTutor9LocationPageState();
+}
+
+class _CreateTutor9LocationPageState extends State<CreateTutor9LocationPage> {
+
+  noCityAlertDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("No location selected"),
+            content: Text("Please enter a city to continue"),
+            actions: <Widget>[
+              MaterialButton(
+                elevation: 5.0,
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
+
+  noProvinceAlertDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("No location selected"),
+            content: Text("Please enter a province or state to continue"),
+            actions: <Widget>[
+              MaterialButton(
+                elevation: 5.0,
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              )
+            ],
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,45 +82,67 @@ class CreateTutor9LocationPage extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 10),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'City',
+                      ),
+                      onChanged: (String val) {
+                        widget.profile.tutorCity = val;
+                      },
+                    ),
+                    SizedBox(height: 10),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'State / Province',
+                      ),
+                      onChanged: (String val) {
+                        widget.profile.tutorProvinceState = val;
+                      },
+                    ),
+                    SizedBox(height: 10),
                     RaisedButton(
                       color: Colors.blue,
                       child: Text(
-                        "Next",
+                        "Update Location",
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
                       padding: EdgeInsets.all(20),
-                      onPressed: (){
-                        //tutorProfile.skillLevel = "Elementary";
-                        Navigator.of(context).pushNamed('/create_tutor_phone', arguments: tutorProfile);
-                        print("Next Pressed");
-                      }, // TODO: onPressed add skillLevel to delegate and segue to new page
+                      onPressed: () {
+                        //tutorProfile.skillLevel = "Elementary";  // TODO: Remove this code
+                        //Map<String, String> location = {"city": widget.profile.tutorCity, "province": widget.profile.tutorProvinceState};  // TODO: Remove this code
+                        //print(widget.profile.tutorCity + " , " + widget.profile.tutorProvinceState);  // TODO: Remove this code
+                        print(widget.profile.tutorCity);
+                        print(widget.profile.tutorProvinceState);
+                        setState(() {});
+                        if (widget.profile.tutorCity == null ||
+                            widget.profile.tutorProvinceState == null) {
+                          print(
+                              ">>>  ALERT DIALOG  <<<<"); //TODO: REMOVE PRINT STATEMENT
+                          if (widget.profile.tutorCity == null) {
+                            noCityAlertDialog(context);
+                          }
+                          if (widget.profile.tutorProvinceState == null) {
+                            noProvinceAlertDialog(context);
+                          }
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      CreateTutor11SummaryPage(
+                                          profile: widget.profile)));
+                        }
+                      },
                     ),
                   ],
                 ),
               ),
             ),
           ),
-          //MARK: Back Button
-          Expanded(
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              child: RaisedButton(
-                color: Colors.grey,
-                child: Text(
-                  "Back",
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-                padding: EdgeInsets.all(20),
-                onPressed: (){
-                  Navigator.of(context).pushNamed('/create_tutor_photo', arguments: tutorProfile);
-                  print("Back Pressed");
-                  }, // TODO: onPressed segue to previous page
-              ),
-              padding: EdgeInsets.all(20),
-            ),
-          )
         ],
       ),
     );

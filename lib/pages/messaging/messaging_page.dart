@@ -35,7 +35,16 @@ class _MessagingPageState extends State<MessagingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ChatRoomList(chatRooms: _chatRooms, addMessage: _addMessage)
-    );
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text("Messaging"),
+        ),
+        body: Center(
+          child: Text(
+            "Coming Soon",
+            textAlign: TextAlign.center,
+          ),
+        ) /*ChatRoomList(chatRooms: _chatRooms, addMessage: _addMessage)*/
+        );
   }
 }

@@ -1,16 +1,12 @@
 import 'package:tutoring_app_flutter/models/education_history.dart';
 
-class TutorProfile{
+class TutorProfile {
   String tutorId;
   String skillLevel;
   List<String> tutoredSubjects;
   String tutorExpertise;
 
-  //Education
-  List<EducationHistory> education;
-
   // Languages
-
   List<String> languages;
   List<String> languageProficiency;
 
@@ -25,22 +21,23 @@ class TutorProfile{
   String profilePicImgUrl;
 
   // Tutor Location Info
-
   String tutorCountry;
   String tutorStreetAdd;
   String tutorCity;
   String tutorProvinceState;
   String tutorPostal;
 
+  // Tutor Phone Number
+  String phone;
 
-
+  //validation of completed profile
+  bool isEditingProfile;
 
   TutorProfile({
     this.tutorId,
     this.skillLevel,
     this.tutoredSubjects,
     this.tutorExpertise,
-    this.education,
     this.languages,
     this.languageProficiency,
     this.hourlyRate,
@@ -51,6 +48,8 @@ class TutorProfile{
     this.tutorStreetAdd,
     this.tutorCity,
     this.tutorProvinceState,
-    this.tutorPostal
+    this.tutorPostal,
+    this.phone,
+    this.isEditingProfile,
   });
 }

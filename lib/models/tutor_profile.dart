@@ -31,7 +31,7 @@ class TutorProfile {
   String phone;
 
   //validation of completed profile
-  bool isCompleted;
+  bool isEditingProfile;
 
   TutorProfile({
     this.tutorId,
@@ -50,6 +50,6 @@ class TutorProfile {
     this.tutorProvinceState,
     this.tutorPostal,
     this.phone,
-    this.isCompleted,
+    this.isEditingProfile,
   });
 }

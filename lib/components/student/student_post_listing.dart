@@ -39,9 +39,7 @@ class _StudentPostListingState extends State<StudentPostListing> {
   @override
   void initState() {
     super.initState();
-    // TODO: Remove longDescription after db implementation
     longDescription = widget.description;
-    // TODO: description must be over 40 characters so this will always work
     shortDescription = longDescription.substring(0, (longDescription.length / 2).round());
     DateTime dateCreated = DateTime.parse(widget.date);
     formattedDateCreated =
@@ -56,7 +54,6 @@ class _StudentPostListingState extends State<StudentPostListing> {
       padding: EdgeInsets.all(17),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        //TODO: Replace placeholder text with class variables
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:tutoring_app_flutter/models/tutor_profile.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/all_create_tutor_pages.dart';
 import 'package:tutoring_app_flutter/services/tutor_service.dart';
-
-import 'package:tutoring_app_flutter/pages/Sessions/session_request.dart';
 
 class MainTutorProfile extends StatefulWidget {
   final String id;
@@ -51,6 +50,35 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
     return profile;
   }
 
+  Future<TutorProfile> getTutorProfileById() async {
+    var profileInfo = await TutorService().getTutorById(widget.id);
+    TutorProfile profile = new TutorProfile(
+        tutoredSubjects: new List<String>(),
+        languageProficiency: new List<String>(),
+        languages: new List<String>());
+    for (var subject in profileInfo["tutor"]["subjects"]) {
+      profile.tutoredSubjects.add(subject);
+    }
+    for (var language in profileInfo["tutor"]["languages"]) {
+      profile.languages.add(language);
+    }
+    for (var languageP in profileInfo["tutor"]["languageProficiency"]) {
+      profile.languageProficiency.add(languageP);
+    }
+    profile.tutorCity = profileInfo["tutor"]["city"];
+    profile.tutorId = profileInfo["tutor"]["_id"];
+    profile.hourlyRate = profileInfo["tutor"]["hourlyRate"].toString();
+    profile.tutorExpertise = profileInfo["tutor"]["tutorExpertise"];
+    profile.profileOverview = profileInfo["tutor"]["bio"];
+    profile.profileHeadline = profileInfo["tutor"]["headline"];
+    profile.skillLevel = profileInfo["tutor"]["skillLevel"];
+    profile.tutorProvinceState = profileInfo["tutor"]["province"];
+
+    firstName = profileInfo["user"][0]["firstName"];
+    lastName = profileInfo["user"][0]["lastName"];
+    return profile;
+  }
+
   bool usersTutorProfile = false;
   @override
   Widget build(BuildContext context) {
@@ -60,7 +88,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
             title: Center(child: Text('Tutor Profile')),
           ),
           body: FutureBuilder(
-              future: widget.viewingOwnProfile == true ? getOwnProfile() : getOwnProfile(),
+              future: widget.viewingOwnProfile == true ? getOwnProfile() : getTutorProfileById(),
               builder: (BuildContext context, AsyncSnapshot<TutorProfile> snapshot) {
                 if (snapshot.connectionState != ConnectionState.done) {
                   return SizedBox(child: CircularProgressIndicator(), width: 70, height: 70);
@@ -108,33 +136,6 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                     style: TextStyle(color: Colors.white, fontSize: 20.0),
                                   ),*/
                                 ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            width: 250,
-                            height: 50,
-                            child: Row(
-                              children: [
-                                SizedBox(width: 10),
-                                RaisedButton(
-                                    child: Text(
-                                      "Send Message",
-                                      style: TextStyle(color: Colors.white, fontSize: 18),
-                                    ),
-                                    onPressed: null),
-                                SizedBox(width: 70),
-                                RaisedButton(
-                                    child: Text(
-                                      "Request Session",
-                                      style: TextStyle(color: Colors.white, fontSize: 18),
-                                    ),
-                                    color: Colors.green,
-                                    onPressed: () {
-                                      print("pressed");
-                                      /*Navigator.push(context,
-                                    new MaterialPageRoute(builder: (context) => new SessionRequest()));*/
-                                    }),
                               ],
                             ),
                           ),
@@ -211,13 +212,31 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                           SizedBox(
                             width: 250,
                             height: 50,
-                            child: RaisedButton(
-                                child: Text(
-                                  "Edit Profile",
-                                  style: TextStyle(color: Colors.white, fontSize: 18),
-                                ),
-                                onPressed:
-                                    null), //TODO: Change color of button and text to -> "tap field to edit", and enable GestureDetectors
+                            child: widget.viewingOwnProfile
+                                ? RaisedButton(
+                                    child: Text(
+                                      "Edit Profile",
+                                      style: TextStyle(color: Colors.white, fontSize: 18),
+                                    ),
+                                    onPressed: () {
+                                      snapshot.data.isEditingProfile = true;
+                                      Navigator.push(
+                                          context,
+                                          new MaterialPageRoute(
+                                              builder: (context) => CreateTutor3ExperiencePage(
+                                                  profile: snapshot.data)));
+                                    })
+                                : RaisedButton(
+                                    child: Text(
+                                      "Request Session",
+                                      style: TextStyle(color: Colors.white, fontSize: 18),
+                                    ),
+                                    color: Colors.green,
+                                    onPressed: () {
+                                      print("pressed");
+                                      /*Navigator.push(context,
+                                    new MaterialPageRoute(builder: (context) => new SessionRequest()));*/
+                                    }), //TODO: Change color of button and text to -> "tap field to edit", and enable GestureDetectors
                           ),
                         ]);
                 }

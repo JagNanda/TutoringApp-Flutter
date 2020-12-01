@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 import 'dart:math' as math;
 
 import 'package:tutoring_app_flutter/services/student_service.dart';
@@ -43,66 +44,76 @@ class _TutorProfileListingState extends State<TutorProfileListing> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-      padding: EdgeInsets.all(17),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 1,
-                child: Column(
-                  children: [
-                    Container(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(50.0),
-                        child: Image.network('https://via.placeholder.com/80'),
-                      ),
-                    ),
-                    //),
-                    Text("\$${widget.hourlyRate} per hour",
-                        style: TextStyle(fontWeight: FontWeight.bold))
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => MainTutorProfile(
+                      id: widget.id,
+                    )));
+      },
+      child: Container(
+        decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
+        padding: EdgeInsets.all(17),
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 1,
                   child: Column(
                     children: [
-                      Text(
-                        "${widget.name}",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                      Container(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50.0),
+                          child: Image.network('https://via.placeholder.com/80'),
+                        ),
                       ),
-                      SizedBox(height: 15),
-                      Text("Subjects: " + getAllSubjectsString()),
+                      //),
+                      Text("\$${widget.hourlyRate} per hour",
+                          style: TextStyle(fontWeight: FontWeight.bold))
                     ],
                   ),
                 ),
-              ),
-              GestureDetector(
-                child: favorite == true
-                    ? Icon(Icons.favorite, color: Colors.pink)
-                    : Icon(Icons.favorite_border),
-                onTap: () async {
-                  if (favorite == false) {
-                    await StudentService().addTutorToFavourites(widget.id);
-                  } else if (favorite == true) {
-                    await StudentService().removeTutorInFavourites(widget.id);
-                  }
-                  setState(() {
-                    favorite = !favorite;
-                  });
-                },
-              )
-            ],
-          ),
-          SizedBox(height: 15),
-          Text(widget.bio),
-        ],
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          "${widget.name}",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 15),
+                        Text("Subjects: " + getAllSubjectsString()),
+                      ],
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  child: favorite == true
+                      ? Icon(Icons.favorite, color: Colors.pink)
+                      : Icon(Icons.favorite_border),
+                  onTap: () async {
+                    if (favorite == false) {
+                      await StudentService().addTutorToFavourites(widget.id);
+                    } else if (favorite == true) {
+                      await StudentService().removeTutorInFavourites(widget.id);
+                    }
+                    setState(() {
+                      favorite = !favorite;
+                    });
+                  },
+                )
+              ],
+            ),
+            SizedBox(height: 15),
+            Text(widget.bio),
+          ],
+        ),
       ),
     );
   }

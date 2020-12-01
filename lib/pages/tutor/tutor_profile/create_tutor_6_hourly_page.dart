@@ -118,14 +118,16 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
                       onPressed: () async {
                         if (widget.profile.hourlyRate == null) {
                           noHourlyRateAlertDialog(context);
-                        }
-                        else
-                        {
+                        } else {
                           //TODO: Make API call to create tutorProfile then pass tutorId below to MainProfilePage
-                          bool created = await TutorService().createTutorProfile(widget.profile);
-                          print(created);
-                          if (created && Navigator.canPop(context)) {
-                            Navigator.of(context).popUntil(ModalRoute.withName('/portal'));
+                          if (widget.profile.isEditingProfile == true) {
+                            //edit profile api call
+                          } else {
+                            bool created = await TutorService().createTutorProfile(widget.profile);
+                            print(created);
+                            if (created && Navigator.canPop(context)) {
+                              Navigator.of(context).popUntil(ModalRoute.withName('/portal'));
+                            }
                           }
                         }
                       },

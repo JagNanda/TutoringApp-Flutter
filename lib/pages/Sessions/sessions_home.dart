@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard_completed.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/session_outgoing_requests.dart';
 
-import 'package:tutoring_app_flutter/pages/Sessions/session_dashboard_pending.dart';
-import 'package:tutoring_app_flutter/pages/Sessions/session_outgoing_requests.dart';
-
 class SessionsHome extends StatefulWidget {
   final bool isStudent;
 

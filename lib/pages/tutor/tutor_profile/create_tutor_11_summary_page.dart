@@ -62,6 +62,7 @@ class _CreateTutor11SummaryPageState extends State<CreateTutor11SummaryPage> {
                 child: Column(
                   children: [
                     TextFormField(
+                      initialValue:  widget.profile.profileHeadline,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Profile Headline',  //TODO: Populate with existing headline
@@ -92,6 +93,14 @@ class _CreateTutor11SummaryPageState extends State<CreateTutor11SummaryPage> {
                         }
                       },
                     ),
+                    // SizedBox(height: 30),
+                    // SizedBox(
+                    //   child: Column(
+                    //     children: [
+                    //       if(widget.profile.profileHeadline.isNotEmpty) Text('Current Headline: ' + widget.profile.profileHeadline),
+                    //     ],
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

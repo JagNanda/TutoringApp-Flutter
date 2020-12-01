@@ -83,6 +83,7 @@ class _CreateTutor9LocationPageState extends State<CreateTutor9LocationPage> {
                   children: [
                     SizedBox(height: 10),
                     TextFormField(
+                      initialValue: widget.profile.tutorCity,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'City',
@@ -93,6 +94,7 @@ class _CreateTutor9LocationPageState extends State<CreateTutor9LocationPage> {
                     ),
                     SizedBox(height: 10),
                     TextFormField(
+                      initialValue: widget.profile.tutorProvinceState,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'State / Province',
@@ -138,6 +140,15 @@ class _CreateTutor9LocationPageState extends State<CreateTutor9LocationPage> {
                         }
                       },
                     ),
+                    // SizedBox(height: 30),
+                    // SizedBox(
+                    //   child: Column(
+                    //     children: [
+                    //       if(widget.profile.tutorCity != null) Text('Current City: ' + widget.profile.tutorCity),
+                    //       if(widget.profile.tutorProvinceState != null) Text('Current State/Province: ' + widget.profile.tutorProvinceState),
+                    //     ],
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

@@ -84,7 +84,8 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
                     SizedBox(height: 10),
                     Column(
                       children: [
-                        new TextField(
+                        new TextFormField(
+                          initialValue: widget.profile.hourlyRate,
                           decoration:
                               new InputDecoration(labelText: "Update your hourly rate in \$:"),
                           onChanged: (String val) {
@@ -119,10 +120,17 @@ class _CreateTutor6HourlyPageState extends State<CreateTutor6HourlyPage> {
                         if (widget.profile.hourlyRate == null) {
                           noHourlyRateAlertDialog(context);
                         } else {
-                          //TODO: Make API call to create tutorProfile then pass tutorId below to MainProfilePage
                           if (widget.profile.isEditingProfile == true) {
-                            //edit profile api call
+                            print('>>> Editing Profile <<<');
+                            //TODO: edit profile api call
+                            // bool updated = await TutorService().updateTutorProfile(widget.profile);
+                            // print(updated);
+                            //  if (Navigator.canPop(context)) {
+                            //    Navigator.of(context).popUntil(
+                            //        ModalRoute.withName('/portal'));
+                            //  }
                           } else {
+                            print('>>> Creating New Profile <<<');
                             bool created = await TutorService().createTutorProfile(widget.profile);
                             print(created);
                             if (created && Navigator.canPop(context)) {

@@ -62,6 +62,7 @@ class _CreateTutor7OverviewPageState extends State<CreateTutor7OverviewPage> {
                 child: Column(
                   children: [
                     TextFormField(
+                      initialValue: widget.profile.profileOverview,
                       minLines: 8,
                       maxLines: 16,
                       maxLength: 240,
@@ -74,6 +75,14 @@ class _CreateTutor7OverviewPageState extends State<CreateTutor7OverviewPage> {
                         widget.profile.profileOverview = val;
                       },
                     ),
+                    // SizedBox(height: 30),
+                    // SizedBox(
+                    //   child: Column(
+                    //     children: [
+                    //       if(widget.profile.profileOverview.isNotEmpty) Text('Current Overview: ' + widget.profile.profileOverview),
+                    //     ],
+                    //   ),
+                    // ),
                     SizedBox(height: 10),
                     RaisedButton(
                       color: Colors.blue,

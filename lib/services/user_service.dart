@@ -54,6 +54,7 @@ class UserService {
       String token = json['token'];
 
       final sharedPrefs = await SharedPreferences.getInstance();
+      sharedPrefs.clear();
       await sharedPrefs.setString("token", token).then((value) => (success = value));
 
       //get user and save userId and tuteeId to prefences

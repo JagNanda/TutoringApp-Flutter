@@ -130,6 +130,25 @@ class TutorService {
     return success;
   }
 
+  //get incoming session requests for tutor
+  Future<dynamic> getAllSessionRequests() async {
+    final sharedPrefs = await SharedPreferences.getInstance();
+    String token = sharedPrefs.getString("token");
+    String tutorId = sharedPrefs.getString("tutorId");
+
+    http.Response getSessionsReq = await http.get(
+      "$baseUrl/sessions/requests/$tutorId",
+      headers: <String, String>{'Content-Type': 'application/json', 'x-auth-token': '$token'},
+    );
+    print(getSessionsReq.statusCode);
+    if (getSessionsReq.statusCode == 200) {
+      var allCurrentSessions = jsonDecode(getSessionsReq.body);
+      return allCurrentSessions;
+    }
+
+    return null;
+  }
+
   //create Session Request
   Future<bool> CreateSessionRequest() async {}
 }

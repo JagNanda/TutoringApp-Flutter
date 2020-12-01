@@ -115,12 +115,11 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                 Container(
                                   child: Center(
                                     child: CircleAvatar(
-                                      radius: 90,
-                                      child: Text(
-                                        "$initials",
-                                        style: TextStyle(color: Colors.white, fontSize: 80.0),
-                                      )
-                                    ),
+                                        radius: 90,
+                                        child: Text(
+                                          "$initials",
+                                          style: TextStyle(color: Colors.white, fontSize: 80.0),
+                                        )),
                                   ),
                                 ),
                                 Container(
@@ -137,7 +136,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                       ],
                                     ),
                                   ),
-                                     child: Text(
+                                  child: Text(
                                     "$firstName $lastName",
                                     style: TextStyle(color: Colors.white, fontSize: 20.0),
                                   ),
@@ -148,7 +147,10 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                           Card(
                             child: ListTile(
                               title: Text("Location: "),
-                              subtitle: Center(child: Text(snapshot.data.tutorCity + ", " + snapshot.data.tutorProvinceState)),
+                              subtitle: Center(
+                                  child: Text(snapshot.data.tutorCity +
+                                      ", " +
+                                      snapshot.data.tutorProvinceState)),
                             ),
                           ),
                           Card(
@@ -208,7 +210,8 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                           Card(
                             child: ListTile(
                               title: Text('Hourly rate:'),
-                              subtitle: Center(child: Text(snapshot.data.hourlyRate.toString() + '/hr'),
+                              subtitle: Center(
+                                child: Text(snapshot.data.hourlyRate.toString() + '/hr'),
                               ),
                             ),
                           ), // Hourly Rate Input
@@ -230,8 +233,8 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
                                               builder: (context) => CreateTutor3ExperiencePage(
                                                   profile: snapshot.data)));
                                     },
-                              color: Colors.redAccent,
-                            )
+                                    color: Colors.redAccent,
+                                  )
                                 : RaisedButton(
                                     child: Text(
                                       "Request Session",

@@ -28,6 +28,7 @@ class _SessionOutgoingRequestsState extends State<SessionOutgoingRequests> {
         levelOfEducation: session["levelOfEducation"],
         subject: session["subject"],
         date: session["date"],
+        isStudent: true,
       );
     }).toList();
   }
@@ -35,14 +36,18 @@ class _SessionOutgoingRequestsState extends State<SessionOutgoingRequests> {
   Future<List<SessionListing>> loadTutorsIncomingRequests() async {
     List<dynamic> allSessions = await TutorService().getAllSessionRequests();
     return allSessions.map((session) {
-      return SessionListing(
-        details: session["details"],
-        firstName: session["userInfo"]["firstName"],
-        lastName: session["userInfo"]["lastName"],
-        levelOfEducation: session["levelOfEducation"],
-        subject: session["subject"],
-        date: session["date"],
-      );
+      if (session["accepted"] == false) {
+        return SessionListing(
+          requestId: session["_id"],
+          tutorId: session["tutorId"],
+          details: session["details"],
+          firstName: session["userInfo"]["firstName"],
+          lastName: session["userInfo"]["lastName"],
+          levelOfEducation: session["levelOfEducation"],
+          subject: session["subject"],
+          date: session["date"],
+        );
+      }
     }).toList();
   }
 
@@ -59,7 +64,7 @@ class _SessionOutgoingRequestsState extends State<SessionOutgoingRequests> {
               : snapshot.data.length == 0
                   ? Center(
                       child: Text(
-                      "You do not have any current Sessions",
+                      "You do not have any requests",
                       textAlign: TextAlign.center,
                     ))
                   : ListView.builder(

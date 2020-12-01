@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:tutoring_app_flutter/constants.dart';
 import 'package:tutoring_app_flutter/pages/Sessions/session_details.dart';
+import 'package:tutoring_app_flutter/services/tutor_service.dart';
 
 class SessionListing extends StatefulWidget {
+  final String tutorId;
+  final String requestId;
   final String firstName;
   final String lastName;
   final String subject;
   final String details;
   final String levelOfEducation;
   final String date;
-
+  final bool isStudent;
   SessionListing(
       {this.firstName,
       this.lastName,
       this.subject,
       this.details,
       this.date,
-      this.levelOfEducation});
+      this.tutorId,
+      this.requestId,
+      this.levelOfEducation,
+      this.isStudent = false});
 
   @override
   _SessionListingState createState() => _SessionListingState();
@@ -74,16 +80,36 @@ class _SessionListingState extends State<SessionListing> {
           SizedBox(
             height: 4,
           ),
-          Row(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            textBaseline: TextBaseline.alphabetic,
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            children: [
-              //SizedBox(width:),
-              Text(formattedDateCreated,
-                  textAlign: TextAlign.center, style: new TextStyle(fontWeight: FontWeight.bold)),
-            ],
-          ),
+          widget.isStudent
+              ? Text(
+                  formattedDateCreated,
+                  textAlign: TextAlign.left,
+                  style: new TextStyle(fontWeight: FontWeight.bold),
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      formattedDateCreated,
+                      textAlign: TextAlign.left,
+                      style: new TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    RaisedButton(
+                        color: Colors.green,
+                        child: Text(
+                          "Accept Session",
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                        onPressed: () async {
+                          bool success = await TutorService().acceptSessionRequest(
+                              tutorId: widget.tutorId, requestId: widget.requestId);
+                          if (success) {
+                            Scaffold.of(context)
+                                .showSnackBar(SnackBar(content: Text("Session request accepted.")));
+                          }
+                        })
+                  ],
+                ),
         ],
       ),
     );

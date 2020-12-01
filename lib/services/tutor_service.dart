@@ -48,7 +48,10 @@ class TutorService {
       }),
     );
     if (resp.statusCode == 200) {
+      print(resp);
       success = true;
+      var registrationInfo = jsonDecode(resp.body);
+      prefs.setString("tutorId", registrationInfo["tutorInfo"]["_id"]);
     }
     print(resp.statusCode);
     return success;

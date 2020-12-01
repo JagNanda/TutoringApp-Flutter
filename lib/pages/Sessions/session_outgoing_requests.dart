@@ -3,6 +3,9 @@ import 'package:tutoring_app_flutter/components/sessions/session_listing.dart';
 import 'package:tutoring_app_flutter/services/student_service.dart';
 
 class SessionOutgoingRequests extends StatefulWidget {
+  final bool isStudent;
+
+  SessionOutgoingRequests({@required this.isStudent});
   @override
   _SessionOutgoingRequestsState createState() => _SessionOutgoingRequestsState();
 }
@@ -10,6 +13,7 @@ class SessionOutgoingRequests extends StatefulWidget {
 class _SessionOutgoingRequestsState extends State<SessionOutgoingRequests> {
   @override
   void initState() {
+    print(widget.isStudent);
     super.initState();
   }
 

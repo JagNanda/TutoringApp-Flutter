@@ -15,8 +15,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
 
   static List<Widget> _widgetOptions = <Widget>[
     StudentDashboardTutorsHome(),
-    //TODO(jag): Replace with messaging once done
-    SessionsHome(),
+    SessionsHome(isStudent: true),
     MessagingPage(),
     StudentDashboardPostings()
   ];

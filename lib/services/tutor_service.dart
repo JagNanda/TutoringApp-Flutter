@@ -11,7 +11,6 @@ class TutorService {
   //get a tutor profile by id
   Future<dynamic> getTutorById(String tutorId) async {
     http.Response tutorProfileResp = await http.get("$baseUrl/tutor/$tutorId");
-    print(tutorProfileResp.statusCode);
     if (tutorProfileResp.statusCode == 200) {
       var profile = jsonDecode(tutorProfileResp.body);
       return profile;

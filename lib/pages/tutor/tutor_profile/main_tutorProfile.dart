@@ -22,6 +22,7 @@ class _MainTutorProfileState extends State<MainTutorProfile> {
   Future<TutorProfile> getOwnProfile() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String id = prefs.getString("tutorId");
+    print(id);
     var profileInfo = await TutorService().getTutorById(id);
     TutorProfile profile = new TutorProfile(
         tutoredSubjects: new List<String>(),

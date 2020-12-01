@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tutoring_app_flutter/pages/Sessions/sessions_home.dart';
+import 'package:tutoring_app_flutter/pages/messaging/messaging_page.dart';
 import 'package:tutoring_app_flutter/pages/tutor/tutor_profile/main_tutorProfile.dart';
 import 'jobs_tab/tutor_dashboard_jobs_favourites.dart';
 import 'jobs_tab//tutor_dashboard_jobs_my_students.dart';
@@ -29,12 +31,11 @@ class _TutorDashboardState extends State<TutorDashboard> {
 /*    getTutorId();*/
     _widgetOptions = <Widget>[
       TutorDashboardJobsHome(),
+      SessionsHome(isStudent: false),
+      MessagingPage(),
       MainTutorProfile(
         viewingOwnProfile: true,
       ),
-      //TODO: Replace with sessions once done
-      //TODO: Replace with chat once done
-      //TODO: Replace with profile once done
     ];
     _bottomNavigationBar = BottomNavigationBar(
       currentIndex: selectedIndex,

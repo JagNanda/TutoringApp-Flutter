@@ -47,22 +47,19 @@ class _TutorDashboardState extends State<TutorDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        body: _widgetOptions[selectedIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: selectedIndex,
-          onTap: changeTabs,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.grey,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.school), label: "Tutors"),
-            BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: "Sessions"),
-            BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chat"),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-          ],
-        ),
+    return Scaffold(
+      body: _widgetOptions[selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        onTap: changeTabs,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.school), label: "Tutors"),
+          BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: "Sessions"),
+          BottomNavigationBarItem(icon: Icon(Icons.chat), label: "Chat"),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+        ],
       ),
     );
   }

@@ -12,22 +12,17 @@ class _TutorDashboardJobsHomeState extends State<TutorDashboardJobsHome> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
           centerTitle: true,
           title: Text("Tutor Dashboard"),
-          bottom: TabBar(tabs: [
-            Tab(icon: Icon(Icons.search)),
-            Tab(icon: Icon(Icons.people)),
-            Tab(icon: Icon(Icons.star))
-          ]),
+          bottom: TabBar(tabs: [Tab(icon: Icon(Icons.search)), Tab(icon: Icon(Icons.star))]),
         ),
         body: TabBarView(
           children: [
             TutorDashboardJobsSearchPage(),
-            TutorDashboardJobsMyStudents(),
             TutorDashboardJobFavourites(),
           ],
         ),

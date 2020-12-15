@@ -3,15 +3,15 @@ import 'package:tutoring_app_flutter/components/sessions/session_listing.dart';
 import 'package:tutoring_app_flutter/services/student_service.dart';
 import 'package:tutoring_app_flutter/services/tutor_service.dart';
 
-class SessionOutgoingRequests extends StatefulWidget {
+class SessionAcceptedRequests extends StatefulWidget {
   final bool isStudent;
 
-  SessionOutgoingRequests({@required this.isStudent});
+  SessionAcceptedRequests({@required this.isStudent});
   @override
-  _SessionOutgoingRequestsState createState() => _SessionOutgoingRequestsState();
+  _SessionAcceptedRequestsState createState() => _SessionAcceptedRequestsState();
 }
 
-class _SessionOutgoingRequestsState extends State<SessionOutgoingRequests> {
+class _SessionAcceptedRequestsState extends State<SessionAcceptedRequests> {
   @override
   void initState() {
     super.initState();
@@ -22,7 +22,8 @@ class _SessionOutgoingRequestsState extends State<SessionOutgoingRequests> {
 
     List<SessionListing> allSessionListings = new List<SessionListing>();
     allSessionInfo.forEach((session) {
-      if (session["accepted"] == false) {
+      print(session);
+      if (session["accepted"] == true) {
         allSessionListings.add(SessionListing(
           details: session["details"],
           firstName: session["userInfo"]["firstName"],
@@ -43,7 +44,7 @@ class _SessionOutgoingRequestsState extends State<SessionOutgoingRequests> {
 
     List<SessionListing> allSessionListings = new List<SessionListing>();
     allSessionInfo.forEach((session) {
-      if (session["accepted"] == false) {
+      if (session["accepted"] == true) {
         allSessionListings.add(SessionListing(
           requestId: session["_id"],
           tutorId: session["tutorId"],
@@ -53,6 +54,7 @@ class _SessionOutgoingRequestsState extends State<SessionOutgoingRequests> {
           levelOfEducation: session["levelOfEducation"],
           subject: session["subject"],
           date: session["date"],
+          isStudent: true,
         ));
       }
     });
